@@ -4,54 +4,80 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Helmet } from "react-helmet-async";
 import AppDownloadPrompt from "@/components/AppDownloadPrompt";
 
-const heroImg = "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1200&auto=format&fit=crop";
-const sideImg = "https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop";
+// Real hero images from THE OUTNET
+const heroImg = "https://www.theoutnet.com/cms/ycm/resource/blob/4784402/a89031d8d0b4a529a4092dbffae49b1b/fall-24-editorial-1-data.jpg";
+const sideImg = "https://www.theoutnet.com/cms/ycm/resource/blob/4784404/f5f0a30f7edac71fdd4a8b69f1ccbb99/fall-24-editorial-2-data.jpg";
 
 const promos = [
   {
-    title: "Sneaker spotlight",
-    subtitle: "Save up to 60%",
-    img: "https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop",
-    cta: "Shop",
+    title: "THIS FALL, FIND THE ONE",
+    subtitle: "Meet your match: The sweaters and jackets you've been waiting for are finally here",
+    img: "https://www.theoutnet.com/cms/ycm/resource/blob/4784402/a89031d8d0b4a529a4092dbffae49b1b/fall-24-editorial-1-data.jpg",
+    cta: "Shop Now",
   },
   {
-    title: "Tailoring edit",
-    subtitle: "Half-price heroes",
-    img: "https://images.unsplash.com/photo-1503342250614-ca440786f637?q=80&w=1200&auto=format&fit=crop",
-    cta: "Explore",
+    title: "NEW IN: THE ELDER STATESMAN",
+    subtitle: "Lean into laid-back LA cool with the coolest pieces in the game",
+    img: "https://www.theoutnet.com/cms/ycm/resource/blob/4784404/f5f0a30f7edac71fdd4a8b69f1ccbb99/fall-24-editorial-2-data.jpg",
+    cta: "Shop Now",
   },
   {
-    title: "Accessories under $150",
-    subtitle: "Belts, caps & more",
-    img: "https://images.unsplash.com/photo-1548625361-58a9b86aa83b?q=80&w=1200&auto=format&fit=crop",
-    cta: "View",
+    title: "JUST IN",
+    subtitle: "A curated selection of the latest styles",
+    img: "https://www.theoutnet.com/variants/images/46376663162943938/F/w300.jpg?imwidth=800&improfile=isc",
+    cta: "Shop Now",
   },
 ];
 
+// Real products from THE OUTNET - OFFICINE GÉNÉRALE collection
 const products = [
   {
-    title: "Brand • Leather Jacket",
-    img: "https://images.unsplash.com/photo-1528702762834-46017996a8f5?q=80&w=1200&auto=format&fit=crop",
+    title: "OFFICINE GÉNÉRALE • Milos Merino Wool Cardigan",
+    img: "https://www.theoutnet.com/variants/images/46376663162879775/F/w300.jpg?imwidth=800&improfile=isc",
+    price: "$189",
+    old: "$315",
+  },
+  {
+    title: "OFFICINE GÉNÉRALE • Benoit Checked Cotton Twill Shirt",
+    img: "https://www.theoutnet.com/variants/images/46376663162943719/F/w300.jpg?imwidth=800&improfile=isc",
+    price: "$129", 
+    old: "$215",
+  },
+  {
+    title: "OFFICINE GÉNÉRALE • James Cotton Corduroy Pants",
+    img: "https://www.theoutnet.com/variants/images/46376663162944045/F/w300.jpg?imwidth=800&improfile=isc",
+    price: "$149",
+    old: "$245",
+  },
+  {
+    title: "OFFICINE GÉNÉRALE • Harrison Wool Overshirt",
+    img: "https://www.theoutnet.com/variants/images/46376663162943938/F/w300.jpg?imwidth=800&improfile=isc",
     price: "$299",
-    old: "$540",
+    old: "$495",
   },
   {
-    title: "Brand • Sneakers",
-    img: "https://images.unsplash.com/photo-1520975930414-c2b5c3a50f0a?q=80&w=1200&auto=format&fit=crop",
-    price: "$129",
-    old: "$220",
+    title: "OFFICINE GÉNÉRALE • Eloi Cotton Poplin Shirt",
+    img: "https://www.theoutnet.com/variants/images/46376663162943947/F/w300.jpg?imwidth=800&improfile=isc",
+    price: "$109",
+    old: "$185",
   },
   {
-    title: "Brand • Denim",
-    img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop",
-    price: "$89",
-    old: "$150",
+    title: "OFFICINE GÉNÉRALE • Giovanni Suit Jacket",
+    img: "https://www.theoutnet.com/variants/images/46376663162944023/F/w300.jpg?imwidth=800&improfile=isc",
+    price: "$399",
+    old: "$665",
   },
   {
-    title: "Brand • Backpack",
-    img: "https://images.unsplash.com/photo-1520975940070-6c0b5a61a616?q=80&w=1200&auto=format&fit=crop",
-    price: "$99",
-    old: "$160",
+    title: "OFFICINE GÉNÉRALE • Matty Wool Bomber Jacket",
+    img: "https://www.theoutnet.com/variants/images/46376663162885748/F/w300.jpg?imwidth=800&improfile=isc",
+    price: "$349",
+    old: "$585",
+  },
+  {
+    title: "OFFICINE GÉNÉRALE • Tahar Ribbed Merino Cardigan",
+    img: "https://www.theoutnet.com/variants/images/46376663162879932/F/w300.jpg?imwidth=800&improfile=isc",
+    price: "$199",
+    old: "$335",
   },
 ];
 
@@ -124,40 +150,99 @@ export default function Index() {
 
         <section aria-label="Promotions" className="grid md:grid-cols-3 gap-4 my-6">
           {promos.map((p, i) => (
-            <Card key={i} className="overflow-hidden">
-              <img src={p.img} alt={p.title} loading="lazy" className="h-44 w-full object-cover" />
-              <CardContent className="flex items-center justify-between gap-2 p-4">
-                <div>
-                  <strong className="block text-sm">{p.title}</strong>
-                  <span className="text-muted-foreground text-sm">{p.subtitle}</span>
+            <Card key={i} className="overflow-hidden group hover:shadow-lg transition-all duration-300">
+              <div className="relative overflow-hidden">
+                <img src={p.img} alt={p.title} loading="lazy" className="h-44 w-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+              </div>
+              <CardContent className="flex items-start justify-between gap-2 p-4">
+                <div className="flex-1">
+                  <strong className="block text-sm font-semibold mb-1">{p.title}</strong>
+                  <span className="text-muted-foreground text-xs leading-relaxed">{p.subtitle}</span>
                 </div>
-                <Button variant="outline">{p.cta}</Button>
+                <Button variant="outline" size="sm" className="shrink-0">{p.cta}</Button>
               </CardContent>
             </Card>
           ))}
         </section>
 
         <section id="products" aria-labelledby="products-title" className="my-4">
-          <h2 id="products-title" className="text-xl font-semibold mb-3">Trending now</h2>
+          <h2 id="products-title" className="text-xl font-semibold mb-3">Just In: Designer Menswear</h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
             {products.map((p, i) => (
-              <Card key={i} className="overflow-hidden">
-                <img src={p.img} alt={p.title} loading="lazy" className="h-48 w-full object-cover" />
+              <Card key={i} className="overflow-hidden group hover:shadow-lg transition-shadow">
+                <div className="relative overflow-hidden">
+                  <img src={p.img} alt={p.title} loading="lazy" className="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                    SALE
+                  </div>
+                </div>
                 <CardContent className="grid gap-2 p-4">
-                  <div className="text-sm text-muted-foreground">{p.title}</div>
+                  <div className="text-sm text-muted-foreground line-clamp-2">{p.title}</div>
                   <div className="flex items-baseline gap-2">
                     <span className="font-bold text-foreground">{p.price}</span>
                     <span className="text-xs line-through text-muted-foreground">{p.old}</span>
+                    <span className="text-xs text-green-600 font-medium ml-auto">
+                      {Math.round((1 - parseFloat(p.price.slice(1)) / parseFloat(p.old.slice(1))) * 100)}% OFF
+                    </span>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
+          <div className="text-center mt-6">
+            <Button variant="outline" className="min-w-32">
+              View All Products
+            </Button>
+          </div>
         </section>
       </main>
 
       <footer role="contentinfo" className="border-t mt-10 py-6 text-sm text-muted-foreground">
-        <div className="container mx-auto px-4">© 2025 Outlet Mirror. For testing only.</div>
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-6 mb-6">
+            <div>
+              <h3 className="font-semibold text-foreground mb-3">Customer Care</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-foreground transition-colors">Track Your Order</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Create A Return</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Contact Us</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Size Guide</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-3">About</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-foreground transition-colors">About THE OUTNET</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Press</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Sustainability</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-3">Services</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-foreground transition-colors">Download Our App</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Personal Shopping</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Gift Cards</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Newsletter</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-3">Connect</h3>
+              <div className="flex gap-3 mb-3">
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Instagram</a>
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Twitter</a>
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Facebook</a>
+              </div>
+              <p className="text-xs">Free shipping over $150</p>
+              <p className="text-xs">10% off first app order with APP10</p>
+            </div>
+          </div>
+          <div className="border-t pt-4 text-center">
+            © 2025 THE OUTNET • MEN. Data sourced from theoutnet.com for testing purposes.
+          </div>
+        </div>
       </footer>
 
       {mounted && <AppDownloadPrompt />}
