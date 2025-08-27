@@ -241,7 +241,12 @@ export default function Accessories() {
                     <span className="text-sm line-through text-muted-foreground">{product.old}</span>
                   </div>
                   <div className="text-xs text-green-600 font-medium mt-1">
-                    {Math.round(((parseFloat(product.old.slice(1)) - parseFloat(product.price.slice(1))) / parseFloat(product.old.slice(1))) * 100)}% OFF
+                    {(() => {
+                      const currentPrice = parseFloat(product.price.replace('$', '').replace(',', ''));
+                      const originalPrice = parseFloat(product.old.replace('$', '').replace(',', ''));
+                      const discount = Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
+                      return `${discount}% OFF`;
+                    })()}
                   </div>
                 </CardContent>
               </Card>

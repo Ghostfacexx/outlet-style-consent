@@ -169,7 +169,12 @@ export default function Index() {
                       <span className="font-bold text-foreground">{p.price}</span>
                       <span className="text-xs line-through text-muted-foreground">{p.old}</span>
                       <span className="text-xs text-green-600 font-medium ml-auto">
-                        {Math.round(((parseFloat(p.old.slice(1)) - parseFloat(p.price.slice(1))) / parseFloat(p.old.slice(1))) * 100)}% OFF
+                        {(() => {
+                          const currentPrice = parseFloat(p.price.replace('$', '').replace(',', ''));
+                          const originalPrice = parseFloat(p.old.replace('$', '').replace(',', ''));
+                          const discount = Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
+                          return `${discount}% OFF`;
+                        })()}
                       </span>
                     </div>
                   </CardContent>
