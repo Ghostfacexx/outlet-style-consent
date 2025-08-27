@@ -96,19 +96,19 @@ const allProducts = [
   },
   {
     id: "c6",
-    title: "JACQUEMUS • Le Sweatshirt Moisson",
-    img: "https://www.theoutnet.com/variants/images/46376663162879136/F/w340_q80.jpg",
+    title: "SANDRO • Wool-Blend Felt Jacket",
+    img: "https://www.theoutnet.com/variants/images/46376663162846675/F/w340_q80.jpg",
     images: [
-      "https://www.theoutnet.com/variants/images/46376663162879136/F/w340_q80.jpg",
-      "https://images.unsplash.com/photo-1556821840-3a9c6c1a8b18?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1582552938357-32b906df40cb?q=80&w=800&auto=format&fit=crop"
+      "https://www.theoutnet.com/variants/images/46376663162846675/F/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=800&auto=format&fit=crop"
     ],
-    price: "$242",
-    old: "$485",
-    category: "Sweatshirts",
-    brand: "JACQUEMUS",
-    description: "Contemporary sweatshirt with minimalist design and superior comfort.",
-    details: ["Cotton blend", "Machine wash", "Made in Portugal", "Regular fit"],
+    price: "$335",
+    old: "$670",
+    category: "Jackets",
+    brand: "SANDRO",
+    description: "Premium wool-blend felt jacket with contemporary tailoring and luxurious finish.",
+    details: ["Wool blend felt", "Dry clean", "Made in France", "Regular fit", "Button closure"],
     sizes: ["S", "M", "L", "XL"],
   },
   {
