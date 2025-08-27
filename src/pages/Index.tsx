@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Helmet } from "react-helmet-async";
@@ -107,22 +108,6 @@ export default function Index() {
 
       <a href="#main" className="sr-only">Skip to content</a>
 
-      <header role="banner" className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="text-lg font-extrabold tracking-wide">THE OUTNET • MEN</div>
-          <nav aria-label="Primary">
-            <ul className="hidden md:flex gap-4 text-sm">
-              <li><a href="#" aria-current="page" className="px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition">New In</a></li>
-              <li><a href="#" className="px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition">Clothing</a></li>
-              <li><a href="#" className="px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition">Shoes</a></li>
-              <li><a href="#" className="px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition">Accessories</a></li>
-              <li><a href="#" className="px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition">Designers</a></li>
-              <li><a href="#" className="px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition">Clearance</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-
       <main id="main" role="main" className="container mx-auto px-4">
         <section className="grid lg:grid-cols-[1.2fr,1fr] gap-6 items-center py-8">
           <article className="rounded-2xl border overflow-hidden bg-gradient-to-b from-muted/40 to-accent" aria-roledescription="hero">
@@ -170,30 +155,34 @@ export default function Index() {
           <h2 id="products-title" className="text-xl font-semibold mb-3">Just In: Designer Menswear</h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
             {products.map((p, i) => (
-              <Card key={i} className="overflow-hidden group hover:shadow-lg transition-shadow">
-                <div className="relative overflow-hidden">
-                  <img src={p.img} alt={p.title} loading="lazy" className="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                  <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                    SALE
+              <Link key={i} to={`/product/${i + 1}`}>
+                <Card className="overflow-hidden group hover:shadow-lg transition-shadow cursor-pointer">
+                  <div className="relative overflow-hidden">
+                    <img src={p.img} alt={p.title} loading="lazy" className="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                      SALE
+                    </div>
                   </div>
-                </div>
-                <CardContent className="grid gap-2 p-4">
-                  <div className="text-sm text-muted-foreground line-clamp-2">{p.title}</div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-bold text-foreground">{p.price}</span>
-                    <span className="text-xs line-through text-muted-foreground">{p.old}</span>
-                    <span className="text-xs text-green-600 font-medium ml-auto">
-                      {Math.round((1 - parseFloat(p.price.slice(1)) / parseFloat(p.old.slice(1))) * 100)}% OFF
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>
+                  <CardContent className="grid gap-2 p-4">
+                    <div className="text-sm text-muted-foreground line-clamp-2">{p.title}</div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-bold text-foreground">{p.price}</span>
+                      <span className="text-xs line-through text-muted-foreground">{p.old}</span>
+                      <span className="text-xs text-green-600 font-medium ml-auto">
+                        {Math.round((1 - parseFloat(p.price.slice(1)) / parseFloat(p.old.slice(1))) * 100)}% OFF
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
           <div className="text-center mt-6">
-            <Button variant="outline" className="min-w-32">
-              View All Products
-            </Button>
+            <Link to="/clothing">
+              <Button variant="outline" className="min-w-32">
+                View All Products
+              </Button>
+            </Link>
           </div>
         </section>
       </main>
