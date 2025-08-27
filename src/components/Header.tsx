@@ -56,14 +56,24 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <a href="#" className="px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition">
+              <Link 
+                to="/designers" 
+                className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition ${
+                  isActive('/designers') ? 'bg-accent text-accent-foreground' : ''
+                }`}
+              >
                 Designers
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition">
+              <Link 
+                to="/clearance" 
+                className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition ${
+                  isActive('/clearance') ? 'bg-accent text-accent-foreground' : ''
+                }`}
+              >
                 Clearance
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

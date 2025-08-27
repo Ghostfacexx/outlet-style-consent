@@ -9,6 +9,8 @@ import Index from "./pages/Index";
 import Clothing from "./pages/Clothing";
 import Shoes from "./pages/Shoes";
 import Accessories from "./pages/Accessories";
+import Designers from "./pages/Designers";
+import Clearance from "./pages/Clearance";
 import ProductDetail from "./pages/ProductDetail";
 import NotFound from "./pages/NotFound";
 
@@ -23,14 +25,16 @@ const App = () => (
         <BrowserRouter>
           <div className="min-h-screen bg-background font-sans antialiased">
             <Header />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/clothing" element={<Clothing />} />
-              <Route path="/shoes" element={<Shoes />} />
-              <Route path="/accessories" element={<Accessories />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/clothing" element={<Clothing />} />
+                <Route path="/shoes" element={<Shoes />} />
+                <Route path="/accessories" element={<Accessories />} />
+                <Route path="/designers" element={<Designers />} />
+                <Route path="/clearance" element={<Clearance />} />
+                <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
           </div>
         </BrowserRouter>
       </TooltipProvider>
