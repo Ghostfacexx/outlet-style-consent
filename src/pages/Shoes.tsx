@@ -241,7 +241,7 @@ export default function Shoes() {
                     <span className="text-sm line-through text-muted-foreground">{product.old}</span>
                   </div>
                   <div className="text-xs text-green-600 font-medium mt-1">
-                    {Math.round((1 - parseFloat(product.price.slice(1)) / parseFloat(product.old.slice(1))) * 100)}% OFF
+                    {Math.round(((parseFloat(product.old.slice(1)) - parseFloat(product.price.slice(1))) / parseFloat(product.old.slice(1))) * 100)}% OFF
                   </div>
                 </CardContent>
               </Card>
