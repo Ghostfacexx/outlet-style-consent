@@ -5,27 +5,27 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Helmet } from "react-helmet-async";
 import AppDownloadPrompt from "@/components/AppDownloadPrompt";
 
-// Real hero images from THE OUTNET
-const heroImg = "https://www.theoutnet.com/cms/ycm/resource/blob/4784402/a89031d8d0b4a529a4092dbffae49b1b/fall-24-editorial-1-data.jpg";
-const sideImg = "https://www.theoutnet.com/cms/ycm/resource/blob/4784404/f5f0a30f7edac71fdd4a8b69f1ccbb99/fall-24-editorial-2-data.jpg";
+// Working hero images
+const heroImg = "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3";
+const sideImg = "https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3";
 
 const promos = [
   {
     title: "THIS FALL, FIND THE ONE",
     subtitle: "Meet your match: The sweaters and jackets you've been waiting for are finally here",
-    img: "https://images.unsplash.com/photo-1503342250614-ca440786f637?q=80&w=1200&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1503342250614-ca440786f637?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
     cta: "Shop Now",
   },
   {
     title: "NEW IN: THE ELDER STATESMAN", 
     subtitle: "Lean into laid-back LA cool with the coolest pieces in the game",
-    img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1200&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1564557287817-3785e38ec1f5?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
     cta: "Shop Now",
   },
   {
     title: "JUST IN",
     subtitle: "A curated selection of the latest styles",
-    img: "https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
     cta: "Shop Now",
   },
 ];
