@@ -12,19 +12,19 @@ const promos = [
   {
     title: "THIS FALL, FIND THE ONE",
     subtitle: "Meet your match: The sweaters and jackets you've been waiting for are finally here",
-    img: "https://www.theoutnet.com/cms/ycm/resource/blob/4784402/a89031d8d0b4a529a4092dbffae49b1b/fall-24-editorial-1-data.jpg",
+    img: "https://images.unsplash.com/photo-1503342250614-ca440786f637?q=80&w=1200&auto=format&fit=crop",
     cta: "Shop Now",
   },
   {
-    title: "NEW IN: THE ELDER STATESMAN",
+    title: "NEW IN: THE ELDER STATESMAN", 
     subtitle: "Lean into laid-back LA cool with the coolest pieces in the game",
-    img: "https://www.theoutnet.com/cms/ycm/resource/blob/4784404/f5f0a30f7edac71fdd4a8b69f1ccbb99/fall-24-editorial-2-data.jpg",
+    img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1200&auto=format&fit=crop",
     cta: "Shop Now",
   },
   {
     title: "JUST IN",
     subtitle: "A curated selection of the latest styles",
-    img: "https://www.theoutnet.com/variants/images/46376663162943938/F/w300.jpg?imwidth=800&improfile=isc",
+    img: "https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop",
     cta: "Shop Now",
   },
 ];
