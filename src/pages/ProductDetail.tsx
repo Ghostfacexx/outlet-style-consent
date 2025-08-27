@@ -6,43 +6,113 @@ import { Badge } from "@/components/ui/badge";
 import { Helmet } from "react-helmet-async";
 import { Heart, Share2, ShoppingBag, Truck, RotateCcw, Shield } from "lucide-react";
 
-// Mock product data - in real app this would come from API
+// Extended product data combining clothing, shoes, and accessories
 const allProducts = [
+  // Clothing
   {
-    id: "1",
-    title: "OFFICINE GÉNÉRALE • Milos Merino Wool Cardigan",
-    img: "https://www.theoutnet.com/variants/images/46376663162879775/F/w300.jpg?imwidth=800&improfile=isc",
+    id: "c1",
+    title: "THOM BROWNE • Striped Cotton Twill Overshirt",
+    img: "https://www.theoutnet.com/variants/images/46376663162874234/F/w340_q80.jpg",
     images: [
-      "https://www.theoutnet.com/variants/images/46376663162879775/F/w300.jpg?imwidth=800&improfile=isc",
-      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=800&auto=format&fit=crop"
+      "https://www.theoutnet.com/variants/images/46376663162874234/F/w340_q80.jpg",
+      "https://www.theoutnet.com/variants/images/46376663162874234/R/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop"
     ],
-    price: "$189",
-    old: "$315",
-    category: "Knitwear",
-    brand: "OFFICINE GÉNÉRALE",
-    description: "Crafted from premium merino wool, this Milos cardigan offers unparalleled comfort and versatility. The classic silhouette features a button-front closure and ribbed trim details.",
-    details: ["100% Merino Wool", "Dry clean only", "Made in Italy", "Regular fit"],
+    price: "$698",
+    old: "$1,550",
+    category: "Jackets",
+    brand: "THOM BROWNE",
+    description: "Striped cotton twill overshirt with signature details. Classic tailoring meets contemporary design in this versatile piece.",
+    details: ["100% Cotton Twill", "Dry clean only", "Made in USA", "Regular fit", "Button closure"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
   {
-    id: "7",
-    title: "COMMON PROJECTS • Achilles Leather Sneakers",
-    img: "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop",
+    id: "c2", 
+    title: "JACQUEMUS • Intarsia Alpaca-Blend Sweater",
+    img: "https://www.theoutnet.com/variants/images/46376663162878498/F/w340_q80.jpg",
     images: [
-      "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1520975930414-c2b5c3a50f0a?q=80&w=800&auto=format&fit=crop"
+      "https://www.theoutnet.com/variants/images/46376663162878498/F/w340_q80.jpg",
+      "https://www.theoutnet.com/variants/images/46376663162878498/R/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=800&auto=format&fit=crop"
     ],
-    price: "$259",
-    old: "$430",
-    category: "Sneakers", 
-    brand: "COMMON PROJECTS",
-    description: "The iconic Achilles sneaker in premium Italian leather. Minimalist design with gold foil serial numbers and sophisticated craftsmanship.",
-    details: ["Premium Italian Leather", "Rubber sole", "Made in Italy", "True to size"],
+    price: "$292",
+    old: "$730",
+    category: "Knitwear",
+    brand: "JACQUEMUS",
+    description: "Luxurious intarsia alpaca-blend sweater with distinctive pattern. Soft and warm with a contemporary silhouette.",
+    details: ["80% Alpaca, 20% Wool", "Hand wash", "Made in Italy", "Slim fit"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+  },
+  // Shoes
+  {
+    id: "s1",
+    title: "FERRAGAMO • Geremia Gancini Leather Boots",
+    img: "https://www.theoutnet.com/variants/images/46376663162956885/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/46376663162956885/F/w340_q80.jpg",
+      "https://www.theoutnet.com/variants/images/46376663162956885/R/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$775",
+    old: "$1,550",
+    category: "Boots",
+    brand: "FERRAGAMO",
+    description: "Premium leather boots featuring the iconic Gancini hardware. Crafted in Italy with superior materials and construction.",
+    details: ["Premium Italian Leather", "Rubber sole", "Made in Italy", "True to size", "Gancini hardware"],
     sizes: ["39", "40", "41", "42", "43", "44", "45"],
   },
-  // Add more products as needed
+  {
+    id: "s2",
+    title: "MAISON MARGIELA • Tabi Split-Toe Leather Boots",
+    img: "https://www.theoutnet.com/variants/images/46376663162908830/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/46376663162908830/F/w340_q80.jpg",
+      "https://www.theoutnet.com/variants/images/46376663162908830/R/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$596",
+    old: "$1,490",
+    category: "Boots",
+    brand: "MAISON MARGIELA",
+    description: "Iconic Tabi boots with distinctive split-toe design. A signature piece that embodies the house's avant-garde aesthetic.",
+    details: ["Premium Leather", "Leather sole", "Made in Italy", "Unique split-toe design", "Side zip closure"],
+    sizes: ["39", "40", "41", "42", "43", "44"],
+  },
+  // Accessories
+  {
+    id: "a1",
+    title: "DUNHILL • Logo-Print Textured Backpack",
+    img: "https://www.theoutnet.com/variants/images/46376663162894600/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/46376663162894600/F/w340_q80.jpg",
+      "https://www.theoutnet.com/variants/images/46376663162894600/E/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$559",
+    old: "$1,595",
+    category: "Bags",
+    brand: "DUNHILL",
+    description: "Sophisticated textured backpack with subtle logo print. Perfect for the modern professional who values both style and function.",
+    details: ["Textured Leather", "Multiple compartments", "Made in Italy", "Laptop compatible", "Adjustable straps"],
+    sizes: ["One Size"],
+  },
+  {
+    id: "a2",
+    title: "THE ELDER STATESMAN • Parker Ribbed Cashmere Beanie",
+    img: "https://www.theoutnet.com/variants/images/46376663162923666/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/46376663162923666/F/w340_q80.jpg",
+      "https://www.theoutnet.com/variants/images/46376663162923666/E/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$198",
+    old: "$495",
+    category: "Hats",
+    brand: "THE ELDER STATESMAN",
+    description: "Luxurious ribbed cashmere beanie from the cult California brand. Ultra-soft and incredibly warm.",
+    details: ["100% Cashmere", "Ribbed texture", "Made in USA", "One size fits most", "Hand wash only"],
+    sizes: ["One Size"],
+  },
 ];
 
 export default function ProductDetail() {
