@@ -134,7 +134,9 @@ export default function ProductDetail() {
     );
   }
 
-  const discount = Math.round((1 - parseFloat(product.price.slice(1)) / parseFloat(product.old.slice(1))) * 100);
+  const currentPrice = parseFloat(product.price.replace('$', '').replace(',', ''));
+  const originalPrice = parseFloat(product.old.replace('$', '').replace(',', ''));
+  const discount = Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
 
   return (
     <>
