@@ -692,6 +692,144 @@ const allProducts = [
     sizes: ["39", "40", "41", "42", "43", "44"],
   },
 
+  // Clearance products (cl1-cl8)
+  {
+    id: "cl1",
+    title: "ACNE STUDIOS • N3W Coated Sneakers",
+    img: "https://www.theoutnet.com/variants/images/1647597290348742/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/1647597290348742/F/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$123",
+    old: "$410",
+    category: "Sneakers",
+    brand: "ACNE STUDIOS",
+    description: "Contemporary coated sneakers with distinctive Scandinavian design aesthetic and premium construction.",
+    details: ["Coated upper", "Rubber sole", "Made in Portugal", "Regular fit"],
+    sizes: ["39", "40", "41", "42", "43", "44"],
+  },
+  {
+    id: "cl2",
+    title: "Y-3 • Superstar Embroidered Leather Sneakers",
+    img: "https://www.theoutnet.com/variants/images/1647597345838032/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/1647597345838032/F/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$116",
+    old: "$330",
+    category: "Sneakers",
+    brand: "Y-3",
+    description: "Luxury athletic sneakers combining adidas performance with Yohji Yamamoto's aesthetic.",
+    details: ["Leather upper", "Rubber sole", "Made in Vietnam", "Y-3 collaboration"],
+    sizes: ["39", "40", "41", "42", "43", "44", "45"],
+  },
+  {
+    id: "cl3",
+    title: "ADIDAS ORIGINALS BY CRAIG GREEN • Stan Smith Boost Sneakers",
+    img: "https://www.theoutnet.com/variants/images/1647597349740831/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/1647597349740831/F/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$90",
+    old: "$300",
+    category: "Sneakers",
+    brand: "ADIDAS X CRAIG GREEN",
+    description: "Innovative Stan Smith Boost sneakers with Craig Green's avant-garde design approach.",
+    details: ["Boost technology", "Premium materials", "Made in Vietnam", "Limited edition"],
+    sizes: ["39", "40", "41", "42", "43", "44", "45"],
+  },
+  {
+    id: "cl4",
+    title: "RICK OWENS • Metallic Leather Pouch",
+    img: "https://www.theoutnet.com/variants/images/1647597286810916/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/1647597286810916/F/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581605405669-fcdf81165afa?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$159",
+    old: "$528",
+    category: "Bags",
+    brand: "RICK OWENS",
+    description: "Avant-garde metallic leather pouch with distinctive Rick Owens aesthetic and functional design.",
+    details: ["Metallic leather", "Zip closure", "Made in Italy", "Avant-garde design"],
+    sizes: ["One Size"],
+  },
+  {
+    id: "cl5",
+    title: "DOLCE&GABBANA • Velvet and Leather Belt",
+    img: "https://www.theoutnet.com/variants/images/1647597335681009/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/1647597335681009/F/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581605405669-fcdf81165afa?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$134",
+    old: "$445",
+    category: "Belts",
+    brand: "DOLCE&GABBANA",
+    description: "Luxurious velvet and leather belt with signature D&G craftsmanship and Italian elegance.",
+    details: ["Velvet and leather", "Metal buckle", "Made in Italy", "Adjustable"],
+    sizes: ["85", "90", "95", "100", "105"],
+  },
+  {
+    id: "cl6",
+    title: "SANDRO • Cotton-Piqué Polo Shirt",
+    img: "https://www.theoutnet.com/variants/images/1647597349494773/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/1647597349494773/F/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$70",
+    old: "$175",
+    category: "Polo Shirts",
+    brand: "SANDRO",
+    description: "Classic cotton-piqué polo shirt with refined Sandro styling and comfortable fit.",
+    details: ["100% Cotton Piqué", "Machine wash", "Made in Portugal", "Regular fit"],
+    sizes: ["S", "M", "L", "XL"],
+  },
+  {
+    id: "cl7",
+    title: "TOD'S • Suede Boots",
+    img: "https://www.theoutnet.com/variants/images/1647597357378138/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/1647597357378138/F/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$226",
+    old: "$645",
+    category: "Boots",
+    brand: "TOD'S",
+    description: "Premium suede boots with Italian craftsmanship and timeless Tod's elegance.",
+    details: ["Premium suede", "Leather sole", "Made in Italy", "Classic fit"],
+    sizes: ["39", "40", "41", "42", "43", "44"],
+  },
+  {
+    id: "cl8",
+    title: "TOD'S NO_CODE • Leather and Stretch-Knit Sneakers",
+    img: "https://www.theoutnet.com/variants/images/1647597351192052/F/w340_q80.jpg",
+    images: [
+      "https://www.theoutnet.com/variants/images/1647597351192052/F/w340_q80.jpg",
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$209",
+    old: "$695",
+    category: "Sneakers",
+    brand: "TOD'S NO_CODE",
+    description: "Contemporary leather and stretch-knit sneakers from Tod's innovative NO_CODE line.",
+    details: ["Leather and stretch-knit", "Rubber sole", "Made in Italy", "Innovative design"],
+    sizes: ["39", "40", "41", "42", "43", "44"],
+  },
+
   // Accessories (a1-a20)
   {
     id: "a1",
