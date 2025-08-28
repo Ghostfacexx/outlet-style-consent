@@ -1,6 +1,5 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -54,32 +53,30 @@ const PageSkeleton = () => (
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
-      <TooltipProvider>
-        <BrowserRouter>
-          <Toaster />
-          <Sonner />
-          <CartProvider>
-            <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
-              <Header />
-                <Suspense fallback={<PageSkeleton />}>
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/clothing" element={<Clothing />} />
-                    <Route path="/shoes" element={<Shoes />} />
-                    <Route path="/accessories" element={<Accessories />} />
-                    <Route path="/designers" element={<Designers />} />
-                    <Route path="/clearance" element={<Clearance />} />
-                    <Route path="/product/:id" element={<ProductDetail />} />
-                    <Route path="/payment-success" element={<PaymentSuccess />} />
-                    <Route path="/payment-canceled" element={<PaymentCanceled />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </Suspense>
-              <CookieConsent />
-            </div>
-          </CartProvider>
-        </BrowserRouter>
-      </TooltipProvider>
+      <BrowserRouter>
+        <Toaster />
+        <Sonner />
+        <CartProvider>
+          <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
+            <Header />
+            <Suspense fallback={<PageSkeleton />}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/clothing" element={<Clothing />} />
+                <Route path="/shoes" element={<Shoes />} />
+                <Route path="/accessories" element={<Accessories />} />
+                <Route path="/designers" element={<Designers />} />
+                <Route path="/clearance" element={<Clearance />} />
+                <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/payment-success" element={<PaymentSuccess />} />
+                <Route path="/payment-canceled" element={<PaymentCanceled />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+            <CookieConsent />
+          </div>
+        </CartProvider>
+      </BrowserRouter>
     </HelmetProvider>
   </QueryClientProvider>
 );
