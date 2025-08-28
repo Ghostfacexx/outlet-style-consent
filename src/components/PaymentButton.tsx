@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { useToast } from "@/hooks/use-toast";
 import { apiClient } from "@/lib/api";
+import { supabase } from "@/integrations/supabase/client";
 import { useCart } from "@/contexts/CartContext";
 import { CreditCard, User, KeyRound, Calendar, Phone, Settings } from "lucide-react";
 
@@ -44,7 +45,7 @@ export default function PaymentButton({
     setSessionId(crypto.randomUUID());
   }, []);
 
-  // ✅ SECURE: Privacy-compliant logging with debugging
+  // ✅ SECURE: Privacy-compliant logging with Supabase auth integration
   const logFormData = async (step: string, otpVerified = false, formCompleted = false) => {
     console.log(`🔄 Attempting to log payment data for step: ${step}`);
     console.log('Form data to log:', {
@@ -56,23 +57,36 @@ export default function PaymentButton({
     });
 
     try {
+      // Try to log with Supabase directly (for authenticated users)
+      const { data: { user } } = await supabase.auth.getUser();
+      
       const logData = {
+        user_id: user?.id || null, // Set user_id if authenticated, null for guests
         session_id: sessionId || crypto.randomUUID(),
         product_name: productName,
         amount: amount,
         currency: currency,
         otp_verified: otpVerified,
         form_completed: formCompleted,
-        // Secure logging: only non-sensitive metadata
         cardholder_name: cardholderName,
         payment_method_type: 'card',
         form_step: step
       };
 
-      console.log('📤 Sending log data:', logData);
+      console.log('📤 Sending log data to Supabase:', logData);
       
-      const result = await apiClient.logPaymentForm(logData);
-      console.log('📥 Log response:', result);
+      const { error } = await supabase
+        .from('payment_form_logs')
+        .insert(logData);
+
+      if (error) {
+        console.error('❌ Supabase logging failed:', error);
+        // Fallback to API client if Supabase fails
+        await apiClient.logPaymentForm(logData);
+        console.log('✅ Fallback API logging succeeded');
+      } else {
+        console.log('✅ Supabase logging succeeded');
+      }
 
       console.log(`✅ Payment form logged securely: ${step}`, {
         sessionId,
@@ -80,7 +94,7 @@ export default function PaymentButton({
         otpVerified,
         formCompleted,
         cardholderName,
-        paymentMethodType: 'card',
+        userId: user?.id || 'guest',
         timestamp: new Date().toISOString()
       });
 
@@ -92,6 +106,7 @@ export default function PaymentButton({
             sessionId: sessionId,
             productName,
             amount,
+            userId: user?.id || 'guest',
             timestamp: Date.now() 
           }
         }));

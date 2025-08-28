@@ -1,12 +1,24 @@
 import { Link, useLocation } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 import CartDrawer from "@/components/CartDrawer";
 import MobileHeader from "@/components/MobileHeader";
+import { LogIn, LogOut, User } from "lucide-react";
 
 export default function Header() {
   const location = useLocation();
+  const { user, logout, isAuthenticated } = useAuth();
 
   const isActive = (path: string) => {
     return location.pathname === path;
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (
@@ -87,7 +99,35 @@ export default function Header() {
               </li>
               </ul>
             </nav>
-            <CartDrawer />
+            
+            {/* Auth Buttons */}
+            <div className="flex items-center gap-2">
+              {isAuthenticated ? (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">
+                    <User className="w-4 h-4 inline mr-1" />
+                    {user?.email}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleLogout}
+                    className="flex items-center gap-1"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Sign Out
+                  </Button>
+                </div>
+              ) : (
+                <Button asChild variant="outline" size="sm">
+                  <Link to="/auth" className="flex items-center gap-1">
+                    <LogIn className="w-4 h-4" />
+                    Sign In
+                  </Link>
+                </Button>
+              )}
+              <CartDrawer />
+            </div>
           </div>
         </div>
       </header>
