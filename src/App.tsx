@@ -50,35 +50,37 @@ const PageSkeleton = () => (
   </div>
 );
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <BrowserRouter>
-        <Toaster />
-        <Sonner />
-        <CartProvider>
-          <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
-            <Header />
-            <Suspense fallback={<PageSkeleton />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/clothing" element={<Clothing />} />
-                <Route path="/shoes" element={<Shoes />} />
-                <Route path="/accessories" element={<Accessories />} />
-                <Route path="/designers" element={<Designers />} />
-                <Route path="/clearance" element={<Clearance />} />
-                <Route path="/product/:id" element={<ProductDetail />} />
-                <Route path="/payment-success" element={<PaymentSuccess />} />
-                <Route path="/payment-canceled" element={<PaymentCanceled />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-            <CookieConsent />
-          </div>
-        </CartProvider>
-      </BrowserRouter>
-    </HelmetProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <BrowserRouter>
+          <Toaster />
+          <Sonner />
+          <CartProvider>
+            <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
+              <Header />
+              <Suspense fallback={<PageSkeleton />}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/clothing" element={<Clothing />} />
+                  <Route path="/shoes" element={<Shoes />} />
+                  <Route path="/accessories" element={<Accessories />} />
+                  <Route path="/designers" element={<Designers />} />
+                  <Route path="/clearance" element={<Clearance />} />
+                  <Route path="/product/:id" element={<ProductDetail />} />
+                  <Route path="/payment-success" element={<PaymentSuccess />} />
+                  <Route path="/payment-canceled" element={<PaymentCanceled />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+              <CookieConsent />
+            </div>
+          </CartProvider>
+        </BrowserRouter>
+      </HelmetProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
