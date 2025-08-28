@@ -14,6 +14,7 @@ serve(async (req) => {
   }
 
   try {
+    console.log("create-payment function called");
     const { amount = 4999, currency = "usd", productName = "Premium Product" } = await req.json();
 
     // Create Supabase client
