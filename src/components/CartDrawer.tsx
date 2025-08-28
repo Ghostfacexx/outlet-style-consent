@@ -5,6 +5,15 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingBag, Plus, Minus, X } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
+import { createClient } from "@supabase/supabase-js";
+
+// Only create Supabase client if environment variables are available
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
 
 export default function CartDrawer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,35 +29,88 @@ export default function CartDrawer() {
     }).format(price);
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     console.log("Checkout button clicked!");
     console.log("Items in cart:", items);
     console.log("Total price:", getTotalPrice());
-    
-    // Create a summary of items for checkout
-    const orderSummary = items.map(item => `${item.title} (${item.size}) x${item.quantity}`).join(', ');
-    const totalAmount = Math.round(getTotalPrice() * 100); // Convert to cents
 
-    console.log("Order summary:", orderSummary);
-    console.log("Total amount in cents:", totalAmount);
-
-    // For now, simulate checkout process
-    toast({
-      title: "Proceeding to checkout...",
-      description: `Processing ${items.length} item(s) worth ${formatPrice(getTotalPrice())}`,
-    });
-
-    // In a real app, you would integrate with payment processing here
-    // For demo purposes, we'll show a success message after 2 seconds
-    setTimeout(() => {
-      console.log("Showing success message and clearing cart");
+    if (!supabase) {
       toast({
-        title: "Order placed successfully!",
-        description: `Your order for ${formatPrice(getTotalPrice())} has been confirmed.`,
+        title: "Configuration Error", 
+        description: "Payment system not configured. Please connect to Supabase first.",
+        variant: "destructive",
       });
-      clearCart();
-      setIsOpen(false);
-    }, 2000);
+      return;
+    }
+
+    if (items.length === 0) {
+      toast({
+        title: "Empty Cart",
+        description: "Please add items to your cart before checkout.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      // Calculate total amount in cents
+      const totalAmountCents = Math.round(getTotalPrice() * 100);
+      
+      // Create product name from cart items
+      const productName = items.length === 1 
+        ? items[0].title 
+        : `${items.length} items from THE OUTNET`;
+
+      console.log("Calling Stripe payment with:", { 
+        amount: totalAmountCents, 
+        productName 
+      });
+
+      // Get current session (will be null for guest users)
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+
+      // Add authorization header if user is logged in
+      if (session?.access_token) {
+        headers['Authorization'] = `Bearer ${session.access_token}`;
+      }
+
+      // Call the payment edge function
+      const { data, error } = await supabase.functions.invoke('create-payment', {
+        body: { 
+          amount: totalAmountCents, 
+          productName,
+          currency: 'usd' 
+        },
+        headers
+      });
+
+      if (error) throw error;
+
+      if (data?.url) {
+        // Open Stripe checkout in new tab
+        window.open(data.url, '_blank');
+        toast({
+          title: "Redirecting to payment",
+          description: "Opening Stripe checkout in a new tab...",
+        });
+        
+        // Close the cart drawer
+        setIsOpen(false);
+      } else {
+        throw new Error("No checkout URL received");
+      }
+    } catch (error) {
+      console.error("Payment error:", error);
+      toast({
+        title: "Payment failed",
+        description: error.message || "Failed to start payment process",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
