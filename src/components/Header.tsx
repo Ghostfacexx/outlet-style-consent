@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import CartDrawer from "@/components/CartDrawer";
 
 export default function Header() {
   const location = useLocation();
@@ -13,7 +14,8 @@ export default function Header() {
         <Link to="/" className="text-lg font-extrabold tracking-wide hover:opacity-80 transition-opacity">
           THE OUTNET • EXCLUSIVE
         </Link>
-        <nav aria-label="Primary">
+        <div className="flex items-center gap-4">
+          <nav aria-label="Primary">
           <ul className="hidden md:flex gap-4 text-sm">
             <li>
               <Link 
@@ -75,8 +77,10 @@ export default function Header() {
                 Clearance
               </Link>
             </li>
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+          <CartDrawer />
+        </div>
       </div>
     </header>
   );

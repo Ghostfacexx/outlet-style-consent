@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Helmet } from "react-helmet-async";
 import { Heart, Share2, ShoppingBag, Truck, RotateCcw, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useCart } from "@/contexts/CartContext";
 
 // All products from clothing, shoes, and accessories pages
 const allProducts = [
@@ -1177,12 +1178,13 @@ const allProducts = [
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const { toast } = useToast();
+  const { addItem } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   const addToBag = () => {
-    if (!selectedSize) {
+    if (!selectedSize || !product) {
       toast({
         title: "Please select a size",
         description: "Choose a size before adding to bag",
@@ -1191,9 +1193,17 @@ export default function ProductDetail() {
       return;
     }
     
+    addItem({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.images[0],
+      size: selectedSize,
+    });
+    
     toast({
       title: "Added to bag!",
-      description: `${product?.title} in size ${selectedSize} added to your bag`,
+      description: `${product.title} in size ${selectedSize} added to your bag`,
     });
   };
 

@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Header from "@/components/Header";
 import CookieConsent from "@/components/CookieConsent";
+import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import Clothing from "./pages/Clothing";
 import Shoes from "./pages/Shoes";
@@ -23,8 +24,9 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
+        <CartProvider>
+          <Toaster />
+          <Sonner />
         <BrowserRouter>
           <div className="min-h-screen bg-background font-sans antialiased">
             <Header />
@@ -43,6 +45,7 @@ const App = () => (
             <CookieConsent />
           </div>
         </BrowserRouter>
+        </CartProvider>
       </TooltipProvider>
     </HelmetProvider>
   </QueryClientProvider>
