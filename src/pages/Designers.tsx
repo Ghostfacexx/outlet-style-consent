@@ -88,11 +88,19 @@ export default function Designers() {
       </Helmet>
 
       <div className="container mx-auto px-4 py-6">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-          <Link to="/" className="hover:text-foreground">Home</Link>
-          <span>/</span>
-          <span>Designers</span>
-        </div>
+        <nav aria-label="Breadcrumb">
+          <ol className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+            <li>
+              <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
+            </li>
+            <li>
+              <span className="text-muted-foreground/60">/</span>
+            </li>
+            <li>
+              <span className="text-foreground font-medium">Designers</span>
+            </li>
+          </ol>
+        </nav>
 
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold mb-2">Designer Brands</h1>

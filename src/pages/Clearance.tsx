@@ -3,89 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import { allProducts } from "@/data/products";
 
-const clearanceProducts = [
-  {
-    id: "cl1",
-    title: "ACNE STUDIOS • N3W Coated Sneakers",
-    img: "https://www.theoutnet.com/variants/images/1647597290348742/F/w340_q80.jpg",
-    price: "$123",
-    old: "$410",
-    category: "Sneakers",
-    brand: "ACNE STUDIOS",
-    discount: 70,
-  },
-  {
-    id: "cl2",
-    title: "Y-3 • Superstar Embroidered Leather Sneakers",
-    img: "https://www.theoutnet.com/variants/images/1647597345838032/F/w340_q80.jpg",
-    price: "$116",
-    old: "$330",
-    category: "Sneakers",
-    brand: "Y-3",
-    discount: 65,
-  },
-  {
-    id: "cl3",
-    title: "ADIDAS ORIGINALS BY CRAIG GREEN • Stan Smith Boost Sneakers",
-    img: "https://www.theoutnet.com/variants/images/1647597349740831/F/w340_q80.jpg",
-    price: "$90",
-    old: "$300",
-    category: "Sneakers",
-    brand: "ADIDAS X CRAIG GREEN",
-    discount: 70,
-  },
-  {
-    id: "cl4",
-    title: "RICK OWENS • Metallic Leather Pouch",
-    img: "https://www.theoutnet.com/variants/images/1647597286810916/F/w340_q80.jpg",
-    price: "$159",
-    old: "$528",
-    category: "Bags",
-    brand: "RICK OWENS",
-    discount: 70,
-  },
-  {
-    id: "cl5",
-    title: "DOLCE&GABBANA • Velvet and Leather Belt",
-    img: "https://www.theoutnet.com/variants/images/1647597335681009/F/w340_q80.jpg",
-    price: "$134",
-    old: "$445",
-    category: "Belts",
-    brand: "DOLCE&GABBANA",
-    discount: 70,
-  },
-  {
-    id: "cl6",
-    title: "SANDRO • Cotton-Piqué Polo Shirt",
-    img: "https://www.theoutnet.com/variants/images/1647597349494773/F/w340_q80.jpg",
-    price: "$70",
-    old: "$175",
-    category: "Polo Shirts",
-    brand: "SANDRO",
-    discount: 60,
-  },
-  {
-    id: "cl7",
-    title: "TOD'S • Suede Boots",
-    img: "https://www.theoutnet.com/variants/images/1647597357378138/F/w340_q80.jpg",
-    price: "$226",
-    old: "$645",
-    category: "Boots",
-    brand: "TOD'S",
-    discount: 65,
-  },
-  {
-    id: "cl8",
-    title: "TOD'S NO_CODE • Leather and Stretch-Knit Sneakers",
-    img: "https://www.theoutnet.com/variants/images/1647597351192052/F/w340_q80.jpg",
-    price: "$209",
-    old: "$695",
-    category: "Sneakers",
-    brand: "TOD'S NO_CODE",
-    discount: 70,
-  },
-];
+// Get clearance products (filter by ID prefix 'cl' or random selection)
+const clearanceProducts = allProducts.filter(product => 
+  product.id.startsWith('cl') || Math.random() > 0.7
+).slice(0, 8);
 
 export default function Clearance() {
   return (
@@ -97,11 +20,19 @@ export default function Clearance() {
       </Helmet>
 
       <div className="container mx-auto px-4 py-6">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-          <Link to="/" className="hover:text-foreground">Home</Link>
-          <span>/</span>
-          <span>Clearance</span>
-        </div>
+        <nav aria-label="Breadcrumb">
+          <ol className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+            <li>
+              <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
+            </li>
+            <li>
+              <span className="text-muted-foreground/60">/</span>
+            </li>
+            <li>
+              <span className="text-foreground font-medium">Clearance</span>
+            </li>
+          </ol>
+        </nav>
 
         <div className="mb-8 text-center">
           <div className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-950 text-red-600 dark:text-red-400 px-4 py-2 rounded-full text-sm font-medium mb-4">
@@ -131,7 +62,11 @@ export default function Clearance() {
                     className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300" 
                   />
                   <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-bold">
-                    {product.discount}% OFF
+                    {product.discount || (() => {
+                      const currentPrice = parseFloat(product.price.replace(/[$,]/g, ''));
+                      const originalPrice = parseFloat(product.old.replace(/[$,]/g, ''));
+                      return Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
+                    })()}% OFF
                   </div>
                   <div className="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded font-medium">
                     FINAL SALE
