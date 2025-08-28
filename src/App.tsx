@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { Suspense, lazy } from "react";
+import * as React from "react";
 import Header from "@/components/Header";
 import CookieConsent from "@/components/CookieConsent";
 import { CartProvider } from "@/contexts/CartContext";
@@ -11,15 +11,15 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Index from "./pages/Index";
 
 // Lazy load pages for code splitting
-const Clothing = lazy(() => import("./pages/Clothing"));
-const Shoes = lazy(() => import("./pages/Shoes"));
-const Accessories = lazy(() => import("./pages/Accessories"));
-const Designers = lazy(() => import("./pages/Designers"));
-const Clearance = lazy(() => import("./pages/Clearance"));
-const ProductDetail = lazy(() => import("./pages/ProductDetail"));
-const PaymentSuccess = lazy(() => import("./pages/PaymentSuccess"));
-const PaymentCanceled = lazy(() => import("./pages/PaymentCanceled"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+const Clothing = React.lazy(() => import("./pages/Clothing"));
+const Shoes = React.lazy(() => import("./pages/Shoes"));
+const Accessories = React.lazy(() => import("./pages/Accessories"));
+const Designers = React.lazy(() => import("./pages/Designers"));
+const Clearance = React.lazy(() => import("./pages/Clearance"));
+const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
+const PaymentSuccess = React.lazy(() => import("./pages/PaymentSuccess"));
+const PaymentCanceled = React.lazy(() => import("./pages/PaymentCanceled"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -58,7 +58,7 @@ const App = () => {
           <CartProvider>
             <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
               <Header />
-              <Suspense fallback={<PageSkeleton />}>
+              <React.Suspense fallback={<PageSkeleton />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/clothing" element={<Clothing />} />
@@ -71,7 +71,7 @@ const App = () => {
                   <Route path="/payment-canceled" element={<PaymentCanceled />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
-              </Suspense>
+              </React.Suspense>
               <CookieConsent />
               <Toaster />
               <Sonner />

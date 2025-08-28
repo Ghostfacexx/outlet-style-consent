@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import * as React from 'react';
 
 export interface CartItem {
   id: string;
@@ -19,10 +19,10 @@ interface CartContextType {
   clearCart: () => void;
 }
 
-const CartContext = createContext<CartContextType | undefined>(undefined);
+const CartContext = React.createContext<CartContextType | undefined>(undefined);
 
 export const useCart = () => {
-  const context = useContext(CartContext);
+  const context = React.useContext(CartContext);
   if (!context) {
     throw new Error('useCart must be used within a CartProvider');
   }
@@ -30,11 +30,11 @@ export const useCart = () => {
 };
 
 interface CartProviderProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItems] = React.useState<CartItem[]>([]);
 
   const addItem = (newItem: Omit<CartItem, 'quantity'>) => {
     console.log("CartContext: addItem called with:", newItem);
