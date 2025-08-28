@@ -33,52 +33,60 @@ const promos = [
 // Real products from THE OUTNET - OFFICINE GÉNÉRALE collection
 const products = [
   {
+    id: "1",
     title: "OFFICINE GÉNÉRALE • Milos Merino Wool Cardigan",
     img: "https://www.theoutnet.com/variants/images/46376663162879775/F/w300.jpg?imwidth=800&improfile=isc",
     price: "$189",
     old: "$315",
   },
   {
+    id: "2", 
     title: "OFFICINE GÉNÉRALE • Benoit Checked Cotton Twill Shirt",
     img: "https://www.theoutnet.com/variants/images/46376663162943719/F/w300.jpg?imwidth=800&improfile=isc",
     price: "$129", 
     old: "$215",
   },
   {
-    title: "OFFICINE GÉNÉRALE • James Cotton Corduroy Pants",
-    img: "https://www.theoutnet.com/variants/images/46376663162944045/F/w300.jpg?imwidth=800&improfile=isc",
-    price: "$149",
-    old: "$245",
+    id: "3",
+    title: "THOM BROWNE • Leather-Trimmed Canvas Backpack",
+    img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop",
+    price: "$653",
+    old: "$1,450",
   },
   {
-    title: "OFFICINE GÉNÉRALE • Harrison Wool Overshirt",
-    img: "https://www.theoutnet.com/variants/images/46376663162943938/F/w300.jpg?imwidth=800&improfile=isc",
-    price: "$299",
-    old: "$495",
+    id: "c1",
+    title: "THOM BROWNE • Striped Cotton Twill Overshirt",
+    img: "https://www.theoutnet.com/variants/images/46376663162874234/F/w340_q80.jpg",
+    price: "$698",
+    old: "$1,550",
   },
   {
-    title: "OFFICINE GÉNÉRALE • Eloi Cotton Poplin Shirt",
-    img: "https://www.theoutnet.com/variants/images/46376663162943947/F/w300.jpg?imwidth=800&improfile=isc",
-    price: "$109",
-    old: "$185",
+    id: "c2",
+    title: "JACQUEMUS • Intarsia Alpaca-Blend Sweater",
+    img: "https://www.theoutnet.com/variants/images/46376663162878498/F/w340_q80.jpg",
+    price: "$292",
+    old: "$730",
   },
   {
-    title: "OFFICINE GÉNÉRALE • Giovanni Suit Jacket",
-    img: "https://www.theoutnet.com/variants/images/46376663162944023/F/w300.jpg?imwidth=800&improfile=isc",
-    price: "$399",
-    old: "$665",
+    id: "s1",
+    title: "FERRAGAMO • Geremia Gancini Leather Boots",
+    img: "https://www.theoutnet.com/variants/images/46376663162956885/F/w340_q80.jpg",
+    price: "$775",
+    old: "$1,550",
   },
   {
-    title: "OFFICINE GÉNÉRALE • Matty Wool Bomber Jacket",
-    img: "https://www.theoutnet.com/variants/images/46376663162885748/F/w300.jpg?imwidth=800&improfile=isc",
-    price: "$349",
-    old: "$585",
+    id: "c7",
+    title: "THOM BROWNE • Intarsia Merino Wool Sweater",
+    img: "https://www.theoutnet.com/variants/images/46376663162874216/F/w340_q80.jpg",
+    price: "$775",
+    old: "$1,550",
   },
   {
-    title: "OFFICINE GÉNÉRALE • Tahar Ribbed Merino Cardigan",
-    img: "https://www.theoutnet.com/variants/images/46376663162879932/F/w300.jpg?imwidth=800&improfile=isc",
-    price: "$199",
-    old: "$335",
+    id: "a1",
+    title: "THOM BROWNE • Gold-Tone Watch",
+    img: "https://www.theoutnet.com/variants/images/46376663162947872/F/w340_q80.jpg",
+    price: "$1,195",
+    old: "$2,390",
   },
 ];
 
@@ -155,7 +163,7 @@ export default function Index() {
           <h2 id="products-title" className="text-xl font-semibold mb-3">Just In: Designer Menswear</h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
             {products.map((p, i) => (
-              <Link key={i} to={`/product/${i + 1}`}>
+              <Link key={p.id} to={`/product/${p.id}`}>
                 <Card className="overflow-hidden group hover:shadow-lg transition-shadow cursor-pointer">
                   <div className="relative overflow-hidden">
                     <img src={p.img} alt={p.title} loading="lazy" className="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300" />

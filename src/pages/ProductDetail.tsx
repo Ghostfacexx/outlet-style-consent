@@ -7,9 +7,64 @@ import { Helmet } from "react-helmet-async";
 import { Heart, Share2, ShoppingBag, Truck, RotateCcw, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/contexts/CartContext";
+import PaymentButton from "@/components/PaymentButton";
 
-// All products from clothing, shoes, and accessories pages
+// All products from main page and other sections
 const allProducts = [
+  // Main page products (1, 2, 3)
+  {
+    id: "1",
+    title: "OFFICINE GÉNÉRALE • Milos Merino Wool Cardigan",
+    img: "https://www.theoutnet.com/variants/images/46376663162879775/F/w300.jpg?imwidth=800&improfile=isc",
+    images: [
+      "https://www.theoutnet.com/variants/images/46376663162879775/F/w300.jpg?imwidth=800&improfile=isc",
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$189",
+    old: "$315",
+    category: "Knitwear",
+    brand: "OFFICINE GÉNÉRALE",
+    description: "Luxurious merino wool cardigan with contemporary design. Perfect for layering with sophisticated styling.",
+    details: ["100% Merino Wool", "Dry clean only", "Made in Italy", "Regular fit", "Button closure"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+  },
+  {
+    id: "2",
+    title: "OFFICINE GÉNÉRALE • Benoit Checked Cotton Twill Shirt",
+    img: "https://www.theoutnet.com/variants/images/46376663162943719/F/w300.jpg?imwidth=800&improfile=isc",
+    images: [
+      "https://www.theoutnet.com/variants/images/46376663162943719/F/w300.jpg?imwidth=800&improfile=isc",
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$129",
+    old: "$215",
+    category: "Shirts",
+    brand: "OFFICINE GÉNÉRALE",
+    description: "Classic checked cotton twill shirt with refined tailoring and contemporary fit.",
+    details: ["100% Cotton Twill", "Machine wash", "Made in Italy", "Regular fit", "Button collar"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+  },
+  {
+    id: "3",
+    title: "THOM BROWNE • Leather-Trimmed Canvas Backpack",
+    img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581605405669-fcdf81165afa?q=80&w=800&auto=format&fit=crop"
+    ],
+    price: "$653",
+    old: "$1,450",
+    category: "Bags",
+    brand: "THOM BROWNE",
+    description: "Premium canvas backpack with leather trim, featuring signature details and superior craftsmanship.",
+    details: ["Canvas with leather trim", "Interior laptop compartment", "Made in Italy", "One size", "Adjustable straps"],
+    sizes: ["One Size"],
+  },
+  
+  // Clothing (c1-c20)
   // Clothing (c1-c20)
   {
     id: "c1",
@@ -1306,8 +1361,14 @@ export default function ProductDetail() {
 
             {/* Actions */}
             <div className="space-y-3">
+              <PaymentButton 
+                amount={parseFloat(product.price.replace('$', '').replace(',', '')) * 100}
+                productName={product.title}
+                className="w-full"
+              />
               <Button 
                 size="lg" 
+                variant="outline"
                 className="w-full" 
                 disabled={!selectedSize}
                 onClick={addToBag}
