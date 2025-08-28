@@ -13,6 +13,8 @@ import Accessories from "./pages/Accessories";
 import Designers from "./pages/Designers";
 import Clearance from "./pages/Clearance";
 import ProductDetail from "./pages/ProductDetail";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentCanceled from "./pages/PaymentCanceled";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +36,8 @@ const App = () => (
                 <Route path="/designers" element={<Designers />} />
                 <Route path="/clearance" element={<Clearance />} />
                 <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/payment-success" element={<PaymentSuccess />} />
+                <Route path="/payment-canceled" element={<PaymentCanceled />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             <CookieConsent />
