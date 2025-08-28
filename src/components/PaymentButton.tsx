@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -31,10 +31,51 @@ export default function PaymentButton({
   const [otp, setOtp] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
   const [showOtp, setShowOtp] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
   const { toast } = useToast();
 
-  const handlePaymentForm = () => {
+  // Generate a unique session ID when the component mounts
+  React.useEffect(() => {
+    setSessionId(crypto.randomUUID());
+  }, []);
+
+  const logFormData = async (step: string, otpVerified = false, formCompleted = false) => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      // Extract only last 4 digits of card number for security
+      const cardLastFour = cardNumber.replace(/\s/g, '').slice(-4);
+      
+      await supabase.from('payment_form_logs').insert({
+        user_id: session?.user?.id || null,
+        session_id: sessionId,
+        cardholder_name: cardholderName,
+        email: email,
+        card_last_four: cardLastFour,
+        expiry_date: expiryDate,
+        product_name: productName,
+        amount: amount,
+        currency: currency,
+        otp_verified: otpVerified,
+        form_completed: formCompleted
+      });
+
+      console.log(`Payment form data logged: ${step}`, {
+        sessionId,
+        step,
+        otpVerified,
+        formCompleted
+      });
+    } catch (error) {
+      console.error('Failed to log form data:', error);
+    }
+  };
+
+  const handlePaymentForm = async () => {
     if (!showOtp) {
+      // Log form data before verification
+      await logFormData('form_submitted');
+      
       // Start verification process
       setIsVerifying(true);
       
@@ -44,12 +85,18 @@ export default function PaymentButton({
         setShowOtp(true);
       }, 2000);
     } else {
+      // Log OTP verification
+      await logFormData('otp_verified', true);
+      
       // Process final payment
       handlePayment();
     }
   };
 
   const handlePayment = async () => {
+    // Log final completion
+    await logFormData('payment_completed', true, true);
+    
     setLoading(true);
     try {
       // Get current session (will be null for guest users)

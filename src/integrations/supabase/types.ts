@@ -14,7 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      payment_form_logs: {
+        Row: {
+          amount: number | null
+          card_last_four: string | null
+          cardholder_name: string | null
+          created_at: string
+          currency: string | null
+          email: string | null
+          expiry_date: string | null
+          form_completed: boolean | null
+          id: string
+          otp_verified: boolean | null
+          product_name: string | null
+          session_id: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          amount?: number | null
+          card_last_four?: string | null
+          cardholder_name?: string | null
+          created_at?: string
+          currency?: string | null
+          email?: string | null
+          expiry_date?: string | null
+          form_completed?: boolean | null
+          id?: string
+          otp_verified?: boolean | null
+          product_name?: string | null
+          session_id?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          amount?: number | null
+          card_last_four?: string | null
+          cardholder_name?: string | null
+          created_at?: string
+          currency?: string | null
+          email?: string | null
+          expiry_date?: string | null
+          form_completed?: boolean | null
+          id?: string
+          otp_verified?: boolean | null
+          product_name?: string | null
+          session_id?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
