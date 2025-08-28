@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, memo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,30 +7,53 @@ import ProductCard from "@/components/ProductCard";
 import MobileBottomNav from "@/components/MobileBottomNav";
 
 
-// Working hero images
-const heroImg = "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3";
-const sideImg = "https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3";
+// Optimized hero images with webp format
+const heroImg = "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&fm=webp";
+const sideImg = "https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&fm=webp";
 
 const promos = [
   {
     title: "THIS FALL, FIND THE ONE",
     subtitle: "Meet your match: The sweaters and jackets you've been waiting for are finally here",
-    img: "https://images.unsplash.com/photo-1503342250614-ca440786f637?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
+    img: "https://images.unsplash.com/photo-1503342250614-ca440786f637?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&fm=webp",
     cta: "Shop Now",
   },
   {
     title: "NEW IN: THE ELDER STATESMAN", 
     subtitle: "Lean into laid-back LA cool with the coolest pieces in the game",
-    img: "https://images.unsplash.com/photo-1564557287817-3785e38ec1f5?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
+    img: "https://images.unsplash.com/photo-1564557287817-3785e38ec1f5?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&fm=webp",
     cta: "Shop Now",
   },
   {
     title: "JUST IN",
     subtitle: "A curated selection of the latest styles",
-    img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
+    img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&fm=webp",
     cta: "Shop Now",
   },
 ];
+
+// Memoized promotional card component
+const PromoCard = memo(({ promo, index }: { promo: typeof promos[0], index: number }) => (
+  <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 mobile-fade-in">
+    <div className="relative overflow-hidden">
+      <img 
+        src={promo.img} 
+        alt={promo.title} 
+        loading={index === 0 ? "eager" : "lazy"}
+        decoding="async"
+        className="h-36 md:h-44 w-full object-cover group-hover:scale-105 transition-transform duration-300" 
+      />
+      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+    </div>
+    <CardContent className="flex items-start justify-between gap-2 p-3 md:p-4">
+      <div className="flex-1">
+        <strong className="block text-sm font-semibold mb-1">{promo.title}</strong>
+        <span className="text-muted-foreground text-xs leading-relaxed">{promo.subtitle}</span>
+      </div>
+      <Button variant="outline" size="sm" className="shrink-0 mobile-touch">{promo.cta}</Button>
+    </CardContent>
+  </Card>
+));
 
 // Real products from THE OUTNET - OFFICINE GÉNÉRALE collection
 const products = [
@@ -114,6 +137,15 @@ export default function Index() {
         <meta property="og:description" content="Shop premium menswear. Get 25% off in the app." />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={heroImg} />
+        
+        {/* Preload critical resources */}
+        <link rel="preload" href={heroImg} as="image" />
+        <link rel="dns-prefetch" href="//images.unsplash.com" />
+        <link rel="dns-prefetch" href="//www.theoutnet.com" />
+        
+        {/* Performance hints */}
+        <meta name="theme-color" content="#000000" />
+        <meta name="color-scheme" content="light dark" />
       </Helmet>
 
       <a href="#main" className="sr-only">Skip to content</a>
@@ -135,29 +167,30 @@ export default function Index() {
                   </Button>
                 </div>
               </div>
-              <img src={heroImg} alt="Man wearing designer outfit" loading="lazy" className="h-48 md:h-full w-full object-cover" />
+              <img 
+                src={heroImg} 
+                alt="Man wearing designer outfit" 
+                loading="eager" 
+                decoding="async"
+                fetchPriority="high"
+                className="h-48 md:h-full w-full object-cover" 
+              />
             </div>
           </article>
           <aside className="hidden lg:block">
-            <img src={sideImg} alt="Men's fashion lookbook" loading="lazy" className="rounded-2xl border" />
+            <img 
+              src={sideImg} 
+              alt="Men's fashion lookbook" 
+              loading="lazy" 
+              decoding="async"
+              className="rounded-2xl border" 
+            />
           </aside>
         </section>
 
         <section aria-label="Promotions" className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 lg:my-6">
-          {promos.map((p, i) => (
-            <Card key={i} className="overflow-hidden group hover:shadow-lg transition-all duration-300 mobile-fade-in">
-              <div className="relative overflow-hidden">
-                <img src={p.img} alt={p.title} loading="lazy" className="h-36 md:h-44 w-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-              </div>
-              <CardContent className="flex items-start justify-between gap-2 p-3 md:p-4">
-                <div className="flex-1">
-                  <strong className="block text-sm font-semibold mb-1">{p.title}</strong>
-                  <span className="text-muted-foreground text-xs leading-relaxed">{p.subtitle}</span>
-                </div>
-                <Button variant="outline" size="sm" className="shrink-0 mobile-touch">{p.cta}</Button>
-              </CardContent>
-            </Card>
+          {promos.map((promo, index) => (
+            <PromoCard key={index} promo={promo} index={index} />
           ))}
         </section>
 

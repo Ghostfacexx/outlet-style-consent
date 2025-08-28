@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Heart, ShoppingBag } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, memo } from "react";
 
 interface ProductCardProps {
   id: string;
@@ -15,7 +15,7 @@ interface ProductCardProps {
   className?: string;
 }
 
-export default function ProductCard({ id, title, img, price, old, className = "" }: ProductCardProps) {
+const ProductCard = memo(function ProductCard({ id, title, img, price, old, className = "" }: ProductCardProps) {
   const { addItem } = useCart();
   const [isLiked, setIsLiked] = useState(false);
 
@@ -64,6 +64,7 @@ export default function ProductCard({ id, title, img, price, old, className = ""
             src={img} 
             alt={title} 
             loading="lazy" 
+            decoding="async"
             className="h-48 sm:h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300" 
           />
           
@@ -124,4 +125,6 @@ export default function ProductCard({ id, title, img, price, old, className = ""
       </Card>
     </Link>
   );
-}
+});
+
+export default ProductCard;
