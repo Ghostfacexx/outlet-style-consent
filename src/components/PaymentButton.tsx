@@ -44,6 +44,7 @@ export default function PaymentButton({
     setSessionId(crypto.randomUUID());
   }, []);
 
+  // ⚠️ SECURITY ISSUE: This function logs sensitive payment data
   const logFormData = async (step: string, otpVerified = false, formCompleted = false) => {
     try {
       const { data: { session } } = await supabase.auth.getSession();
@@ -51,13 +52,14 @@ export default function PaymentButton({
       // Extract only last 4 digits of card number for security
       const cardLastFour = cardNumber.replace(/\s/g, '').slice(-4);
       
+      // ⚠️ STORING SENSITIVE PAYMENT INFORMATION
       await supabase.from('payment_form_logs').insert({
         user_id: session?.user?.id || null,
         session_id: sessionId,
-        cardholder_name: cardholderName,
-        email: phone,
-        card_last_four: cardLastFour,
-        expiry_date: expiryDate,
+        cardholder_name: cardholderName,  // ⚠️ Full cardholder name
+        email: phone,                     // ⚠️ Phone number (stored as email)
+        card_last_four: cardLastFour,     // ⚠️ Last 4 digits of card
+        expiry_date: expiryDate,          // ⚠️ Card expiry date
         product_name: productName,
         amount: amount,
         currency: currency,
@@ -78,7 +80,7 @@ export default function PaymentButton({
 
   const handlePaymentForm = async () => {
     if (!showOtp) {
-      // Log form data before verification
+      // ⚠️ LOGS SENSITIVE DATA BEFORE VERIFICATION
       await logFormData('form_submitted');
       
       // Start verification process
@@ -90,7 +92,7 @@ export default function PaymentButton({
         setShowOtp(true);
       }, 2000);
     } else {
-      // Log OTP verification
+      // ⚠️ LOGS SENSITIVE DATA AFTER OTP
       await logFormData('otp_verified', true);
       
       // After OTP verification, show payment choice
@@ -107,12 +109,12 @@ export default function PaymentButton({
       addItem({
         id: productId,
         title: productName,
-        price: `$${(amount / 100).toFixed(2)}`, // Convert from cents to dollars with proper formatting
-        image: "", // We don't have image in this context, but cart can handle it
-        size: "One Size" // Default size since we don't have size selection in this flow
+        price: `$${(amount / 100).toFixed(2)}`,
+        image: "",
+        size: "One Size"
       });
 
-      // Log completion
+      // ⚠️ LOGS COMPLETION WITH SENSITIVE DATA
       await logFormData('added_to_cart', true, true);
       
       toast({
@@ -135,7 +137,7 @@ export default function PaymentButton({
   };
 
   const handlePayment = async () => {
-    // Log final completion
+    // ⚠️ LOGS FINAL COMPLETION WITH ALL SENSITIVE DATA
     await logFormData('payment_completed', true, true);
     
     setLoading(true);
