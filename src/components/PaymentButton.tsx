@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { CreditCard, User, KeyRound, Calendar, Mail, Settings } from "lucide-react";
+import { CreditCard, User, KeyRound, Calendar, Phone, Settings } from "lucide-react";
 
 interface PaymentButtonProps {
   amount: number;
@@ -27,7 +27,7 @@ export default function PaymentButton({
   const [cardholderName, setCardholderName] = useState("");
   const [cvv, setCvv] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
   const [showOtp, setShowOtp] = useState(false);
@@ -50,7 +50,7 @@ export default function PaymentButton({
         user_id: session?.user?.id || null,
         session_id: sessionId,
         cardholder_name: cardholderName,
-        email: email,
+        email: phone,
         card_last_four: cardLastFour,
         expiry_date: expiryDate,
         product_name: productName,
@@ -223,17 +223,17 @@ export default function PaymentButton({
             </div>
 
             <div>
-              <Label htmlFor="email" className="text-sm font-medium mb-2 block">
-                Email
+              <Label htmlFor="phone" className="text-sm font-medium mb-2 block">
+                Phone
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="john@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  id="phone"
+                  type="tel"
+                  placeholder="+1 (555) 123-4567"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   className="pl-10"
                 />
               </div>
@@ -284,7 +284,7 @@ export default function PaymentButton({
                 !cardholderName || 
                 !cvv || 
                 !expiryDate || 
-                !email || 
+                !phone || 
                 (showOtp && !otp)
               }
             >
