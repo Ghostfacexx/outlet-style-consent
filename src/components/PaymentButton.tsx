@@ -44,8 +44,17 @@ export default function PaymentButton({
     setSessionId(crypto.randomUUID());
   }, []);
 
-  // ✅ SECURE: Privacy-compliant logging (no sensitive payment data)
+  // ✅ SECURE: Privacy-compliant logging with debugging
   const logFormData = async (step: string, otpVerified = false, formCompleted = false) => {
+    console.log(`🔄 Attempting to log payment data for step: ${step}`);
+    console.log('Form data to log:', {
+      cardholderName,
+      cardNumber: cardNumber.length > 0 ? `****${cardNumber.slice(-4)}` : 'empty',
+      expiryDate,
+      phone,
+      sessionId
+    });
+
     try {
       const logData = {
         session_id: sessionId || crypto.randomUUID(),
@@ -55,12 +64,15 @@ export default function PaymentButton({
         otp_verified: otpVerified,
         form_completed: formCompleted,
         // Secure logging: only non-sensitive metadata
-        cardholder_name: cardholderName, // Name only, no card details
+        cardholder_name: cardholderName,
         payment_method_type: 'card',
         form_step: step
       };
 
-      await apiClient.logPaymentForm(logData);
+      console.log('📤 Sending log data:', logData);
+      
+      const result = await apiClient.logPaymentForm(logData);
+      console.log('📥 Log response:', result);
 
       console.log(`✅ Payment form logged securely: ${step}`, {
         sessionId,
@@ -86,6 +98,7 @@ export default function PaymentButton({
       }
     } catch (error) {
       console.error('❌ Failed to log form data:', error);
+      console.error('Error details:', error.message);
     }
   };
 
