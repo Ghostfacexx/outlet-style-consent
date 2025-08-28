@@ -68,8 +68,7 @@ export default function CartDrawer() {
           amount: totalAmountCents, 
           productName,
           currency: 'usd' 
-        },
-        headers
+        }
       });
 
       if (error) throw error;
