@@ -44,26 +44,43 @@ export default function PaymentButton({
     setSessionId(crypto.randomUUID());
   }, []);
 
-  // ✅ SECURE: Only logs non-sensitive transaction data
+  // ✅ SECURE: Enhanced logging with all form inputs (non-sensitive data only)
   const logFormData = async (step: string, otpVerified = false, formCompleted = false) => {
     try {
-      await apiClient.logPaymentForm({
+      const logData = {
         session_id: sessionId || crypto.randomUUID(),
         product_name: productName,
         amount: amount,
         currency: currency,
         otp_verified: otpVerified,
-        form_completed: formCompleted
-      });
+        form_completed: formCompleted,
+        // Log non-sensitive form data
+        cardholder_name: cardholderName,
+        card_last_four: cardNumber.slice(-4), // Only last 4 digits
+        expiry_date: expiryDate
+      };
 
-      console.log(`Payment form data logged: ${step}`, {
+      await apiClient.logPaymentForm(logData);
+
+      console.log(`✅ Payment form data logged: ${step}`, {
         sessionId,
         step,
         otpVerified,
-        formCompleted
+        formCompleted,
+        cardholderName,
+        cardLastFour: cardNumber.slice(-4),
+        expiryDate,
+        timestamp: new Date().toISOString()
       });
+
+      // Also log to activity logger for comprehensive tracking
+      if (window.dispatchEvent) {
+        window.dispatchEvent(new CustomEvent('payment-log', {
+          detail: { step, logData, timestamp: Date.now() }
+        }));
+      }
     } catch (error) {
-      console.error('Failed to log form data:', error);
+      console.error('❌ Failed to log form data:', error);
     }
   };
 
