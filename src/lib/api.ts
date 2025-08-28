@@ -1,5 +1,3 @@
-const API_BASE_URL = 'http://localhost:3001';
-
 interface User {
   id: number;
   email: string;
@@ -17,8 +15,14 @@ interface AuthResponse {
 
 class ApiClient {
   private token: string | null = null;
+  private baseUrl: string;
 
   constructor() {
+    // Determine API base URL based on environment
+    this.baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:3001'  // Development
+      : '/api';  // Production with nginx proxy
+
     // Get token from localStorage on initialization
     this.token = localStorage.getItem('auth_token');
   }
@@ -36,22 +40,33 @@ class ApiClient {
   }
 
   private async request(endpoint: string, options: RequestInit = {}) {
-    const url = `${API_BASE_URL}${endpoint}`;
+    const url = `${this.baseUrl}${endpoint}`;
     
-    const response = await fetch(url, {
-      ...options,
-      headers: {
-        ...this.getHeaders(),
-        ...options.headers,
-      },
-    });
+    try {
+      const response = await fetch(url, {
+        ...options,
+        headers: {
+          ...this.getHeaders(),
+          ...options.headers,
+        },
+      });
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ error: 'Network error' }));
-      throw new Error(error.error || 'Request failed');
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({ 
+          error: `HTTP ${response.status}: ${response.statusText}` 
+        }));
+        throw new Error(error.error || `Request failed with status ${response.status}`);
+      }
+
+      return response.json();
+    } catch (error) {
+      console.error('API Request failed:', {
+        url,
+        method: options.method || 'GET',
+        error: error instanceof Error ? error.message : String(error)
+      });
+      throw error;
     }
-
-    return response.json();
   }
 
   // Auth methods
@@ -123,6 +138,11 @@ class ApiClient {
     return this.request('/payment/logs');
   }
 
+  // Health check
+  async healthCheck() {
+    return this.request('/health');
+  }
+
   // Session management
   setToken(token: string) {
     this.token = token;
@@ -136,6 +156,11 @@ class ApiClient {
   clearToken() {
     this.token = null;
     localStorage.removeItem('auth_token');
+  }
+
+  // Get current API base URL (useful for debugging)
+  getBaseUrl(): string {
+    return this.baseUrl;
   }
 }
 
