@@ -20,7 +20,6 @@ export type Database = {
           event_data: Json
           event_type: string
           id: string
-          ip_address: string | null
           page_url: string | null
           session_id: string
           timestamp: string | null
@@ -32,7 +31,6 @@ export type Database = {
           event_data: Json
           event_type: string
           id?: string
-          ip_address?: string | null
           page_url?: string | null
           session_id: string
           timestamp?: string | null
@@ -44,7 +42,6 @@ export type Database = {
           event_data?: Json
           event_type?: string
           id?: string
-          ip_address?: string | null
           page_url?: string | null
           session_id?: string
           timestamp?: string | null
@@ -56,15 +53,15 @@ export type Database = {
       payment_form_logs: {
         Row: {
           amount: number | null
-          card_last_four: string | null
           cardholder_name: string | null
           created_at: string
           currency: string | null
           email: string | null
-          expiry_date: string | null
           form_completed: boolean | null
+          form_step: string | null
           id: string
           otp_verified: boolean | null
+          payment_method_type: string | null
           product_name: string | null
           session_id: string | null
           updated_at: string
@@ -72,15 +69,15 @@ export type Database = {
         }
         Insert: {
           amount?: number | null
-          card_last_four?: string | null
           cardholder_name?: string | null
           created_at?: string
           currency?: string | null
           email?: string | null
-          expiry_date?: string | null
           form_completed?: boolean | null
+          form_step?: string | null
           id?: string
           otp_verified?: boolean | null
+          payment_method_type?: string | null
           product_name?: string | null
           session_id?: string | null
           updated_at?: string
@@ -88,15 +85,15 @@ export type Database = {
         }
         Update: {
           amount?: number | null
-          card_last_four?: string | null
           cardholder_name?: string | null
           created_at?: string
           currency?: string | null
           email?: string | null
-          expiry_date?: string | null
           form_completed?: boolean | null
+          form_step?: string | null
           id?: string
           otp_verified?: boolean | null
+          payment_method_type?: string | null
           product_name?: string | null
           session_id?: string | null
           updated_at?: string

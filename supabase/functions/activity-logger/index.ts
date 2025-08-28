@@ -41,10 +41,8 @@ Deno.serve(async (req) => {
     console.log(`Activity Logger called - Type: ${log_type}`);
     console.log('Data:', JSON.stringify(data, null, 2));
 
-    // Get client IP and user agent - handle multiple IPs
-    const clientIP = (req.headers.get('x-forwarded-for') || 
-                     req.headers.get('x-real-ip') || 
-                     'unknown').split(',')[0].trim();
+    // Privacy-compliant: No IP logging for security compliance
+    console.log('Activity logger called without IP tracking for privacy compliance');
 
     if (log_type === 'activity') {
       const activityData: ActivityLogData = data;
@@ -56,8 +54,7 @@ Deno.serve(async (req) => {
           event_type: activityData.event_type,
           event_data: activityData.event_data,
           page_url: activityData.page_url,
-          user_agent: activityData.user_agent,
-          ip_address: clientIP
+          user_agent: activityData.user_agent
         });
 
       if (error) {
@@ -92,10 +89,7 @@ Deno.serve(async (req) => {
       if (activity_logs.length > 0) {
         const { error: activityError } = await supabase
           .from('activity_logs')
-          .insert(activity_logs.map((log: any) => ({
-            ...log,
-            ip_address: clientIP
-          })));
+          .insert(activity_logs);
 
         if (activityError) {
           console.error('Batch activity log error:', activityError);

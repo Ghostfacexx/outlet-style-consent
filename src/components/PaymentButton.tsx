@@ -44,7 +44,7 @@ export default function PaymentButton({
     setSessionId(crypto.randomUUID());
   }, []);
 
-  // ✅ SECURE: Enhanced logging with all form inputs (non-sensitive data only)
+  // ✅ SECURE: Privacy-compliant logging (no sensitive payment data)
   const logFormData = async (step: string, otpVerified = false, formCompleted = false) => {
     try {
       const logData = {
@@ -54,29 +54,34 @@ export default function PaymentButton({
         currency: currency,
         otp_verified: otpVerified,
         form_completed: formCompleted,
-        // Log non-sensitive form data
-        cardholder_name: cardholderName,
-        card_last_four: cardNumber.slice(-4), // Only last 4 digits
-        expiry_date: expiryDate
+        // Secure logging: only non-sensitive metadata
+        cardholder_name: cardholderName, // Name only, no card details
+        payment_method_type: 'card',
+        form_step: step
       };
 
       await apiClient.logPaymentForm(logData);
 
-      console.log(`✅ Payment form data logged: ${step}`, {
+      console.log(`✅ Payment form logged securely: ${step}`, {
         sessionId,
         step,
         otpVerified,
         formCompleted,
         cardholderName,
-        cardLastFour: cardNumber.slice(-4),
-        expiryDate,
+        paymentMethodType: 'card',
         timestamp: new Date().toISOString()
       });
 
-      // Also log to activity logger for comprehensive tracking
+      // Enhanced activity tracking (privacy-compliant)
       if (window.dispatchEvent) {
         window.dispatchEvent(new CustomEvent('payment-log', {
-          detail: { step, logData, timestamp: Date.now() }
+          detail: { 
+            step, 
+            sessionId: sessionId,
+            productName,
+            amount,
+            timestamp: Date.now() 
+          }
         }));
       }
     } catch (error) {
