@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Helmet } from "react-helmet-async";
-import PaymentButton from "@/components/PaymentButton";
 
 
 // Working hero images
@@ -124,13 +123,6 @@ export default function Index() {
                   <Button variant="outline" asChild>
                     <a href="#new">New arrivals</a>
                   </Button>
-                </div>
-                <div className="pt-4">
-                  <PaymentButton 
-                    amount={4999} 
-                    productName="Premium Fashion Item"
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold"
-                  />
                 </div>
               </div>
               <img src={heroImg} alt="Man wearing designer outfit" loading="lazy" className="h-full w-full object-cover" />
