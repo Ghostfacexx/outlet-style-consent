@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingBag, Plus, Minus, X } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 export default function CartDrawer() {
   const [isOpen, setIsOpen] = useState(false);
-  const { items, removeItem, updateQuantity, getTotalItems, getTotalPrice } = useCart();
+  const { items, removeItem, updateQuantity, getTotalItems, getTotalPrice, clearCart } = useCart();
+  const { toast } = useToast();
 
   console.log("CartDrawer rendered, total items:", getTotalItems());
 
@@ -16,6 +18,29 @@ export default function CartDrawer() {
       style: 'currency',
       currency: 'USD',
     }).format(price);
+  };
+
+  const handleCheckout = () => {
+    // Create a summary of items for checkout
+    const orderSummary = items.map(item => `${item.title} (${item.size}) x${item.quantity}`).join(', ');
+    const totalAmount = Math.round(getTotalPrice() * 100); // Convert to cents
+
+    // For now, simulate checkout process
+    toast({
+      title: "Proceeding to checkout...",
+      description: `Processing ${items.length} item(s) worth ${formatPrice(getTotalPrice())}`,
+    });
+
+    // In a real app, you would integrate with payment processing here
+    // For demo purposes, we'll show a success message after 2 seconds
+    setTimeout(() => {
+      toast({
+        title: "Order placed successfully!",
+        description: `Your order for ${formatPrice(getTotalPrice())} has been confirmed.`,
+      });
+      clearCart();
+      setIsOpen(false);
+    }, 2000);
   };
 
   return (
@@ -111,7 +136,11 @@ export default function CartDrawer() {
                 </div>
                 
                 <div className="space-y-2">
-                  <Button className="w-full" size="lg">
+                  <Button 
+                    className="w-full" 
+                    size="lg"
+                    onClick={handleCheckout}
+                  >
                     Checkout
                   </Button>
                   <Button 
