@@ -37,20 +37,27 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
 
   const addItem = (newItem: Omit<CartItem, 'quantity'>) => {
+    console.log("CartContext: addItem called with:", newItem);
+    
     setItems(prevItems => {
+      console.log("CartContext: Previous items:", prevItems);
       const existingItem = prevItems.find(
         item => item.id === newItem.id && item.size === newItem.size
       );
 
       if (existingItem) {
-        return prevItems.map(item =>
+        const updatedItems = prevItems.map(item =>
           item.id === newItem.id && item.size === newItem.size
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
+        console.log("CartContext: Updated existing item, new items:", updatedItems);
+        return updatedItems;
       }
 
-      return [...prevItems, { ...newItem, quantity: 1 }];
+      const newItems = [...prevItems, { ...newItem, quantity: 1 }];
+      console.log("CartContext: Added new item, new items:", newItems);
+      return newItems;
     });
   };
 

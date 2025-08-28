@@ -9,6 +9,8 @@ export default function CartDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   const { items, removeItem, updateQuantity, getTotalItems, getTotalPrice } = useCart();
 
+  console.log("CartDrawer rendered, total items:", getTotalItems());
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',

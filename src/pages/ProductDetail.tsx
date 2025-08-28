@@ -1184,6 +1184,8 @@ export default function ProductDetail() {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   const addToBag = () => {
+    console.log("addToBag called", { selectedSize, product: product?.title });
+    
     if (!selectedSize || !product) {
       toast({
         title: "Please select a size",
@@ -1193,13 +1195,16 @@ export default function ProductDetail() {
       return;
     }
     
-    addItem({
+    const itemToAdd = {
       id: product.id,
       title: product.title,
       price: product.price,
       image: product.images[0],
       size: selectedSize,
-    });
+    };
+    
+    console.log("Adding item to cart:", itemToAdd);
+    addItem(itemToAdd);
     
     toast({
       title: "Added to bag!",
