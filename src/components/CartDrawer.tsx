@@ -5,15 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingBag, Plus, Minus, X } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
-import { createClient } from "@supabase/supabase-js";
-
-// Only create Supabase client if environment variables are available
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-const supabase = supabaseUrl && supabaseAnonKey 
-  ? createClient(supabaseUrl, supabaseAnonKey)
-  : null;
+import { supabase } from "@/integrations/supabase/client";
 
 export default function CartDrawer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,14 +26,6 @@ export default function CartDrawer() {
     console.log("Items in cart:", items);
     console.log("Total price:", getTotalPrice());
 
-    if (!supabase) {
-      toast({
-        title: "Configuration Error", 
-        description: "Payment system not configured. Please connect to Supabase first.",
-        variant: "destructive",
-      });
-      return;
-    }
 
     if (items.length === 0) {
       toast({
