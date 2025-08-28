@@ -55,8 +55,6 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <BrowserRouter>
-          <Toaster />
-          <Sonner />
           <CartProvider>
             <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
               <Header />
@@ -75,6 +73,8 @@ const App = () => {
                 </Routes>
               </Suspense>
               <CookieConsent />
+              <Toaster />
+              <Sonner />
             </div>
           </CartProvider>
         </BrowserRouter>
