@@ -21,9 +21,16 @@ export default function CartDrawer() {
   };
 
   const handleCheckout = () => {
+    console.log("Checkout button clicked!");
+    console.log("Items in cart:", items);
+    console.log("Total price:", getTotalPrice());
+    
     // Create a summary of items for checkout
     const orderSummary = items.map(item => `${item.title} (${item.size}) x${item.quantity}`).join(', ');
     const totalAmount = Math.round(getTotalPrice() * 100); // Convert to cents
+
+    console.log("Order summary:", orderSummary);
+    console.log("Total amount in cents:", totalAmount);
 
     // For now, simulate checkout process
     toast({
@@ -34,6 +41,7 @@ export default function CartDrawer() {
     // In a real app, you would integrate with payment processing here
     // For demo purposes, we'll show a success message after 2 seconds
     setTimeout(() => {
+      console.log("Showing success message and clearing cart");
       toast({
         title: "Order placed successfully!",
         description: `Your order for ${formatPrice(getTotalPrice())} has been confirmed.`,
