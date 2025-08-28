@@ -6,6 +6,7 @@ import { HelmetProvider } from "react-helmet-async";
 import * as React from "react";
 import Header from "@/components/Header";
 import CookieConsent from "@/components/CookieConsent";
+import { ActivityLogger } from "@/components/ActivityLogger";
 import { CartProvider } from "@/contexts/CartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -76,6 +77,7 @@ const App = () => {
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </React.Suspense>
+                <ActivityLogger />
                 <CookieConsent />
                 <Toaster />
                 <Sonner />

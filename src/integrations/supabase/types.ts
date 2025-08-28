@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_logs: {
+        Row: {
+          created_at: string | null
+          event_data: Json
+          event_type: string
+          id: string
+          ip_address: unknown | null
+          page_url: string | null
+          session_id: string
+          timestamp: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          event_data: Json
+          event_type: string
+          id?: string
+          ip_address?: unknown | null
+          page_url?: string | null
+          session_id: string
+          timestamp?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          event_data?: Json
+          event_type?: string
+          id?: string
+          ip_address?: unknown | null
+          page_url?: string | null
+          session_id?: string
+          timestamp?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       payment_form_logs: {
         Row: {
           amount: number | null
@@ -62,6 +101,45 @@ export type Database = {
           session_id?: string | null
           updated_at?: string
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      performance_logs: {
+        Row: {
+          cumulative_layout_shift: number | null
+          first_input_delay: number | null
+          first_paint: number | null
+          id: string
+          largest_contentful_paint: number | null
+          load_time: number | null
+          metrics: Json | null
+          page_url: string
+          session_id: string
+          timestamp: string | null
+        }
+        Insert: {
+          cumulative_layout_shift?: number | null
+          first_input_delay?: number | null
+          first_paint?: number | null
+          id?: string
+          largest_contentful_paint?: number | null
+          load_time?: number | null
+          metrics?: Json | null
+          page_url: string
+          session_id: string
+          timestamp?: string | null
+        }
+        Update: {
+          cumulative_layout_shift?: number | null
+          first_input_delay?: number | null
+          first_paint?: number | null
+          id?: string
+          largest_contentful_paint?: number | null
+          load_time?: number | null
+          metrics?: Json | null
+          page_url?: string
+          session_id?: string
+          timestamp?: string | null
         }
         Relationships: []
       }

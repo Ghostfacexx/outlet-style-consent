@@ -2,3 +2,6 @@ project_id = "ybrklodcpkuapyoijpab"
 
 [functions.create-payment]
 verify_jwt = false
+
+[functions.activity-logger]
+verify_jwt = false
