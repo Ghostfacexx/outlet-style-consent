@@ -24,7 +24,7 @@ export default function MobileHeader() {
     { path: "/clearance", label: "Clearance" },
   ];
 
-  const totalItems = getTotalItems();
+  const totalItems = getTotalItems() || 0;
 
   return (
     <header className="mobile-sticky-header border-b mobile-safe-area">

@@ -10,7 +10,7 @@ export default function MobileBottomNav() {
     return location.pathname === path;
   };
 
-  const totalItems = getTotalItems();
+  const totalItems = getTotalItems() || 0;
 
   const navItems = [
     { path: "/", icon: Home, label: "Home" },
