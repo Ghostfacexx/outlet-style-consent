@@ -1,15 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { createClient } from "@supabase/supabase-js";
-
-// Only create Supabase client if environment variables are available
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-const supabase = supabaseUrl && supabaseAnonKey 
-  ? createClient(supabaseUrl, supabaseAnonKey)
-  : null;
+import { supabase } from "@/integrations/supabase/client";
 
 interface PaymentButtonProps {
   amount: number;
@@ -28,14 +20,6 @@ export default function PaymentButton({
   const { toast } = useToast();
 
   const handlePayment = async () => {
-    if (!supabase) {
-      toast({
-        title: "Configuration Error", 
-        description: "Payment system not configured. Please connect to Supabase first.",
-        variant: "destructive",
-      });
-      return;
-    }
 
     setLoading(true);
     try {
