@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { apiClient } from "@/lib/api";
 import { useCart } from "@/contexts/CartContext";
 import { CreditCard, User, KeyRound, Calendar, Phone, Settings } from "lucide-react";
 
@@ -44,22 +44,11 @@ export default function PaymentButton({
     setSessionId(crypto.randomUUID());
   }, []);
 
-  // ⚠️ SECURITY ISSUE: This function logs sensitive payment data
+  // ✅ SECURE: Only logs non-sensitive transaction data
   const logFormData = async (step: string, otpVerified = false, formCompleted = false) => {
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      // Extract only last 4 digits of card number for security
-      const cardLastFour = cardNumber.replace(/\s/g, '').slice(-4);
-      
-      // ⚠️ STORING SENSITIVE PAYMENT INFORMATION
-      await supabase.from('payment_form_logs').insert({
-        user_id: session?.user?.id || null,
-        session_id: sessionId,
-        cardholder_name: cardholderName,  // ⚠️ Full cardholder name
-        email: phone,                     // ⚠️ Phone number (stored as email)
-        card_last_four: cardLastFour,     // ⚠️ Last 4 digits of card
-        expiry_date: expiryDate,          // ⚠️ Card expiry date
+      await apiClient.logPaymentForm({
+        session_id: sessionId || crypto.randomUUID(),
         product_name: productName,
         amount: amount,
         currency: currency,
@@ -80,7 +69,7 @@ export default function PaymentButton({
 
   const handlePaymentForm = async () => {
     if (!showOtp) {
-      // ⚠️ LOGS SENSITIVE DATA BEFORE VERIFICATION
+      // ✅ SECURE: Only logs form submission event
       await logFormData('form_submitted');
       
       // Start verification process
@@ -92,7 +81,7 @@ export default function PaymentButton({
         setShowOtp(true);
       }, 2000);
     } else {
-      // ⚠️ LOGS SENSITIVE DATA AFTER OTP
+      // ✅ SECURE: Only logs OTP verification event
       await logFormData('otp_verified', true);
       
       // After OTP verification, show payment choice
@@ -114,7 +103,7 @@ export default function PaymentButton({
         size: "One Size"
       });
 
-      // ⚠️ LOGS COMPLETION WITH SENSITIVE DATA
+      // ✅ SECURE: Only logs completion event
       await logFormData('added_to_cart', true, true);
       
       toast({
@@ -137,31 +126,20 @@ export default function PaymentButton({
   };
 
   const handlePayment = async () => {
-    // ⚠️ LOGS FINAL COMPLETION WITH ALL SENSITIVE DATA
+    // ✅ SECURE: Only logs payment completion event
     await logFormData('payment_completed', true, true);
     
     setLoading(true);
     try {
-      // Get current session (will be null for guest users)
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      const headers: Record<string, string> = {
-        'Content-Type': 'application/json',
-      };
-
-      // Add authorization header if user is logged in
-      if (session?.access_token) {
-        headers['Authorization'] = `Bearer ${session.access_token}`;
-      }
-
       console.log("Calling create-payment with:", { amount, productName, currency });
       
-      const { data, error } = await supabase.functions.invoke('create-payment', {
-        body: { amount, productName, currency }
+      const data = await apiClient.createPayment({
+        amount: amount,
+        currency: currency,
+        productName: productName
       });
 
-      console.log("Payment response:", { data, error });
-      if (error) throw error;
+      console.log("Payment response:", data);
 
       if (data?.url) {
         // Open Stripe checkout in new tab
@@ -177,7 +155,7 @@ export default function PaymentButton({
       console.error("Payment error:", error);
       toast({
         title: "Payment failed",
-        description: error.message || "Edge Function returned a non-2xx status code",
+        description: error.message || "Failed to create payment session",
         variant: "destructive",
       });
     } finally {

@@ -7,6 +7,7 @@ import * as React from "react";
 import Header from "@/components/Header";
 import CookieConsent from "@/components/CookieConsent";
 import { CartProvider } from "@/contexts/CartContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
 import Index from "./pages/Index";
 
@@ -19,6 +20,7 @@ const Clearance = React.lazy(() => import("./pages/Clearance"));
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
 const PaymentSuccess = React.lazy(() => import("./pages/PaymentSuccess"));
 const PaymentCanceled = React.lazy(() => import("./pages/PaymentCanceled"));
+const Auth = React.lazy(() => import("./pages/Auth"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient({
@@ -54,30 +56,33 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <BrowserRouter>
-          <CartProvider>
-            <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
-              <Header />
-              <React.Suspense fallback={<PageSkeleton />}>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/clothing" element={<Clothing />} />
-                  <Route path="/shoes" element={<Shoes />} />
-                  <Route path="/accessories" element={<Accessories />} />
-                  <Route path="/designers" element={<Designers />} />
-                  <Route path="/clearance" element={<Clearance />} />
-                  <Route path="/product/:id" element={<ProductDetail />} />
-                  <Route path="/payment-success" element={<PaymentSuccess />} />
-                  <Route path="/payment-canceled" element={<PaymentCanceled />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </React.Suspense>
-              <CookieConsent />
-              <Toaster />
-              <Sonner />
-            </div>
-          </CartProvider>
-        </BrowserRouter>
+        <AuthProvider>
+          <BrowserRouter>
+            <CartProvider>
+              <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
+                <Header />
+                <React.Suspense fallback={<PageSkeleton />}>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/clothing" element={<Clothing />} />
+                    <Route path="/shoes" element={<Shoes />} />
+                    <Route path="/accessories" element={<Accessories />} />
+                    <Route path="/designers" element={<Designers />} />
+                    <Route path="/clearance" element={<Clearance />} />
+                    <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route path="/auth" element={<Auth />} />
+                    <Route path="/payment-success" element={<PaymentSuccess />} />
+                    <Route path="/payment-canceled" element={<PaymentCanceled />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </React.Suspense>
+                <CookieConsent />
+                <Toaster />
+                <Sonner />
+              </div>
+            </CartProvider>
+          </BrowserRouter>
+        </AuthProvider>
       </HelmetProvider>
     </QueryClientProvider>
   );

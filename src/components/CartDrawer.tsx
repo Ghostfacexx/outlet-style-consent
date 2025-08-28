@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingBag, Plus, Minus, X } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { apiClient } from "@/lib/api";
 
 export default function CartDrawer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,28 +50,12 @@ export default function CartDrawer() {
         productName 
       });
 
-      // Get current session (will be null for guest users)
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      const headers: Record<string, string> = {
-        'Content-Type': 'application/json',
-      };
-
-      // Add authorization header if user is logged in
-      if (session?.access_token) {
-        headers['Authorization'] = `Bearer ${session.access_token}`;
-      }
-
-      // Call the payment edge function
-      const { data, error } = await supabase.functions.invoke('create-payment', {
-        body: { 
-          amount: totalAmountCents, 
-          productName,
-          currency: 'usd' 
-        }
+      // Call the payment API
+      const data = await apiClient.createPayment({
+        amount: totalAmountCents, 
+        productName,
+        currency: 'usd' 
       });
-
-      if (error) throw error;
 
       if (data?.url) {
         // Open Stripe checkout in new tab
