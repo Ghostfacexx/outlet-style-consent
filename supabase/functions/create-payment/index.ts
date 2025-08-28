@@ -15,7 +15,11 @@ serve(async (req) => {
 
   try {
     console.log("create-payment function called");
-    const { amount = 4999, currency = "usd", productName = "Premium Product" } = await req.json();
+    
+    const requestBody = await req.json();
+    console.log("Request body:", requestBody);
+    
+    const { amount = 4999, currency = "usd", productName = "Premium Product" } = requestBody;
 
     // Create Supabase client
     const supabaseClient = createClient(
@@ -42,7 +46,11 @@ serve(async (req) => {
     }
 
     // Initialize Stripe
-    const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
+    const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
+    console.log("Stripe key exists:", !!stripeKey);
+    console.log("Stripe key starts with sk_test_:", stripeKey?.startsWith("sk_test_"));
+    
+    const stripe = new Stripe(stripeKey || "", {
       apiVersion: "2023-10-16",
     });
 
@@ -88,8 +96,15 @@ serve(async (req) => {
     });
   } catch (error) {
     console.error("Payment creation error:", error);
+    console.error("Error details:", {
+      message: error.message,
+      type: error.type,
+      code: error.code,
+      stack: error.stack
+    });
     return new Response(JSON.stringify({ 
-      error: error.message || "Failed to create payment session" 
+      error: error.message || "Failed to create payment session",
+      details: error.type || "Unknown error"
     }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,
