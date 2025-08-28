@@ -1364,6 +1364,7 @@ export default function ProductDetail() {
               <PaymentButton 
                 amount={parseFloat(product.price.replace('$', '').replace(',', '')) * 100}
                 productName={product.title}
+                productId={product.id}
                 className="w-full"
               />
               <Button 

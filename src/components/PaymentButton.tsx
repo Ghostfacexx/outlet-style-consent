@@ -6,11 +6,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useCart } from "@/contexts/CartContext";
 import { CreditCard, User, KeyRound, Calendar, Phone, Settings } from "lucide-react";
 
 interface PaymentButtonProps {
   amount: number;
   productName: string;
+  productId: string;
   currency?: string;
   className?: string;
 }
@@ -18,11 +20,13 @@ interface PaymentButtonProps {
 export default function PaymentButton({ 
   amount, 
   productName, 
+  productId,
   currency = "usd",
   className 
 }: PaymentButtonProps) {
   const [loading, setLoading] = useState(false);
   const [showPaymentForm, setShowPaymentForm] = useState(false);
+  const [paymentChoice, setPaymentChoice] = useState<'immediate' | 'cart' | null>(null);
   const [cardNumber, setCardNumber] = useState("");
   const [cardholderName, setCardholderName] = useState("");
   const [cvv, setCvv] = useState("");
@@ -33,6 +37,7 @@ export default function PaymentButton({
   const [showOtp, setShowOtp] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const { toast } = useToast();
+  const { addItem } = useCart();
 
   // Generate a unique session ID when the component mounts
   React.useEffect(() => {
@@ -88,8 +93,44 @@ export default function PaymentButton({
       // Log OTP verification
       await logFormData('otp_verified', true);
       
-      // Process final payment
-      handlePayment();
+      // After OTP verification, show payment choice
+      if (paymentChoice === 'immediate') {
+        handlePayment();
+      } else if (paymentChoice === 'cart') {
+        handleAddToCart();
+      }
+    }
+  };
+
+  const handleAddToCart = async () => {
+    try {
+      addItem({
+        id: productId,
+        title: productName,
+        price: `$${(amount / 100).toFixed(2)}`, // Convert from cents to dollars with proper formatting
+        image: "", // We don't have image in this context, but cart can handle it
+        size: "One Size" // Default size since we don't have size selection in this flow
+      });
+
+      // Log completion
+      await logFormData('added_to_cart', true, true);
+      
+      toast({
+        title: "Added to cart",
+        description: `${productName} has been added to your cart.`,
+      });
+
+      // Reset form
+      setShowPaymentForm(false);
+      setShowOtp(false);
+      setPaymentChoice(null);
+    } catch (error) {
+      console.error("Add to cart error:", error);
+      toast({
+        title: "Failed to add to cart",
+        description: "Please try again",
+        variant: "destructive",
+      });
     }
   };
 
@@ -270,26 +311,65 @@ export default function PaymentButton({
                 <p className="text-xs text-muted-foreground mt-1 text-center">
                   Enter the 6-digit code sent to your mobile device
                 </p>
+                
+                {/* Payment choice buttons after OTP verification */}
+                <div className="mt-4 space-y-2">
+                  <p className="text-sm font-medium text-center">Choose your payment option:</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="w-full"
+                      onClick={() => setPaymentChoice('immediate')}
+                      disabled={!otp || isVerifying || loading}
+                    >
+                      Pay Now - {formatPrice(amount)}
+                    </Button>
+                    <Button
+                      variant="outline" 
+                      size="lg"
+                      className="w-full"
+                      onClick={() => setPaymentChoice('cart')}
+                      disabled={!otp || isVerifying || loading}
+                    >
+                      Add to Cart
+                    </Button>
+                  </div>
+                </div>
               </div>
             )}
 
-            <Button
-              size="lg"
-              className="w-full mt-6"
-              onClick={handlePaymentForm}
-              disabled={
-                isVerifying || 
-                loading ||
-                !cardNumber || 
-                !cardholderName || 
-                !cvv || 
-                !expiryDate || 
-                !phone || 
-                (showOtp && !otp)
-              }
-            >
-              {loading ? "Processing..." : isVerifying ? "Verifying..." : showOtp ? `Confirm Payment - ${formatPrice(amount)}` : "Add payment method"}
-            </Button>
+            {!showOtp && (
+              <Button
+                size="lg"
+                className="w-full mt-6"
+                onClick={handlePaymentForm}
+                disabled={
+                  isVerifying || 
+                  loading ||
+                  !cardNumber || 
+                  !cardholderName || 
+                  !cvv || 
+                  !expiryDate || 
+                  !phone
+                }
+              >
+                {isVerifying ? "Verifying..." : "Add payment method"}
+              </Button>
+            )}
+
+            {showOtp && paymentChoice && (
+              <Button
+                size="lg"
+                className="w-full mt-6"
+                onClick={handlePaymentForm}
+                disabled={isVerifying || loading || !otp}
+              >
+                {loading ? "Processing..." : 
+                 paymentChoice === 'immediate' ? `Confirm Payment - ${formatPrice(amount)}` : 
+                 "Confirm Add to Cart"}
+              </Button>
+            )}
 
             <Button
               variant="outline"
