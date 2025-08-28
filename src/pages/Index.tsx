@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Helmet } from "react-helmet-async";
-import AppDownloadPrompt from "@/components/AppDownloadPrompt";
+
 
 // Working hero images
 const heroImg = "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3";
@@ -239,7 +239,7 @@ export default function Index() {
         </div>
       </footer>
 
-      {mounted && <AppDownloadPrompt />}
+      
     </>
   );
 }
