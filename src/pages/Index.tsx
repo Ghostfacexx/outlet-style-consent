@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Helmet } from "react-helmet-async";
+import ProductCard from "@/components/ProductCard";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 
 // Working hero images
@@ -116,83 +118,66 @@ export default function Index() {
 
       <a href="#main" className="sr-only">Skip to content</a>
 
-      <main id="main" role="main" className="container mx-auto px-4">
-        <section className="grid lg:grid-cols-[1.2fr,1fr] gap-6 items-center py-8">
-          <article className="rounded-2xl border overflow-hidden bg-gradient-to-b from-muted/40 to-accent" aria-roledescription="hero">
-            <div className="grid md:grid-cols-2">
-              <div className="p-6 flex flex-col justify-center gap-3">
-                <h1 className="text-3xl md:text-4xl font-bold leading-tight">Designer menswear at outlet prices</h1>
-                <p className="text-muted-foreground">Discover this week's drops, seasonal staples, and clearance steals from top designers.</p>
-                <div className="flex flex-wrap gap-2 pt-1">
-                  <Button variant="hero" data-test="cta-shop-now" onClick={() => {
+      <main id="main" role="main" className="mobile-container pb-20 md:pb-6">
+        <section className="grid lg:grid-cols-[1.2fr,1fr] gap-4 lg:gap-6 items-center py-4 lg:py-8">
+          <article className="rounded-2xl border overflow-hidden bg-gradient-to-b from-muted/40 to-accent mobile-fade-in" aria-roledescription="hero">
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              <div className="p-4 lg:p-6 flex flex-col justify-center gap-3">
+                <h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">Designer menswear at outlet prices</h1>
+                <p className="text-muted-foreground text-sm lg:text-base">Discover this week's drops, seasonal staples, and clearance steals from top designers.</p>
+                <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                  <Button variant="hero" className="mobile-touch" data-test="cta-shop-now" onClick={() => {
                     const el = document.getElementById('products');
                     el?.scrollIntoView({ behavior: 'smooth' });
                   }}>Shop now</Button>
-                  <Button variant="outline" asChild>
+                  <Button variant="outline" className="mobile-touch" asChild>
                     <a href="#new">New arrivals</a>
                   </Button>
                 </div>
               </div>
-              <img src={heroImg} alt="Man wearing designer outfit" loading="lazy" className="h-full w-full object-cover" />
+              <img src={heroImg} alt="Man wearing designer outfit" loading="lazy" className="h-48 md:h-full w-full object-cover" />
             </div>
           </article>
-          <aside>
+          <aside className="hidden lg:block">
             <img src={sideImg} alt="Men's fashion lookbook" loading="lazy" className="rounded-2xl border" />
           </aside>
         </section>
 
-        <section aria-label="Promotions" className="grid md:grid-cols-3 gap-4 my-6">
+        <section aria-label="Promotions" className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 lg:my-6">
           {promos.map((p, i) => (
-            <Card key={i} className="overflow-hidden group hover:shadow-lg transition-all duration-300">
+            <Card key={i} className="overflow-hidden group hover:shadow-lg transition-all duration-300 mobile-fade-in">
               <div className="relative overflow-hidden">
-                <img src={p.img} alt={p.title} loading="lazy" className="h-44 w-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <img src={p.img} alt={p.title} loading="lazy" className="h-36 md:h-44 w-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
               </div>
-              <CardContent className="flex items-start justify-between gap-2 p-4">
+              <CardContent className="flex items-start justify-between gap-2 p-3 md:p-4">
                 <div className="flex-1">
                   <strong className="block text-sm font-semibold mb-1">{p.title}</strong>
                   <span className="text-muted-foreground text-xs leading-relaxed">{p.subtitle}</span>
                 </div>
-                <Button variant="outline" size="sm" className="shrink-0">{p.cta}</Button>
+                <Button variant="outline" size="sm" className="shrink-0 mobile-touch">{p.cta}</Button>
               </CardContent>
             </Card>
           ))}
         </section>
 
         <section id="products" aria-labelledby="products-title" className="my-4">
-          <h2 id="products-title" className="text-xl font-semibold mb-3">Just In: Designer Menswear</h2>
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {products.map((p, i) => (
-              <Link key={p.id} to={`/product/${p.id}`}>
-                <Card className="overflow-hidden group hover:shadow-lg transition-shadow cursor-pointer">
-                  <div className="relative overflow-hidden">
-                    <img src={p.img} alt={p.title} loading="lazy" className="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                      SALE
-                    </div>
-                  </div>
-                  <CardContent className="grid gap-2 p-4">
-                    <div className="text-sm text-muted-foreground line-clamp-2">{p.title}</div>
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-bold text-foreground">{p.price}</span>
-                      <span className="text-xs line-through text-muted-foreground">{p.old}</span>
-                      <span className="text-xs text-green-600 font-medium ml-auto">
-                        {(() => {
-                          const currentPrice = parseFloat(p.price.replace('$', '').replace(',', ''));
-                          const originalPrice = parseFloat(p.old.replace('$', '').replace(',', ''));
-                          const discount = Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
-                          return `${discount}% OFF`;
-                        })()}
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
+          <h2 id="products-title" className="text-lg lg:text-xl font-semibold mb-3">Just In: Designer Menswear</h2>
+          <div className="mobile-grid gap-3 lg:gap-4">
+            {products.map((p) => (
+              <ProductCard
+                key={p.id}
+                id={p.id}
+                title={p.title}
+                img={p.img}
+                price={p.price}
+                old={p.old}
+              />
             ))}
           </div>
           <div className="text-center mt-6">
             <Link to="/clothing">
-              <Button variant="outline" className="min-w-32">
+              <Button variant="outline" className="mobile-touch min-w-32">
                 View All Products
               </Button>
             </Link>
@@ -201,41 +186,41 @@ export default function Index() {
       </main>
 
       <footer role="contentinfo" className="border-t mt-10 py-6 text-sm text-muted-foreground">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-6 mb-6">
+        <div className="mobile-container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 mb-6">
             <div>
               <h3 className="font-semibold text-foreground mb-3">Customer Care</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-foreground transition-colors">Track Your Order</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Create A Return</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Size Guide</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">Track Your Order</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">Create A Return</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">Contact Us</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">Size Guide</a></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-3">About</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-foreground transition-colors">About THE OUTNET</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Press</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Sustainability</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">About THE OUTNET</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">Careers</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">Press</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">Sustainability</a></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-3">Services</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-foreground transition-colors">Download Our App</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Personal Shopping</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Gift Cards</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Newsletter</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">Download Our App</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">Personal Shopping</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">Gift Cards</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors mobile-touch">Newsletter</a></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-3">Connect</h3>
-              <div className="flex gap-3 mb-3">
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Instagram</a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Twitter</a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Facebook</a>
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-3">
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors mobile-touch">Instagram</a>
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors mobile-touch">Twitter</a>
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors mobile-touch">Facebook</a>
               </div>
               <p className="text-xs">Free shipping over $150</p>
               <p className="text-xs">10% off first app order with APP10</p>
@@ -247,6 +232,7 @@ export default function Index() {
         </div>
       </footer>
 
+      <MobileBottomNav />
       
     </>
   );
