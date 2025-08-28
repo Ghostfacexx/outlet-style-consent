@@ -190,13 +190,21 @@ export default function PaymentButton({
     try {
       console.log("Calling create-payment with:", { amount, productName, currency });
       
-      const data = await apiClient.createPayment({
-        amount: amount,
-        currency: currency,
-        productName: productName
+      // Use Supabase edge function instead of API client
+      const { data, error } = await supabase.functions.invoke('create-payment', {
+        body: {
+          amount: amount,
+          currency: currency,
+          productName: productName
+        },
       });
 
       console.log("Payment response:", data);
+      console.log("Payment error:", error);
+
+      if (error) {
+        throw new Error(error.message || 'Payment creation failed');
+      }
 
       if (data?.url) {
         // Open Stripe checkout in new tab
