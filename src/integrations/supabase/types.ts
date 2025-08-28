@@ -20,7 +20,7 @@ export type Database = {
           event_data: Json
           event_type: string
           id: string
-          ip_address: unknown | null
+          ip_address: string | null
           page_url: string | null
           session_id: string
           timestamp: string | null
@@ -32,7 +32,7 @@ export type Database = {
           event_data: Json
           event_type: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: string | null
           page_url?: string | null
           session_id: string
           timestamp?: string | null
@@ -44,7 +44,7 @@ export type Database = {
           event_data?: Json
           event_type?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: string | null
           page_url?: string | null
           session_id?: string
           timestamp?: string | null

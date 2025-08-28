@@ -41,10 +41,10 @@ Deno.serve(async (req) => {
     console.log(`Activity Logger called - Type: ${log_type}`);
     console.log('Data:', JSON.stringify(data, null, 2));
 
-    // Get client IP and user agent
-    const clientIP = req.headers.get('x-forwarded-for') || 
-                    req.headers.get('x-real-ip') || 
-                    'unknown';
+    // Get client IP and user agent - handle multiple IPs
+    const clientIP = (req.headers.get('x-forwarded-for') || 
+                     req.headers.get('x-real-ip') || 
+                     'unknown').split(',')[0].trim();
 
     if (log_type === 'activity') {
       const activityData: ActivityLogData = data;
