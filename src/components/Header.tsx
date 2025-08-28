@@ -11,7 +11,7 @@ export default function Header() {
     <header role="banner" className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="text-lg font-extrabold tracking-wide hover:opacity-80 transition-opacity">
-          THE OUTNET • MEN
+          THE OUTNET • EXCLUSIVE
         </Link>
         <nav aria-label="Primary">
           <ul className="hidden md:flex gap-4 text-sm">
