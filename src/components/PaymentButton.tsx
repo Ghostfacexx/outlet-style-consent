@@ -35,11 +35,13 @@ export default function PaymentButton({
         headers['Authorization'] = `Bearer ${session.access_token}`;
       }
 
+      console.log("Calling create-payment with:", { amount, productName, currency });
+      
       const { data, error } = await supabase.functions.invoke('create-payment', {
-        body: { amount, productName, currency },
-        headers
+        body: { amount, productName, currency }
       });
 
+      console.log("Payment response:", { data, error });
       if (error) throw error;
 
       if (data?.url) {
@@ -56,7 +58,7 @@ export default function PaymentButton({
       console.error("Payment error:", error);
       toast({
         title: "Payment failed",
-        description: error.message || "Failed to start payment process",
+        description: error.message || "Edge Function returned a non-2xx status code",
         variant: "destructive",
       });
     } finally {

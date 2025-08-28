@@ -16,7 +16,17 @@ serve(async (req) => {
   try {
     console.log("create-payment function called");
     
-    const requestBody = await req.json();
+    // Handle empty body gracefully
+    let requestBody = {};
+    try {
+      const bodyText = await req.text();
+      if (bodyText && bodyText.trim()) {
+        requestBody = JSON.parse(bodyText);
+      }
+    } catch (parseError) {
+      console.log("Request body parse error (using defaults):", parseError);
+    }
+    
     console.log("Request body:", requestBody);
     
     const { amount = 4999, currency = "usd", productName = "Premium Product" } = requestBody;
