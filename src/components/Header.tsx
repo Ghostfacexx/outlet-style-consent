@@ -13,6 +13,14 @@ export default function Header() {
     return location.pathname === path || location.pathname.startsWith(path);
   };
 
+  // Determine if we're in men's section
+  const isInMensSection = location.pathname.startsWith('/shop/mens');
+  
+  // Get appropriate "New In" link based on current section
+  const getNewInLink = () => {
+    return isInMensSection ? '/shop/mens/just-in' : '/shop/just-in';
+  };
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -39,9 +47,9 @@ export default function Header() {
             <ul className="flex gap-4 text-sm">
               <li>
                 <Link 
-                  to="/shop/just-in" 
+                  to={getNewInLink()} 
                   className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition ${
-                    isActive('/shop/just-in') ? 'bg-accent text-accent-foreground' : ''
+                    isActive('/shop/just-in') || isActive('/shop/mens/just-in') ? 'bg-accent text-accent-foreground' : ''
                   }`}
                 >
                   New In
