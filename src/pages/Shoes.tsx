@@ -6,7 +6,7 @@ import { allProducts } from "@/data/products";
 
 // Filter shoes from all products
 const shoeProducts = allProducts.filter(product => 
-  ['Sneakers', 'Boots', 'Loafers', 'Sandals'].includes(product.category)
+  product.category === "Shoes"
 );
 
 export default function Shoes() {

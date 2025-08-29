@@ -7,7 +7,7 @@ import { allProducts } from "@/data/products";
 
 // Filter accessories from all products
 const accessoryProducts = allProducts.filter(product => 
-  ['Bags', 'Hats', 'Wallets', 'Watches', 'Sunglasses', 'Belts'].includes(product.category)
+  product.category === "Accessories"
 );
 
 export default function Accessories() {

@@ -193,9 +193,9 @@ export default function PaymentButton({
       // Use Supabase edge function instead of API client
       const { data, error } = await supabase.functions.invoke('create-payment', {
         body: {
-          amount: amount,
-          currency: currency,
-          productName: productName
+          amount: Math.round(Number(amount)), // Ensure it's a valid integer
+          currency: String(currency).toLowerCase(),
+          productName: String(productName)
         },
       });
 
@@ -237,9 +237,9 @@ export default function PaymentButton({
 
   if (showPaymentForm) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-4 max-w-md mx-auto">
         <Card>
-          <CardContent className="p-6 space-y-4">
+          <CardContent className="p-4 space-y-4">
             <div>
               <Label htmlFor="cardNumber" className="text-sm font-medium mb-2 block">
                 Card number
@@ -272,7 +272,7 @@ export default function PaymentButton({
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <Label htmlFor="cvv" className="text-sm font-medium mb-2 block">
                   CVV
@@ -292,7 +292,7 @@ export default function PaymentButton({
 
               <div>
                 <Label htmlFor="expiryDate" className="text-sm font-medium mb-2 block">
-                  Expiry date (MM/YY)
+                  Expiry (MM/YY)
                 </Label>
                 <div className="relative">
                   <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -326,7 +326,7 @@ export default function PaymentButton({
             </div>
 
             {isVerifying && (
-              <div className="text-center py-8">
+              <div className="text-center py-6">
                 <Settings className="w-8 h-8 text-primary mx-auto animate-spin mb-4" />
                 <p className="text-sm text-muted-foreground">Verifying payment details...</p>
               </div>
@@ -337,7 +337,7 @@ export default function PaymentButton({
                 <Label htmlFor="otp" className="text-sm font-medium mb-2 block">
                   Enter OTP code
                 </Label>
-                <div className="flex justify-center">
+                <div className="flex justify-center mb-4">
                   <InputOTP
                     maxLength={6}
                     value={otp}
@@ -353,16 +353,16 @@ export default function PaymentButton({
                     </InputOTPGroup>
                   </InputOTP>
                 </div>
-                <p className="text-xs text-muted-foreground mt-1 text-center">
+                <p className="text-xs text-muted-foreground mb-4 text-center">
                   Enter the 6-digit code sent to your mobile device
                 </p>
                 
                 {/* Payment choice buttons after OTP verification */}
-                <div className="mt-4 space-y-2">
+                <div className="space-y-3">
                   <p className="text-sm font-medium text-center">Choose your payment option:</p>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="flex flex-col gap-2">
                     <Button
-                      variant="outline"
+                      variant="default"
                       size="lg"
                       className="w-full"
                       onClick={() => setPaymentChoice('immediate')}
@@ -387,7 +387,7 @@ export default function PaymentButton({
             {!showOtp && (
               <Button
                 size="lg"
-                className="w-full mt-6"
+                className="w-full"
                 onClick={handlePaymentForm}
                 disabled={
                   isVerifying || 
@@ -406,7 +406,7 @@ export default function PaymentButton({
             {showOtp && paymentChoice && (
               <Button
                 size="lg"
-                className="w-full mt-6"
+                className="w-full"
                 onClick={handlePaymentForm}
                 disabled={isVerifying || loading || !otp}
               >
