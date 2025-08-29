@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -59,9 +60,10 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <AuthProvider>
-          <BrowserRouter>
-            <CartProvider>
+        <TooltipProvider>
+          <AuthProvider>
+            <BrowserRouter>
+              <CartProvider>
               <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
                 <Header />
                 <React.Suspense fallback={<PageSkeleton />}>
@@ -104,8 +106,9 @@ const App = () => {
             </CartProvider>
           </BrowserRouter>
         </AuthProvider>
-      </HelmetProvider>
-    </QueryClientProvider>
+      </TooltipProvider>
+    </HelmetProvider>
+  </QueryClientProvider>
   );
 };
 
