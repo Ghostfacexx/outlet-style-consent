@@ -130,6 +130,15 @@ export default function Header() {
             </Link>
 
             <Link 
+              to="/shop" 
+              className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm ${
+                isActive('/shop') && !isActive('/shop/mens') ? 'bg-accent text-accent-foreground' : ''
+              }`}
+            >
+              Women
+            </Link>
+
+            <Link 
               to={getMenLink()} 
               className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm ${
                 isActive('/shop/mens') ? 'bg-accent text-accent-foreground' : ''
