@@ -103,9 +103,12 @@ export default function Index() {
             
             {/* Women's Designer Showcase */}
             <div className="mt-8 bg-gradient-to-b from-gray-50 to-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-center text-lg font-light tracking-wide text-gray-800 mb-6 uppercase">
-                ♀
-              </h3>
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-pink-100 to-rose-200 rounded-full shadow-lg mb-4 group hover:shadow-xl transition-all duration-300 hover:scale-110">
+                  <span className="text-4xl font-light text-pink-600 group-hover:text-pink-700 transition-colors duration-300">♀</span>
+                </div>
+                <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-pink-300 to-transparent mx-auto"></div>
+              </div>
               <div className="grid grid-cols-2 gap-4">
                 {categoryLinks.women.map((link) => (
                   <Link
@@ -155,9 +158,12 @@ export default function Index() {
             
             {/* Men's Designer Showcase */}
             <div className="mt-8 bg-gradient-to-b from-gray-50 to-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-center text-lg font-light tracking-wide text-gray-800 mb-6 uppercase">
-                ♂
-              </h3>
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-100 to-cyan-200 rounded-full shadow-lg mb-4 group hover:shadow-xl transition-all duration-300 hover:scale-110">
+                  <span className="text-4xl font-light text-blue-600 group-hover:text-blue-700 transition-colors duration-300">♂</span>
+                </div>
+                <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-blue-300 to-transparent mx-auto"></div>
+              </div>
               <div className="grid grid-cols-2 gap-4">
                 {categoryLinks.men.map((link) => (
                   <Link
