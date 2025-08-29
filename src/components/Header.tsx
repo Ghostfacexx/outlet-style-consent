@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import CartDrawer from "@/components/CartDrawer";
 import MobileHeader from "@/components/MobileHeader";
@@ -156,23 +155,22 @@ export default function Header() {
                   <User className="w-4 h-4 inline mr-1" />
                   {user?.email}
                 </span>
-                <Button
-                  variant="outline"
-                  size="sm"
+                <button
                   onClick={handleLogout}
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-1 px-3 py-1.5 text-sm border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
                 >
                   <LogOut className="w-4 h-4" />
                   Sign Out
-                </Button>
+                </button>
               </div>
             ) : (
-              <Button asChild variant="outline" size="sm">
-                <Link to="/auth" className="flex items-center gap-1">
-                  <LogIn className="w-4 h-4" />
-                  Sign In
-                </Link>
-              </Button>
+              <Link 
+                to="/auth" 
+                className="flex items-center gap-1 px-3 py-1.5 text-sm border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+              >
+                <LogIn className="w-4 h-4" />
+                Sign In
+              </Link>
             )}
             {/* <CartDrawer /> */}
           </div>
