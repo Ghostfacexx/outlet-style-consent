@@ -5,24 +5,38 @@ import MobileBottomNav from "@/components/MobileBottomNav";
 import heroWomen from "@/assets/hero-women.jpg";
 import heroMen from "@/assets/hero-men.jpg";
 
+// Designer Logos
+import chanelLogo from "@/assets/logos/chanel-logo.png";
+import diorLogo from "@/assets/logos/dior-logo.png";
+import gucciLogo from "@/assets/logos/gucci-logo.png";
+import pradaLogo from "@/assets/logos/prada-logo.png";
+import saintLaurentLogo from "@/assets/logos/saint-laurent-logo.png";
+import hermesLogo from "@/assets/logos/hermes-logo.png";
+import tomFordLogo from "@/assets/logos/tom-ford-logo.png";
+import burberryLogo from "@/assets/logos/burberry-logo.png";
+import stoneIslandLogo from "@/assets/logos/stone-island-logo.png";
+import offWhiteLogo from "@/assets/logos/off-white-logo.png";
+import balenciagaLogo from "@/assets/logos/balenciaga-logo.png";
+import monclerLogo from "@/assets/logos/moncler-logo.png";
+
 const categoryLinks = {
   women: [
-    { name: "New In", path: "/shop/just-in" },
-    { name: "Chanel", path: "/shop/designers/chanel" },
-    { name: "Dior", path: "/shop/designers/dior" },
-    { name: "Gucci", path: "/shop/designers/gucci" },
-    { name: "Prada", path: "/shop/designers/prada" },
-    { name: "Saint Laurent", path: "/shop/designers/saint-laurent" },
-    { name: "Hermès", path: "/shop/designers/hermes" },
+    { name: "New In", path: "/shop/just-in", isNewIn: true },
+    { name: "Chanel", path: "/shop/designers/chanel", logo: chanelLogo },
+    { name: "Dior", path: "/shop/designers/dior", logo: diorLogo },
+    { name: "Gucci", path: "/shop/designers/gucci", logo: gucciLogo },
+    { name: "Prada", path: "/shop/designers/prada", logo: pradaLogo },
+    { name: "Saint Laurent", path: "/shop/designers/saint-laurent", logo: saintLaurentLogo },
+    { name: "Hermès", path: "/shop/designers/hermes", logo: hermesLogo },
   ],
   men: [
-    { name: "New In", path: "/shop/mens/just-in" },
-    { name: "Tom Ford", path: "/shop/designers/tom-ford" },
-    { name: "Burberry", path: "/shop/designers/burberry" },
-    { name: "Stone Island", path: "/shop/designers/stone-island" },
-    { name: "Off-White", path: "/shop/designers/off-white" },
-    { name: "Balenciaga", path: "/shop/designers/balenciaga" },
-    { name: "Moncler", path: "/shop/designers/moncler" },
+    { name: "New In", path: "/shop/mens/just-in", isNewIn: true },
+    { name: "Tom Ford", path: "/shop/designers/tom-ford", logo: tomFordLogo },
+    { name: "Burberry", path: "/shop/designers/burberry", logo: burberryLogo },
+    { name: "Stone Island", path: "/shop/designers/stone-island", logo: stoneIslandLogo },
+    { name: "Off-White", path: "/shop/designers/off-white", logo: offWhiteLogo },
+    { name: "Balenciaga", path: "/shop/designers/balenciaga", logo: balenciagaLogo },
+    { name: "Moncler", path: "/shop/designers/moncler", logo: monclerLogo },
   ],
 };
 
@@ -87,18 +101,37 @@ export default function Index() {
               </div>
             </Link>
             
-            {/* Women's Category Links */}
-            <div className="mt-6 space-y-3 text-center">
-              {categoryLinks.women.map((link) => (
-                <div key={link.name}>
-                  <Link 
+            {/* Women's Designer Showcase */}
+            <div className="mt-8 bg-gradient-to-b from-gray-50 to-white p-6 rounded-lg shadow-sm">
+              <h3 className="text-center text-lg font-light tracking-wide text-gray-800 mb-6 uppercase">
+                Featured Designers
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {categoryLinks.women.map((link) => (
+                  <Link
+                    key={link.name}
                     to={link.path}
-                    className="text-sm text-gray-700 hover:text-black transition-colors duration-200 block py-1"
+                    className="group flex flex-col items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                   >
-                    {link.name}
+                    {link.isNewIn ? (
+                      <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mb-3 group-hover:bg-gray-800 transition-colors">
+                        <span className="text-xs font-medium">NEW</span>
+                      </div>
+                    ) : (
+                      <div className="w-16 h-16 mb-3 flex items-center justify-center bg-gray-50 rounded-lg group-hover:bg-gray-100 transition-colors overflow-hidden">
+                        <img 
+                          src={link.logo} 
+                          alt={`${link.name} logo`}
+                          className="w-12 h-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                        />
+                      </div>
+                    )}
+                    <span className="text-xs font-medium text-gray-700 group-hover:text-black transition-colors text-center">
+                      {link.name}
+                    </span>
                   </Link>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
@@ -120,18 +153,37 @@ export default function Index() {
               </div>
             </Link>
             
-            {/* Men's Category Links */}
-            <div className="mt-6 space-y-3 text-center">
-              {categoryLinks.men.map((link) => (
-                <div key={link.name}>
-                  <Link 
+            {/* Men's Designer Showcase */}
+            <div className="mt-8 bg-gradient-to-b from-gray-50 to-white p-6 rounded-lg shadow-sm">
+              <h3 className="text-center text-lg font-light tracking-wide text-gray-800 mb-6 uppercase">
+                Featured Designers
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {categoryLinks.men.map((link) => (
+                  <Link
+                    key={link.name}
                     to={link.path}
-                    className="text-sm text-gray-700 hover:text-black transition-colors duration-200 block py-1"
+                    className="group flex flex-col items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                   >
-                    {link.name}
+                    {link.isNewIn ? (
+                      <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mb-3 group-hover:bg-gray-800 transition-colors">
+                        <span className="text-xs font-medium">NEW</span>
+                      </div>
+                    ) : (
+                      <div className="w-16 h-16 mb-3 flex items-center justify-center bg-gray-50 rounded-lg group-hover:bg-gray-100 transition-colors overflow-hidden">
+                        <img 
+                          src={link.logo} 
+                          alt={`${link.name} logo`}
+                          className="w-12 h-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                        />
+                      </div>
+                    )}
+                    <span className="text-xs font-medium text-gray-700 group-hover:text-black transition-colors text-center">
+                      {link.name}
+                    </span>
                   </Link>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
