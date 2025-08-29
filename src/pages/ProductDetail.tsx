@@ -240,7 +240,13 @@ export default function ProductDetail() {
         <div className="mt-16">
           <h2 className="text-2xl font-bold mb-6">You might also like</h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {allProducts.slice(0, 4).map((relatedProduct) => (
+            {allProducts
+              .filter(relatedProduct => 
+                relatedProduct.gender === product.gender && 
+                relatedProduct.id !== product.id
+              )
+              .slice(0, 4)
+              .map((relatedProduct) => (
               <Link key={relatedProduct.id} to={`/product/${relatedProduct.id}`}>
                 <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
                   <div className="relative overflow-hidden">
