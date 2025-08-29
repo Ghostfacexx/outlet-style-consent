@@ -3,13 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import CartDrawer from "@/components/CartDrawer";
 import MobileHeader from "@/components/MobileHeader";
-import { LogIn, LogOut, User, ChevronDown } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
+import { LogIn, LogOut, User } from "lucide-react";
 
 // Designer suggestions for women (more feminine/luxury fashion focused)
 const womensDesigners = [
@@ -80,9 +74,9 @@ export default function Header() {
   return (
     <>
       {/* Mobile Header */}
-      <div className="md:hidden">
+      {/* <div className="md:hidden">
         <MobileHeader />
-      </div>
+      </div> */}
 
       {/* Desktop Header */}
       <header role="banner" className="hidden md:block sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -101,24 +95,12 @@ export default function Header() {
               New In
             </Link>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1 px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm">
-                Designers
-                <ChevronDown className="h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                {currentDesigners.slice(0, 6).map((designer) => (
-                  <DropdownMenuItem key={designer.slug} asChild>
-                    <Link 
-                      to={`/shop/designers/${designer.slug}`}
-                      className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground transition"
-                    >
-                      {designer.name}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Link 
+              to="/shop/designers" 
+              className="px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm"
+            >
+              Designers
+            </Link>
 
             <Link 
               to={getClothingLink()} 
@@ -183,7 +165,7 @@ export default function Header() {
                 </Link>
               </Button>
             )}
-            <CartDrawer />
+            {/* <CartDrawer /> */}
           </div>
         </div>
       </header>
