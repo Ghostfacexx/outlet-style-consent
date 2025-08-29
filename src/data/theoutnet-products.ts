@@ -1582,6 +1582,281 @@ export const mensProducts: Product[] = [
     gender: "men",
     url: "/shop/product/tom-ford/jeans/skinny-leg-jeans/skinny-fit-denim-jeans/46376663162868115"
   },
+  {
+    id: "thom-browne-sweater-46376663162875218",
+    title: "Striped intarsia wool sweater",
+    brand: "THOM BROWNE",
+    originalPrice: "$1,250",
+    discountedPrice: "$325", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162875218/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162875218/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "knitwear",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/thom-browne/knitwear/crew-neck-sweaters/striped-intarsia-wool-sweater/46376663162875218"
+  },
+  {
+    id: "frame-denim-jeans-46376663162895508",
+    title: "Modern denim jeans",
+    brand: "FRAME",
+    originalPrice: "$218",
+    discountedPrice: "$71", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/46376663162895508/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162895508/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "pants",
+    gender: "men",
+    url: "/shop/product/frame/jeans/straight-leg-jeans/modern-denim-jeans/46376663162895508"
+  },
+  {
+    id: "frescobol-carioca-shirt-1647597329732919",
+    title: "Antonio linen shirt",
+    brand: "FRESCOBOL CARIOCA",
+    originalPrice: "$245",
+    discountedPrice: "$80", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/1647597329732919/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597329732919/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "shirts",
+    gender: "men",
+    url: "/shop/product/frescobol-carioca/tops/casual-shirts/antonio-linen-shirt/1647597329732919"
+  },
+  {
+    id: "thom-browne-cardigan-46376663162852518",
+    title: "Striped wool and mohair-blend cardigan",
+    brand: "THOM BROWNE",
+    originalPrice: "$890",
+    discountedPrice: "$289", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/46376663162852518/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162852518/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "knitwear",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/thom-browne/knitwear/cardigans-zip-throughs/striped-wool-and-mohair-blend-cardigan/46376663162852518"
+  },
+  {
+    id: "boglioli-corduroy-pants-46376663162900277",
+    title: "Slim-fit cotton-blend corduroy pants",
+    brand: "BOGLIOLI",
+    originalPrice: "$556",
+    discountedPrice: "$145", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162900277/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162900277/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "pants",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/boglioli/pants/casual-pants/slim-fit-cotton-blend-corduroy-pants/46376663162900277"
+  },
+  {
+    id: "thom-browne-shorts-46376663162848832",
+    title: "Striped waffle-knit cotton drawstring shorts",
+    brand: "THOM BROWNE",
+    originalPrice: "$950",
+    discountedPrice: "$309", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/46376663162848832/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162848832/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "shorts",
+    gender: "men",
+    url: "/shop/product/thom-browne/shorts/casual-shorts/striped-waffle-knit-cotton-drawstring-shorts/46376663162848832"
+  },
+  {
+    id: "missoni-sweater-46376663162882568",
+    title: "Jacquard-knit cotton and wool-blend sweater",
+    brand: "MISSONI",
+    originalPrice: "$980",
+    discountedPrice: "$255", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162882568/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162882568/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "knitwear",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/missoni/knitwear/crew-neck-sweaters/jacquard-knit-cotton-and-wool-blend-sweater/46376663162882568"
+  },
+  {
+    id: "jacquemus-vega-sweater-46376663162877607",
+    title: "Vega cutout ribbed wool-blend turtleneck sweater",
+    brand: "JACQUEMUS",
+    originalPrice: "$680",
+    discountedPrice: "$177", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162877607/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162877607/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "knitwear",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/jacquemus/knitwear/turtleneck-sweaters/vega-cutout-ribbed-wool-blend-turtleneck-sweater/46376663162877607"
+  },
+  {
+    id: "jacquemus-half-zip-46376663162877615",
+    title: "Carro checked merino wool-blend half-zip sweater",
+    brand: "JACQUEMUS",
+    originalPrice: "$605",
+    discountedPrice: "$157", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162877615/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162877615/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "knitwear",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/jacquemus/knitwear/cardigans-zip-throughs/carro-checked-merino-wool-blend-half-zip-sweater/46376663162877615"
+  },
+  {
+    id: "thom-browne-cotton-jacket-46376663162848460",
+    title: "Jacquard-knit cotton jacket",
+    brand: "THOM BROWNE",
+    originalPrice: "$1,890",
+    discountedPrice: "$491", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162848460/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162848460/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "jackets",
+    gender: "men",
+    url: "/shop/product/thom-browne/jackets/casual-jackets/jacquard-knit-cotton-jacket/46376663162848460"
+  },
+  {
+    id: "fusalp-shell-jacket-1647597329471686",
+    title: "Timo II quilted neoprene-paneled shell jacket",
+    brand: "FUSALP",
+    originalPrice: "$670",
+    discountedPrice: "$153", // 35% cheaper
+    discount: "77%",
+    image: "https://www.theoutnet.com/variants/images/1647597329471686/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597329471686/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "jackets",
+    gender: "men",
+    url: "/shop/product/fusalp/jackets/casual-jackets/timo-ii-quilted-neoprene-paneled-shell-jacket/1647597329471686"
+  },
+  {
+    id: "thom-browne-sweatpants-46376663162848565",
+    title: "Striped waffle-knit cotton sweatpants",
+    brand: "THOM BROWNE",
+    originalPrice: "$1,090",
+    discountedPrice: "$284", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162848565/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162848565/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "pants",
+    gender: "men",
+    url: "/shop/product/thom-browne/pants/sweatpants/striped-waffle-knit-cotton-sweatpants/46376663162848565"
+  },
+  {
+    id: "elder-statesman-polo-46376663162925302",
+    title: "Leo striped cashmere and cotton-blend polo sweater",
+    brand: "THE ELDER STATESMAN",
+    originalPrice: "$1,195",
+    discountedPrice: "$311", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162925302/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162925302/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "polo-shirts",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/the-elder-statesman/knitwear/v-neck-sweaters/leo-striped-cashmere-and-cotton-blend-polo-sweater/46376663162925302"
+  },
+  {
+    id: "maison-margiela-sweater-46376663162908119",
+    title: "Wool sweater",
+    brand: "MAISON MARGIELA",
+    originalPrice: "$770",
+    discountedPrice: "$176", // 35% cheaper
+    discount: "77%",
+    image: "https://www.theoutnet.com/variants/images/46376663162908119/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162908119/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "knitwear",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/maison-margiela/knitwear/crew-neck-sweaters/wool-sweater/46376663162908119"
+  },
+  {
+    id: "sandro-polo-shirt-46376663162846655",
+    title: "Open-knit polo shirt",
+    brand: "SANDRO",
+    originalPrice: "$340",
+    discountedPrice: "$111", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/46376663162846655/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162846655/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "polo-shirts",
+    gender: "men",
+    url: "/shop/product/sandro/tops/polo-shirts/open-knit-polo-shirt/46376663162846655"
+  },
+  {
+    id: "thom-browne-shorts-casual-46376663162848193",
+    title: "Cotton-twill shorts",
+    brand: "THOM BROWNE",
+    originalPrice: "$550",
+    discountedPrice: "$179", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/46376663162848193/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162848193/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "shorts",
+    gender: "men",
+    url: "/shop/product/thom-browne/shorts/casual-shorts/cotton-twill-shorts/46376663162848193"
+  },
+  {
+    id: "missoni-tshirt-46376663162939921",
+    title: "Cotton-jersey T-shirt",
+    brand: "MISSONI",
+    originalPrice: "$270",
+    discountedPrice: "$70", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162939921/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162939921/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "t-shirts",
+    gender: "men",
+    url: "/shop/product/missoni/tops/t-shirts/cotton-jersey-t-shirt/46376663162939921"
+  },
+  {
+    id: "thom-browne-suit-46376663162868992",
+    title: "Herringbone wool suit",
+    brand: "THOM BROWNE",
+    originalPrice: "$2,990",
+    discountedPrice: "$778", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162868992/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162868992/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "suits",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/thom-browne/suits/suits/herringbone-wool-suit/46376663162868992"
+  },
+  {
+    id: "sandro-pique-polo-1647597349494773",
+    title: "Cotton-piqué polo shirt",
+    brand: "SANDRO",
+    originalPrice: "$175",
+    discountedPrice: "$46", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/1647597349494773/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597349494773/R/w340_q80.jpg",
+    category: "clothing",
+    subcategory: "polo-shirts",
+    gender: "men",
+    url: "/shop/product/sandro/tops/polo-shirts/cotton-pique-polo-shirt/1647597349494773"
+  },
 
   // Men's Shoes (25+ products)
   {
@@ -1613,6 +1888,20 @@ export const mensProducts: Product[] = [
     url: "/shop/product/converse-x-comme-des-garcons-play/sneakers/fashion-sneakers/chuck-70-printed-canvas-sneakers/46376663162859006"
   },
   {
+    id: "sandro-sneakers-46376663162847464",
+    title: "Two-tone mesh, leather and suede sneakers",
+    brand: "SANDRO",
+    originalPrice: "$330",
+    discountedPrice: "$107", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/46376663162847464/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162847464/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    url: "/shop/product/sandro/sneakers/fashion-sneakers/two-tone-mesh-leather-and-suede-sneakers/46376663162847464"
+  },
+  {
     id: "maison-margiela-tabi-boots-46376663162908830",
     title: "Tabi split-toe leather boots",
     brand: "MAISON MARGIELA",
@@ -1628,6 +1917,48 @@ export const mensProducts: Product[] = [
     url: "/shop/product/maison-margiela/boots/chelsea-boots/tabi-split-toe-leather-boots/46376663162908830"
   },
   {
+    id: "adidas-craig-green-1647597349740830",
+    title: "Stan Smith Boost coated neoprene sneakers",
+    brand: "ADIDAS ORIGINALS BY CRAIG GREEN",
+    originalPrice: "$300",
+    discountedPrice: "$59", // 35% cheaper
+    discount: "80%",
+    image: "https://www.theoutnet.com/variants/images/1647597349740830/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597349740830/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    url: "/shop/product/adidas-originals-by-craig-green/sneakers/fashion-sneakers/stan-smith-boost-coated-neoprene-sneakers/1647597349740830"
+  },
+  {
+    id: "thom-browne-sneakers-46376663162865918",
+    title: "Striped shell and suede sneakers",
+    brand: "THOM BROWNE",
+    originalPrice: "$920",
+    discountedPrice: "$239", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162865918/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162865918/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    url: "/shop/product/thom-browne/sneakers/fashion-sneakers/striped-shell-and-suede-sneakers/46376663162865918"
+  },
+  {
+    id: "y3-superstar-sneakers-1647597345838032",
+    title: "Superstar embroidered leather sneakers",
+    brand: "Y-3",
+    originalPrice: "$330",
+    discountedPrice: "$75", // 35% cheaper
+    discount: "77%",
+    image: "https://www.theoutnet.com/variants/images/1647597345838032/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597345838032/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    url: "/shop/product/y-3/sneakers/fashion-sneakers/superstar-embroidered-leather-sneakers/1647597345838032"
+  },
+  {
     id: "ferragamo-gancini-boots-46376663162956885",
     title: "Geremia Gancini leather boots",
     brand: "FERRAGAMO",
@@ -1641,6 +1972,246 @@ export const mensProducts: Product[] = [
     gender: "men",
     isJustIn: true,
     url: "/shop/product/ferragamo/boots/chelsea-boots/geremia-gancini-leather-boots/46376663162956885"
+  },
+  {
+    id: "maison-margiela-shell-sneakers-1647597342177057",
+    title: "Shell sneakers",
+    brand: "MAISON MARGIELA",
+    originalPrice: "$740",
+    discountedPrice: "$192", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/1647597342177057/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597342177057/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    url: "/shop/product/maison-margiela/sneakers/fashion-sneakers/shell-sneakers/1647597342177057"
+  },
+  {
+    id: "maison-margiela-tabi-boots-alt-46376663162908918",
+    title: "Tabi split-toe leather boots",
+    brand: "MAISON MARGIELA",
+    originalPrice: "$1,490",
+    discountedPrice: "$387", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162908918/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162908918/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "boots",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/maison-margiela/boots/chelsea-boots/tabi-split-toe-leather-boots/46376663162908918"
+  },
+  {
+    id: "burberry-quilted-sneakers-1647597338994089",
+    title: "Quilted leather sneakers",
+    brand: "BURBERRY",
+    originalPrice: "$850",
+    discountedPrice: "$332", // 35% cheaper
+    discount: "61%",
+    image: "https://www.theoutnet.com/variants/images/1647597338994089/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597338994089/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    url: "/shop/product/burberry/sneakers/fashion-sneakers/quilted-leather-sneakers/1647597338994089"
+  },
+  {
+    id: "acne-studios-sneakers-1647597290348742",
+    title: "N3W coated sneakers",
+    brand: "ACNE STUDIOS",
+    originalPrice: "$410",
+    discountedPrice: "$80", // 35% cheaper
+    discount: "80%",
+    image: "https://www.theoutnet.com/variants/images/1647597290348742/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597290348742/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    url: "/shop/product/acne-studios/sneakers/fashion-sneakers/n3w-coated-sneakers/1647597290348742"
+  },
+  {
+    id: "tods-suede-boots-1647597357378138",
+    title: "Suede boots",
+    brand: "TOD'S",
+    originalPrice: "$645",
+    discountedPrice: "$147", // 35% cheaper
+    discount: "77%",
+    image: "https://www.theoutnet.com/variants/images/1647597357378138/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597357378138/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "boots",
+    gender: "men",
+    url: "/shop/product/tod-s/boots/lace-up-boots/suede-boots/1647597357378138"
+  },
+  {
+    id: "converse-cdg-high-tops-46376663162858871",
+    title: "Chuck 70 printed canvas high-top sneakers",
+    brand: "CONVERSE X COMME DES GARÇONS PLAY",
+    originalPrice: "$150",
+    discountedPrice: "$68", // 35% cheaper
+    discount: "55%",
+    image: "https://www.theoutnet.com/variants/images/46376663162858871/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162858871/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    url: "/shop/product/converse-x-comme-des-garcons-play/sneakers/fashion-sneakers/chuck-70-printed-canvas-high-top-sneakers/46376663162858871"
+  },
+  {
+    id: "rag-bone-suede-sneakers-46376663162995279",
+    title: "Perry suede sneakers",
+    brand: "RAG & BONE",
+    originalPrice: "$298",
+    discountedPrice: "$88", // 35% cheaper
+    discount: "70%",
+    image: "https://www.theoutnet.com/variants/images/46376663162995279/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162995279/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/rag-bone/sneakers/fashion-sneakers/perry-suede-sneakers/46376663162995279"
+  },
+  {
+    id: "maison-margiela-shell-alt-1647597342177221",
+    title: "Shell sneakers",
+    brand: "MAISON MARGIELA",
+    originalPrice: "$740",
+    discountedPrice: "$168", // 35% cheaper
+    discount: "77%",
+    image: "https://www.theoutnet.com/variants/images/1647597342177221/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597342177221/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    url: "/shop/product/maison-margiela/sneakers/fashion-sneakers/shell-sneakers/1647597342177221"
+  },
+  {
+    id: "tods-driving-shoes-1647597338572372",
+    title: "Suede driving shoes",
+    brand: "TOD'S",
+    originalPrice: "$695",
+    discountedPrice: "$159", // 35% cheaper
+    discount: "77%",
+    image: "https://www.theoutnet.com/variants/images/1647597338572372/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597338572372/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "loafers",
+    gender: "men",
+    url: "/shop/product/tod-s/flat-shoes/loafers/suede-driving-shoes/1647597338572372"
+  },
+  {
+    id: "tods-timeless-shoes-1647597338572190",
+    title: "T Timeless suede driving shoes",
+    brand: "TOD'S",
+    originalPrice: "$675",
+    discountedPrice: "$154", // 35% cheaper
+    discount: "77%",
+    image: "https://www.theoutnet.com/variants/images/1647597338572190/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597338572190/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "loafers",
+    gender: "men",
+    url: "/shop/product/tod-s/flat-shoes/loafers/t-timeless-suede-driving-shoes/1647597338572190"
+  },
+  {
+    id: "thom-browne-chelsea-boots-46376663162849655",
+    title: "Pebbled-leather Chelsea boots",
+    brand: "THOM BROWNE",
+    originalPrice: "$890",
+    discountedPrice: "$231", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162849655/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162849655/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "boots",
+    gender: "men",
+    url: "/shop/product/thom-browne/boots/chelsea-boots/pebbled-leather-chelsea-boots/46376663162849655"
+  },
+  {
+    id: "ferragamo-brogues-1647597359162325",
+    title: "Lux pebbled-leather brogues",
+    brand: "FERRAGAMO",
+    originalPrice: "$1,150",
+    discountedPrice: "$374", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/1647597359162325/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597359162325/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "dress-shoes",
+    gender: "men",
+    url: "/shop/product/ferragamo/flat-shoes/lace-ups/lux-pebbled-leather-brogues/1647597359162325"
+  },
+  {
+    id: "sandro-mesh-sneakers-46376663162847635",
+    title: "Mesh and leather sneakers",
+    brand: "SANDRO",
+    originalPrice: "$330",
+    discountedPrice: "$107", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/46376663162847635/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162847635/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    url: "/shop/product/sandro/sneakers/fashion-sneakers/mesh-and-leather-sneakers/46376663162847635"
+  },
+  {
+    id: "maison-margiela-derby-shoes-1647597342176934",
+    title: "Distressed velvet derby shoes",
+    brand: "MAISON MARGIELA",
+    originalPrice: "$1,020",
+    discountedPrice: "$232", // 35% cheaper
+    discount: "77%",
+    image: "https://www.theoutnet.com/variants/images/1647597342176934/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597342176934/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "dress-shoes",
+    gender: "men",
+    url: "/shop/product/maison-margiela/flat-shoes/lace-ups/distressed-velvet-derby-shoes/1647597342176934"
+  },
+  {
+    id: "frescobol-carioca-slides-1647597331126760",
+    title: "Humberto suede slides",
+    brand: "FRESCOBOL CARIOCA",
+    originalPrice: "$215",
+    discountedPrice: "$63", // 35% cheaper
+    discount: "71%",
+    image: "https://www.theoutnet.com/variants/images/1647597331126760/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597331126760/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sandals",
+    gender: "men",
+    url: "/shop/product/frescobol-carioca/sandals/flat-sandals/humberto-suede-slides/1647597331126760"
+  },
+  {
+    id: "tods-nocode-sneakers-1647597351192052",
+    title: "Leather and stretch-knit sneakers",
+    brand: "TOD'S NO_CODE",
+    originalPrice: "$695",
+    discountedPrice: "$136", // 35% cheaper
+    discount: "80%",
+    image: "https://www.theoutnet.com/variants/images/1647597351192052/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597351192052/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "sneakers",
+    gender: "men",
+    url: "/shop/product/tod-s-nocode/sneakers/fashion-sneakers/leather-and-stretch-knit-sneakers/1647597351192052"
+  },
+  {
+    id: "paul-smith-loafers-46376663162907819",
+    title: "Lawrence tasseled leather loafers",
+    brand: "PAUL SMITH",
+    originalPrice: "$465",
+    discountedPrice: "$151", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/46376663162907819/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162907819/R/w340_q80.jpg",
+    category: "shoes",
+    subcategory: "loafers",
+    gender: "men",
+    url: "/shop/product/paul-smith/flat-shoes/loafers/lawrence-tasseled-leather-loafers/46376663162907819"
   },
 
   // Men's Accessories (25+ products)
@@ -1673,6 +2244,48 @@ export const mensProducts: Product[] = [
     url: "/shop/product/balenciaga/sunglasses/square-frame/square-frame-tortoiseshell-acetate-sunglasses/1647597339854557"
   },
   {
+    id: "sandro-backpack-46376663162970985",
+    title: "Pebbled-leather backpack",
+    brand: "SANDRO",
+    originalPrice: "$385",
+    discountedPrice: "$113", // 35% cheaper
+    discount: "71%",
+    image: "https://www.theoutnet.com/variants/images/46376663162970985/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162970985/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "bags",
+    gender: "men",
+    url: "/shop/product/sandro/backpacks/backpacks/pebbled-leather-backpack/46376663162970985"
+  },
+  {
+    id: "burberry-tote-46376663162903045",
+    title: "Gabardine tote",
+    brand: "BURBERRY",
+    originalPrice: "$2,150",
+    discountedPrice: "$490", // 35% cheaper
+    discount: "77%",
+    image: "https://www.theoutnet.com/variants/images/46376663162903045/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162903045/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "bags",
+    gender: "men",
+    url: "/shop/product/burberry/totes/totes/gabardine-tote/46376663162903045"
+  },
+  {
+    id: "maison-margiela-messenger-46376663162928108",
+    title: "5AC pebbled-leather messenger bag",
+    brand: "MAISON MARGIELA",
+    originalPrice: "$1,560",
+    discountedPrice: "$406", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162928108/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162928108/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "bags",
+    gender: "men",
+    url: "/shop/product/maison-margiela/shoulder-bags/cross-body-bags/5ac-pebbled-leather-messenger-bag/46376663162928108"
+  },
+  {
     id: "thom-browne-phone-pouch-46376663162864778",
     title: "Pebbled-leather phone pouch",
     brand: "THOM BROWNE",
@@ -1685,6 +2298,276 @@ export const mensProducts: Product[] = [
     subcategory: "tech",
     gender: "men",
     url: "/shop/product/thom-browne/technology/phone-cases/pebbled-leather-phone-pouch/46376663162864778"
+  },
+  {
+    id: "frescobol-carioca-cap-1647597357020081",
+    title: "Embroidered linen baseball cap",
+    brand: "FRESCOBOL CARIOCA",
+    originalPrice: "$95",
+    discountedPrice: "$25", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/1647597357020081/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597357020081/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "hats",
+    gender: "men",
+    url: "/shop/product/frescobol-carioca/hats/caps/embroidered-linen-baseball-cap/1647597357020081"
+  },
+  {
+    id: "dunhill-backpack-46376663162894600",
+    title: "Logo-print textured backpack",
+    brand: "DUNHILL",
+    originalPrice: "$1,595",
+    discountedPrice: "$364", // 35% cheaper
+    discount: "77%",
+    image: "https://www.theoutnet.com/variants/images/46376663162894600/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162894600/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "bags",
+    gender: "men",
+    url: "/shop/product/dunhill/backpacks/backpacks/logo-print-textured-backpack/46376663162894600"
+  },
+  {
+    id: "thom-browne-canvas-backpack-1647597357525598",
+    title: "Leather-trimmed canvas backpack",
+    brand: "THOM BROWNE",
+    originalPrice: "$1,450",
+    discountedPrice: "$425", // 35% cheaper
+    discount: "71%",
+    image: "https://www.theoutnet.com/variants/images/1647597357525598/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597357525598/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "bags",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/thom-browne/backpacks/backpacks/leather-trimmed-canvas-backpack/1647597357525598"
+  },
+  {
+    id: "mcqueen-cap-1647597358909780",
+    title: "Embroidered cotton-twill baseball cap",
+    brand: "MCQUEEN",
+    originalPrice: "$410",
+    discountedPrice: "$120", // 35% cheaper
+    discount: "71%",
+    image: "https://www.theoutnet.com/variants/images/1647597358909780/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597358909780/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "hats",
+    gender: "men",
+    url: "/shop/product/mcqueen/hats/caps/embroidered-cotton-twill-baseball-cap/1647597358909780"
+  },
+  {
+    id: "acne-studios-belt-1647597346794968",
+    title: "Leather belt",
+    brand: "ACNE STUDIOS",
+    originalPrice: "$280",
+    discountedPrice: "$82", // 35% cheaper
+    discount: "71%",
+    image: "https://www.theoutnet.com/variants/images/1647597346794968/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597346794968/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "belts",
+    gender: "men",
+    url: "/shop/product/acne-studios/belts/belts/leather-belt/1647597346794968"
+  },
+  {
+    id: "tom-ford-wash-bag-46376663162870307",
+    title: "Pebbled-leather wash bag",
+    brand: "TOM FORD",
+    originalPrice: "$1,890",
+    discountedPrice: "$615", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/46376663162870307/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162870307/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "grooming",
+    gender: "men",
+    url: "/shop/product/tom-ford/beauty-grooming/beauty-cases-wash-bags/pebbled-leather-wash-bag/46376663162870307"
+  },
+  {
+    id: "elder-statesman-beanie-46376663162923666",
+    title: "Parker ribbed cashmere beanie",
+    brand: "THE ELDER STATESMAN",
+    originalPrice: "$495",
+    discountedPrice: "$129", // 35% cheaper
+    discount: "74%",
+    image: "https://www.theoutnet.com/variants/images/46376663162923666/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162923666/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "hats",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/the-elder-statesman/hats/beanies/parker-ribbed-cashmere-beanie/46376663162923666"
+  },
+  {
+    id: "elder-statesman-cap-46376663162923665",
+    title: "Silvano Dual embroidered tie-dyed cotton baseball cap",
+    brand: "THE ELDER STATESMAN",
+    originalPrice: "$225",
+    discountedPrice: "$66", // 35% cheaper
+    discount: "71%",
+    image: "https://www.theoutnet.com/variants/images/46376663162923665/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162923665/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "hats",
+    gender: "men",
+    url: "/shop/product/the-elder-statesman/hats/caps/silvano-dual-embroidered-tie-dyed-cotton-baseball-cap/46376663162923665"
+  },
+  {
+    id: "y3-wallet-alt-1647597349634354",
+    title: "Printed leather wallet",
+    brand: "Y-3",
+    originalPrice: "$200",
+    discountedPrice: "$65", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/1647597349634354/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597349634354/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "wallets",
+    gender: "men",
+    url: "/shop/product/y-3/wallets-slgs/wallets/printed-leather-wallet/1647597349634354"
+  },
+  {
+    id: "sandro-messenger-46376663162970991",
+    title: "Leather messenger bag",
+    brand: "SANDRO",
+    originalPrice: "$320",
+    discountedPrice: "$94", // 35% cheaper
+    discount: "71%",
+    image: "https://www.theoutnet.com/variants/images/46376663162970991/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162970991/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "bags",
+    gender: "men",
+    url: "/shop/product/sandro/shoulder-bags/cross-body-bags/leather-messenger-bag/46376663162970991"
+  },
+  {
+    id: "thom-browne-notebook-46376663162864774",
+    title: "Pebbled-leather notebook",
+    brand: "THOM BROWNE",
+    originalPrice: "$430",
+    discountedPrice: "$126", // 35% cheaper
+    discount: "71%",
+    image: "https://www.theoutnet.com/variants/images/46376663162864774/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162864774/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "stationery",
+    gender: "men",
+    url: "/shop/product/thom-browne/stationery/stationery/pebbled-leather-notebook/46376663162864774"
+  },
+  {
+    id: "paul-smith-wallet-46376663162907828",
+    title: "Textured-leather wallet",
+    brand: "PAUL SMITH",
+    originalPrice: "$280",
+    discountedPrice: "$91", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/46376663162907828/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162907828/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "wallets",
+    gender: "men",
+    url: "/shop/product/paul-smith/wallets-slgs/wallets/textured-leather-wallet/46376663162907828"
+  },
+  {
+    id: "thom-browne-scarf-1647597352319557",
+    title: "Fringed striped cashmere scarf",
+    brand: "THOM BROWNE",
+    originalPrice: "$590",
+    discountedPrice: "$192", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/1647597352319557/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597352319557/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "scarves",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/thom-browne/scarves-ties/scarves/fringed-striped-cashmere-scarf/1647597352319557"
+  },
+  {
+    id: "dunhill-messenger-1647597320866692",
+    title: "Contour embossed leather messenger bag",
+    brand: "DUNHILL",
+    originalPrice: "$1,695",
+    discountedPrice: "$386", // 35% cheaper
+    discount: "77%",
+    image: "https://www.theoutnet.com/variants/images/1647597320866692/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597320866692/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "bags",
+    gender: "men",
+    url: "/shop/product/dunhill/shoulder-bags/cross-body-bags/contour-embossed-leather-messenger-bag/1647597320866692"
+  },
+  {
+    id: "dunhill-hampstead-backpack-46376663162892044",
+    title: "Hampstead leather backpack",
+    brand: "DUNHILL",
+    originalPrice: "$1,695",
+    discountedPrice: "$496", // 35% cheaper
+    discount: "71%",
+    image: "https://www.theoutnet.com/variants/images/46376663162892044/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/46376663162892044/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "bags",
+    gender: "men",
+    url: "/shop/product/dunhill/backpacks/backpacks/hampstead-leather-backpack/46376663162892044"
+  },
+  {
+    id: "mcqueen-cap-alt-1647597358909778",
+    title: "Embroidered cotton-twill baseball cap",
+    brand: "MCQUEEN",
+    originalPrice: "$450",
+    discountedPrice: "$132", // 35% cheaper
+    discount: "71%",
+    image: "https://www.theoutnet.com/variants/images/1647597358909778/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597358909778/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "hats",
+    gender: "men",
+    url: "/shop/product/mcqueen/hats/caps/embroidered-cotton-twill-baseball-cap/1647597358909778"
+  },
+  {
+    id: "fusalp-cap-1647597356037696",
+    title: "Appliquéd wool-blend felt baseball cap",
+    brand: "FUSALP",
+    originalPrice: "$150",
+    discountedPrice: "$54", // 35% cheaper
+    discount: "64%",
+    image: "https://www.theoutnet.com/variants/images/1647597356037696/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597356037696/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "hats",
+    gender: "men",
+    url: "/shop/product/fusalp/hats/caps/appliqued-wool-blend-felt-baseball-cap/1647597356037696"
+  },
+  {
+    id: "paul-smith-wallet-alt-1647597357440587",
+    title: "Leather wallet",
+    brand: "PAUL SMITH",
+    originalPrice: "$265",
+    discountedPrice: "$86", // 35% cheaper
+    discount: "67%",
+    image: "https://www.theoutnet.com/variants/images/1647597357440587/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597357440587/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "wallets",
+    gender: "men",
+    isJustIn: true,
+    url: "/shop/product/paul-smith/wallets-slgs/wallets/leather-wallet/1647597357440587"
+  },
+  {
+    id: "dolce-gabbana-belt-1647597335681009",
+    title: "Velvet and leather belt",
+    brand: "DOLCE&GABBANA",
+    originalPrice: "$445",
+    discountedPrice: "$87", // 35% cheaper
+    discount: "80%",
+    image: "https://www.theoutnet.com/variants/images/1647597335681009/F/w340_q80.jpg",
+    imageHover: "https://www.theoutnet.com/variants/images/1647597335681009/E/w340_q80.jpg",
+    category: "accessories",
+    subcategory: "belts",
+    gender: "men",
+    url: "/shop/product/dolcegabbana/belts/belts/velvet-and-leather-belt/1647597335681009"
   }
 ];
 

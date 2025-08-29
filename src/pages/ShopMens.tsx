@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import { mensProducts } from "@/data/theoutnet-products";
+import ProductCard from "@/components/ProductCard";
 
 export default function ShopMens() {
   return (
@@ -56,10 +58,18 @@ export default function ShopMens() {
             </Link>
           </div>
 
-          {/* Coming Soon Notice */}
-          <div className="text-center py-20">
-            <h2 className="text-2xl font-light text-gray-600 mb-4">Men's Collection Coming Soon</h2>
-            <p className="text-gray-500">We're currently expanding our men's designer collection. Check back soon for amazing deals!</p>
+          {/* Products Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {mensProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                title={`${product.brand} ${product.title}`}
+                img={product.image}
+                price={product.discountedPrice}
+                old={product.originalPrice}
+              />
+            ))}
           </div>
         </div>
       </main>
