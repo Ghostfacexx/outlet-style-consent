@@ -1,6 +1,44 @@
-import { recalculateProductPricing } from '@/utils/pricing';
+import bottegaIntrecciato from "@/assets/products/bottega-intrecciato-bag.jpg";
+import gucciMarmont from "@/assets/products/gucci-marmont-bag.jpg";
+import pradaReEdition from "@/assets/products/prada-re-edition-bag.jpg";
+import saintLaurentLou from "@/assets/products/saint-laurent-lou-bag.jpg";
+import balenciagaHourglass from "@/assets/products/balenciaga-hourglass-bag.jpg";
+import celineTriomphe from "@/assets/products/celine-triomphe-tote.jpg";
+import chanelClassic from "@/assets/products/chanel-classic-flap.jpg";
+import diorLady from "@/assets/products/dior-lady-dior.jpg";
+import luxurySilkBlouse from "@/assets/products/luxury-silk-blouse.jpg";
+import blackWoolBlazer from "@/assets/products/black-wool-blazer.jpg";
+import cashmereSweater from "@/assets/products/cashmere-sweater.jpg";
+import leatherKneeBoots from "@/assets/products/leather-knee-boots.jpg";
+import nudePointedPumps from "@/assets/products/nude-pointed-pumps.jpg";
+import whiteLeatherSneakers from "@/assets/products/white-leather-sneakers.jpg";
+import goldChainNecklace from "@/assets/products/gold-chain-necklace.jpg";
+import tortoiseshellSunglasses from "@/assets/products/tortoiseshell-sunglasses.jpg";
+import silkFloralScarf from "@/assets/products/silk-floral-scarf.jpg";
+import blackLeatherBelt from "@/assets/products/black-leather-belt.jpg";
+import silverLuxuryWatch from "@/assets/products/silver-luxury-watch.jpg";
+import navyMidiDress from "@/assets/products/navy-midi-dress.jpg";
+import versaceMedusaNecklace from "@/assets/products/versace-medusa-necklace.jpg";
+import tomFordLeatherJacket from "@/assets/products/tom-ford-leather-jacket.jpg";
+import loewePuzzleBag from "@/assets/products/loewe-puzzle-bag.jpg";
+import mcqueenSkullScarf from "@/assets/products/mcqueen-skull-scarf.jpg";
+import burberryTrenchCoat from "@/assets/products/burberry-trench-coat.jpg";
+import isabelMarantWedgeSneakers from "@/assets/products/isabel-marant-wedge-sneakers.jpg";
+import hermesBirkinBag from "@/assets/products/hermes-birkin-bag.jpg";
+import givenchyAntigonaBag from "@/assets/products/givenchy-antigona-bag.jpg";
+import monclerPufferJacket from "@/assets/products/moncler-puffer-jacket.jpg";
+import zimmermannFloralDress from "@/assets/products/zimmermann-floral-dress.jpg";
+import ganniLeopardBlouse from "@/assets/products/ganni-leopard-blouse.jpg";
+import wideLegTrousers from "@/assets/products/wide-leg-trousers.jpg";
+import platformWhiteSneakers from "@/assets/products/platform-white-sneakers.jpg";
+import brownSuedeAnkleBoots from "@/assets/products/brown-suede-ankle-boots.jpg";
+import creamOversizedBlazer from "@/assets/products/cream-oversized-blazer.jpg";
+import burgundyCrossbodyBag from "@/assets/products/burgundy-crossbody-bag.jpg";
+import blackCatEyeSunglasses from "@/assets/products/black-cat-eye-sunglasses.jpg";
+import pearlGoldEarrings from "@/assets/products/pearl-gold-earrings.jpg";
+import emeraldSilkSkirt from "@/assets/products/emerald-silk-skirt.jpg";
+import blackDesignerCap from "@/assets/products/black-designer-cap.jpg";
 
-// Product type definition
 export interface Product {
   id: string;
   title: string;
@@ -40,7 +78,7 @@ function calculateOutletPrice(originalPrice: number): { price: string; old: stri
   };
 }
 
-// NET-A-PORTER MIRROR - Comprehensive luxury catalog
+// NET-A-PORTER MIRROR - Comprehensive luxury catalog with unique product images
 export const allProducts: Product[] = [
   // BOTTEGA VENETA Collection
   {
@@ -58,8 +96,8 @@ export const allProducts: Product[] = [
   {
     id: "bv-2",
     title: "BOTTEGA VENETA • Parachute intrecciato leather shoulder bag",
-    img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop",
-    images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop"],
+    img: bottegaIntrecciato,
+    images: [bottegaIntrecciato],
     ...calculateOutletPrice(3200),
     category: "Bags",
     brand: "BOTTEGA VENETA",
@@ -96,8 +134,8 @@ export const allProducts: Product[] = [
   {
     id: "gc-2",
     title: "GUCCI • GG Marmont matelassé leather shoulder bag",
-    img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop",
-    images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop"],
+    img: gucciMarmont,
+    images: [gucciMarmont],
     ...calculateOutletPrice(2890),
     category: "Bags",
     brand: "GUCCI",
@@ -134,8 +172,8 @@ export const allProducts: Product[] = [
   {
     id: "pr-2",
     title: "PRADA • Re-Edition 2005 nylon shoulder bag",
-    img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop",
-    images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop"],
+    img: pradaReEdition,
+    images: [pradaReEdition],
     ...calculateOutletPrice(1890),
     category: "Bags",
     brand: "PRADA",
@@ -172,8 +210,8 @@ export const allProducts: Product[] = [
   {
     id: "sl-2",
     title: "SAINT LAURENT • Lou leather camera bag",
-    img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop",
-    images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop"],
+    img: saintLaurentLou,
+    images: [saintLaurentLou],
     ...calculateOutletPrice(1790),
     category: "Bags",
     brand: "SAINT LAURENT",
@@ -209,14 +247,14 @@ export const allProducts: Product[] = [
   },
   {
     id: "ba-2",
-    title: "BALENCIAGA • Everyday small leather tote",
-    img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop",
-    images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop"],
+    title: "BALENCIAGA • Hourglass small leather handbag",
+    img: balenciagaHourglass,
+    images: [balenciagaHourglass],
     ...calculateOutletPrice(2150),
     category: "Bags",
     brand: "BALENCIAGA",
-    description: "Everyday small leather tote with minimalist design.",
-    details: ["Leather", "Top handles", "Made in Italy", "Open top"],
+    description: "Hourglass small leather handbag with curved silhouette and structured design.",
+    details: ["Leather", "Curved design", "Made in Italy", "Top handles"],
     sizes: ["One Size"],
   },
   {
@@ -248,8 +286,8 @@ export const allProducts: Product[] = [
   {
     id: "ce-2",
     title: "CELINE • Triomphe canvas and leather shoulder bag",
-    img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop",
-    images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop"],
+    img: celineTriomphe,
+    images: [celineTriomphe],
     ...calculateOutletPrice(2400),
     category: "Bags",
     brand: "CELINE",
@@ -285,13 +323,13 @@ export const allProducts: Product[] = [
   },
   {
     id: "ch-2",
-    title: "CHANEL • 11.12 quilted leather handbag",
-    img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop",
-    images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop"],
+    title: "CHANEL • Classic Flap quilted leather handbag",
+    img: chanelClassic,
+    images: [chanelClassic],
     ...calculateOutletPrice(8900),
     category: "Bags",
     brand: "CHANEL",
-    description: "Timeless 11.12 quilted leather handbag with chain strap.",
+    description: "Timeless Classic Flap quilted leather handbag with chain strap.",
     details: ["Quilted leather", "Chain strap", "Made in France", "Turn-lock closure"],
     sizes: ["One Size"],
   },
@@ -324,8 +362,8 @@ export const allProducts: Product[] = [
   {
     id: "di-2",
     title: "DIOR • Lady Dior cannage leather handbag",
-    img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop",
-    images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop"],
+    img: diorLady,
+    images: [diorLady],
     ...calculateOutletPrice(6200),
     category: "Bags",
     brand: "DIOR",
@@ -590,8 +628,8 @@ export const allProducts: Product[] = [
   {
     id: "he-2",
     title: "HERMÈS • Birkin leather handbag",
-    img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop",
-    images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop"],
+    img: hermesBirkinBag,
+    images: [hermesBirkinBag],
     ...calculateOutletPrice(25000),
     category: "Bags",
     brand: "HERMÈS",
@@ -628,8 +666,8 @@ export const allProducts: Product[] = [
   {
     id: "gi-2",
     title: "GIVENCHY • Antigona leather handbag",
-    img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop",
-    images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop"],
+    img: givenchyAntigonaBag,
+    images: [givenchyAntigonaBag],
     ...calculateOutletPrice(2790),
     category: "Bags",
     brand: "GIVENCHY",
