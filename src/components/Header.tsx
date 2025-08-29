@@ -119,14 +119,6 @@ export default function Header() {
               Accessories
             </Link>
 
-            <Link 
-              to="/shop/designers" 
-              className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm ${
-                isActive('/shop/designers') ? 'bg-accent text-accent-foreground' : ''
-              }`}
-            >
-              All Designers
-            </Link>
 
             <Link 
               to="/shop" 
