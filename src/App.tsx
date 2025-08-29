@@ -1,10 +1,9 @@
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import * as React from "react";
 import Header from "@/components/Header";
 import CookieConsent from "@/components/CookieConsent";
 import { ActivityLogger } from "@/components/ActivityLogger";
@@ -69,9 +68,8 @@ const App = () => {
         <AuthProvider>
           <BrowserRouter>
             <CartProvider>
-              <TooltipProvider>
-                <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
-                  <Header />
+              <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
+                <Header />
                   <React.Suspense fallback={<PageSkeleton />}>
                     <Routes>
               <Route path="/" element={<Index />} />
@@ -111,7 +109,6 @@ const App = () => {
                   <Toaster />
                   <Sonner />
                 </div>
-              </TooltipProvider>
             </CartProvider>
           </BrowserRouter>
         </AuthProvider>

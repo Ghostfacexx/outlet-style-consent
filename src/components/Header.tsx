@@ -5,13 +5,11 @@ import CartDrawer from "@/components/CartDrawer";
 import MobileHeader from "@/components/MobileHeader";
 import { LogIn, LogOut, User, ChevronDown } from "lucide-react";
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 
 // Designer suggestions for women (more feminine/luxury fashion focused)
 const womensDesigners = [
@@ -54,8 +52,21 @@ export default function Header() {
   };
 
   // Get appropriate designers based on current section
-  const getCurrentDesigners = () => {
-    return isInMensSection ? mensDesigners : womensDesigners;
+  const currentDesigners = isInMensSection ? mensDesigners : womensDesigners;
+
+  // Get appropriate clothing link
+  const getClothingLink = () => {
+    return isInMensSection ? '/shop/mens/clothing' : '/shop/clothing';
+  };
+
+  // Get appropriate accessories link
+  const getAccessoriesLink = () => {
+    return isInMensSection ? '/shop/mens/accessories' : '/shop/accessories';
+  };
+
+  // Get men link
+  const getMenLink = () => {
+    return '/shop/mens';
   };
 
   const handleLogout = async () => {
@@ -79,207 +90,100 @@ export default function Header() {
           <Link to="/" className="text-lg font-extrabold tracking-wide hover:opacity-80 transition-opacity">
             THE OUTNET
           </Link>
-          <div className="flex items-center gap-4">
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <Link 
-                    to={getNewInLink()} 
-                    className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm ${
-                      isActive('/shop/just-in') || isActive('/shop/mens/just-in') ? 'bg-accent text-accent-foreground' : ''
-                    }`}
-                  >
-                    New In
-                  </Link>
-                </NavigationMenuItem>
-                
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm">
-                    {isInMensSection ? 'Men' : 'Women'}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid w-[300px] gap-1 p-4">
-                      <h4 className="text-sm font-medium mb-2">
-                        {isInMensSection ? 'Popular Men\'s Designers' : 'Popular Women\'s Designers'}
-                      </h4>
-                      {getCurrentDesigners().map((designer) => (
-                        <NavigationMenuLink key={designer.slug} asChild>
-                          <Link
-                            to={`/shop/designers/${designer.slug}`}
-                            className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                          >
-                            {designer.name}
-                          </Link>
-                        </NavigationMenuLink>
-                      ))}
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+          
+          <nav className="flex items-center gap-6">
+            <Link 
+              to={getNewInLink()} 
+              className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm ${
+                isActive('/shop/just-in') || isActive('/shop/mens/just-in') ? 'bg-accent text-accent-foreground' : ''
+              }`}
+            >
+              New In
+            </Link>
 
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm">Clothing</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid w-[250px] gap-1 p-4">
-                      {isInMensSection ? (
-                        <>
-                          <h4 className="text-sm font-medium mb-2">Men's Essentials</h4>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/mens/clothing" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              All Men's Clothing
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/designers/tom-ford" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Tom Ford Tailoring
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/designers/stone-island" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Stone Island Casual
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/designers/moncler" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Moncler Outerwear
-                            </Link>
-                          </NavigationMenuLink>
-                        </>
-                      ) : (
-                        <>
-                          <h4 className="text-sm font-medium mb-2">Women's Fashion</h4>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/clothing" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              All Women's Clothing
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/designers/chanel" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Chanel Classics
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/designers/dior" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Dior Elegance
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/designers/valentino" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Valentino Romance
-                            </Link>
-                          </NavigationMenuLink>
-                        </>
-                      )}
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm">
+                Designers
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {currentDesigners.slice(0, 6).map((designer) => (
+                  <DropdownMenuItem key={designer.slug} asChild>
+                    <Link 
+                      to={`/shop/designers/${designer.slug}`}
+                      className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground transition"
+                    >
+                      {designer.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
 
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm">Accessories</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid w-[250px] gap-1 p-4">
-                      {isInMensSection ? (
-                        <>
-                          <h4 className="text-sm font-medium mb-2">Men's Accessories</h4>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/mens/accessories" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              All Men's Accessories
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/designers/burberry" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Burberry Scarves
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/designers/off-white" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Off-White Streetwear
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/mens/bags" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Designer Bags
-                            </Link>
-                          </NavigationMenuLink>
-                        </>
-                      ) : (
-                        <>
-                          <h4 className="text-sm font-medium mb-2">Women's Accessories</h4>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/accessories" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              All Women's Accessories
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/designers/hermes" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Hermès Heritage
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/designers/saint-laurent" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Saint Laurent Bags
-                            </Link>
-                          </NavigationMenuLink>
-                          <NavigationMenuLink asChild>
-                            <Link to="/shop/bags" className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md">
-                              Designer Handbags
-                            </Link>
-                          </NavigationMenuLink>
-                        </>
-                      )}
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+            <Link 
+              to={getClothingLink()} 
+              className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm ${
+                isActive('/shop/clothing') || isActive('/shop/mens/clothing') ? 'bg-accent text-accent-foreground' : ''
+              }`}
+            >
+              Clothing
+            </Link>
 
-                <NavigationMenuItem>
-                  <Link 
-                    to="/shop/designers" 
-                    className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm ${
-                      isActive('/shop/designers') ? 'bg-accent text-accent-foreground' : ''
-                    }`}
-                  >
-                    All Designers
-                  </Link>
-                </NavigationMenuItem>
+            <Link 
+              to={getAccessoriesLink()} 
+              className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm ${
+                isActive('/shop/accessories') || isActive('/shop/mens/accessories') ? 'bg-accent text-accent-foreground' : ''
+              }`}
+            >
+              Accessories
+            </Link>
 
-                <NavigationMenuItem>
-                  <Link 
-                    to={isInMensSection ? "/shop" : "/shop/mens"} 
-                    className="px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm"
-                  >
-                    {isInMensSection ? 'Women' : 'Men'}
-                  </Link>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+            <Link 
+              to="/shop/designers" 
+              className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm ${
+                isActive('/shop/designers') ? 'bg-accent text-accent-foreground' : ''
+              }`}
+            >
+              All Designers
+            </Link>
+
+            <Link 
+              to={getMenLink()} 
+              className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition text-sm ${
+                isActive('/shop/mens') ? 'bg-accent text-accent-foreground' : ''
+              }`}
+            >
+              Men
+            </Link>
+          </nav>
             
-            {/* Auth Buttons */}
-            <div className="flex items-center gap-2">
-              {isAuthenticated ? (
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">
-                    <User className="w-4 h-4 inline mr-1" />
-                    {user?.email}
-                  </span>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleLogout}
-                    className="flex items-center gap-1"
-                  >
-                    <LogOut className="w-4 h-4" />
-                    Sign Out
-                  </Button>
-                </div>
-              ) : (
-                <Button asChild variant="outline" size="sm">
-                  <Link to="/auth" className="flex items-center gap-1">
-                    <LogIn className="w-4 h-4" />
-                    Sign In
-                  </Link>
+          {/* Auth Buttons */}
+          <div className="flex items-center gap-2">
+            {isAuthenticated ? (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">
+                  <User className="w-4 h-4 inline mr-1" />
+                  {user?.email}
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleLogout}
+                  className="flex items-center gap-1"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sign Out
                 </Button>
-              )}
-              <CartDrawer />
-            </div>
+              </div>
+            ) : (
+              <Button asChild variant="outline" size="sm">
+                <Link to="/auth" className="flex items-center gap-1">
+                  <LogIn className="w-4 h-4" />
+                  Sign In
+                </Link>
+              </Button>
+            )}
+            <CartDrawer />
           </div>
         </div>
       </header>
