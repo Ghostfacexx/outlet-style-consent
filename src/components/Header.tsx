@@ -73,9 +73,9 @@ export default function Header() {
   return (
     <>
       {/* Mobile Header */}
-      {/* <div className="md:hidden">
+      <div className="md:hidden">
         <MobileHeader />
-      </div> */}
+      </div>
 
       {/* Desktop Header */}
       <header role="banner" className="hidden md:block sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -150,14 +150,14 @@ export default function Header() {
           {/* Auth Buttons */}
           <div className="flex items-center gap-2">
             {isAuthenticated ? (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-gray-600 flex items-center font-medium">
                   <User className="w-4 h-4 inline mr-1" />
                   {user?.email}
                 </span>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-1 px-3 py-1.5 text-sm border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                  className="flex items-center gap-1 px-4 py-2 text-sm border border-gray-300 bg-white hover:bg-black hover:text-white rounded-md transition-all duration-200 font-medium shadow-sm"
                 >
                   <LogOut className="w-4 h-4" />
                   Sign Out
@@ -166,13 +166,13 @@ export default function Header() {
             ) : (
               <Link 
                 to="/auth" 
-                className="flex items-center gap-1 px-3 py-1.5 text-sm border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                className="flex items-center gap-1 px-4 py-2 text-sm border border-gray-300 bg-white hover:bg-black hover:text-white rounded-md transition-all duration-200 font-medium shadow-sm"
               >
                 <LogIn className="w-4 h-4" />
                 Sign In
               </Link>
             )}
-            {/* <CartDrawer /> */}
+            <CartDrawer />
           </div>
         </div>
       </header>
