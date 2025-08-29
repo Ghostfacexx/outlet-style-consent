@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -68,47 +69,49 @@ const App = () => {
         <AuthProvider>
           <BrowserRouter>
             <CartProvider>
-              <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
-                <Header />
-                <React.Suspense fallback={<PageSkeleton />}>
-                  <Routes>
-            <Route path="/" element={<Index />} />
-            {/* Women's routes */}
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/shop/just-in" element={<Shop />} />
-            <Route path="/shop/bestsellers" element={<Shop />} />
-            <Route path="/shop/designers" element={<ShopDesigners />} />
-            <Route path="/shop/clothing" element={<ShopClothing />} />
-            <Route path="/shop/clothing/:subcategory" element={<ShopClothing />} />
-            <Route path="/shop/shoes" element={<ShopShoes />} />
-            <Route path="/shop/shoes/:subcategory" element={<ShopShoesSubcategory />} />
-            <Route path="/shop/bags" element={<ShopBags />} />
-            <Route path="/shop/accessories" element={<ShopAccessories />} />
-            <Route path="/shop/designers/:brand" element={<ShopDesignerBrand />} />
-            {/* Men's routes */}
-            <Route path="/shop/mens" element={<ShopMens />} />
-            <Route path="/shop/mens/just-in" element={<ShopMens />} />
-            <Route path="/shop/mens/bestsellers" element={<ShopMens />} />
-            <Route path="/shop/mens/designers" element={<ShopDesigners />} />
-            <Route path="/shop/mens/clothing" element={<ShopMensClothing />} />
-            <Route path="/shop/mens/shoes" element={<ShopMensShoes />} />
-            <Route path="/shop/mens/bags" element={<ShopMensBags />} />
-            <Route path="/shop/mens/accessories" element={<ShopMensAccessories />} />
-            {/* Product pages */}
-            <Route path="/shop/product/*" element={<ProductDetail />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            {/* Auth & Payment */}
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/payment-success" element={<PaymentSuccess />} />
-            <Route path="/payment-canceled" element={<PaymentCanceled />} />
-            <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </React.Suspense>
-                <ActivityLogger />
-                <CookieConsent />
-                <Toaster />
-                <Sonner />
-              </div>
+              <TooltipProvider>
+                <div className="min-h-screen bg-background font-sans antialiased mobile-safe-area">
+                  <Header />
+                  <React.Suspense fallback={<PageSkeleton />}>
+                    <Routes>
+              <Route path="/" element={<Index />} />
+              {/* Women's routes */}
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/shop/just-in" element={<Shop />} />
+              <Route path="/shop/bestsellers" element={<Shop />} />
+              <Route path="/shop/designers" element={<ShopDesigners />} />
+              <Route path="/shop/clothing" element={<ShopClothing />} />
+              <Route path="/shop/clothing/:subcategory" element={<ShopClothing />} />
+              <Route path="/shop/shoes" element={<ShopShoes />} />
+              <Route path="/shop/shoes/:subcategory" element={<ShopShoesSubcategory />} />
+              <Route path="/shop/bags" element={<ShopBags />} />
+              <Route path="/shop/accessories" element={<ShopAccessories />} />
+              <Route path="/shop/designers/:brand" element={<ShopDesignerBrand />} />
+              {/* Men's routes */}
+              <Route path="/shop/mens" element={<ShopMens />} />
+              <Route path="/shop/mens/just-in" element={<ShopMens />} />
+              <Route path="/shop/mens/bestsellers" element={<ShopMens />} />
+              <Route path="/shop/mens/designers" element={<ShopDesigners />} />
+              <Route path="/shop/mens/clothing" element={<ShopMensClothing />} />
+              <Route path="/shop/mens/shoes" element={<ShopMensShoes />} />
+              <Route path="/shop/mens/bags" element={<ShopMensBags />} />
+              <Route path="/shop/mens/accessories" element={<ShopMensAccessories />} />
+              {/* Product pages */}
+              <Route path="/shop/product/*" element={<ProductDetail />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              {/* Auth & Payment */}
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/payment-success" element={<PaymentSuccess />} />
+              <Route path="/payment-canceled" element={<PaymentCanceled />} />
+              <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </React.Suspense>
+                  <ActivityLogger />
+                  <CookieConsent />
+                  <Toaster />
+                  <Sonner />
+                </div>
+              </TooltipProvider>
             </CartProvider>
           </BrowserRouter>
         </AuthProvider>
