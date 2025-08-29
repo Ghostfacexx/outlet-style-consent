@@ -7,22 +7,22 @@ import heroMen from "@/assets/hero-men.jpg";
 
 const categoryLinks = {
   women: [
-    { name: "Just In", path: "/shop/just-in" },
-    { name: "Bestsellers", path: "/shop/bestsellers" },
-    { name: "Designers", path: "/shop/designers" },
-    { name: "Clothing", path: "/shop/clothing" },
-    { name: "Shoes", path: "/shop/shoes" },
-    { name: "Bags", path: "/shop/bags" },
-    { name: "Accessories", path: "/shop/accessories" },
+    { name: "New In", path: "/shop/just-in" },
+    { name: "Chanel", path: "/shop/designers/chanel" },
+    { name: "Dior", path: "/shop/designers/dior" },
+    { name: "Gucci", path: "/shop/designers/gucci" },
+    { name: "Prada", path: "/shop/designers/prada" },
+    { name: "Saint Laurent", path: "/shop/designers/saint-laurent" },
+    { name: "Hermès", path: "/shop/designers/hermes" },
   ],
   men: [
-    { name: "Just In", path: "/shop/mens/just-in" },
-    { name: "Bestsellers", path: "/shop/mens/bestsellers" },
-    { name: "Designers", path: "/shop/mens/designers" },
-    { name: "Clothing", path: "/shop/mens/clothing" },
-    { name: "Shoes", path: "/shop/mens/shoes" },
-    { name: "Bags", path: "/shop/mens/bags" },
-    { name: "Accessories", path: "/shop/mens/accessories" },
+    { name: "New In", path: "/shop/mens/just-in" },
+    { name: "Tom Ford", path: "/shop/designers/tom-ford" },
+    { name: "Burberry", path: "/shop/designers/burberry" },
+    { name: "Stone Island", path: "/shop/designers/stone-island" },
+    { name: "Off-White", path: "/shop/designers/off-white" },
+    { name: "Balenciaga", path: "/shop/designers/balenciaga" },
+    { name: "Moncler", path: "/shop/designers/moncler" },
   ],
 };
 
