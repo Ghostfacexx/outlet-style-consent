@@ -20,6 +20,8 @@ const ShopShoes = React.lazy(() => import("./pages/ShopShoes"));
 const ShopBags = React.lazy(() => import("./pages/ShopBags"));
 const ShopAccessories = React.lazy(() => import("./pages/ShopAccessories"));
 const ShopDesigners = React.lazy(() => import("./pages/ShopDesigners"));
+const ShopDesignerBrand = React.lazy(() => import("./pages/ShopDesignerBrand"));
+const ShopShoesSubcategory = React.lazy(() => import("./pages/ShopShoesSubcategory"));
 const ShopMensClothing = React.lazy(() => import("./pages/ShopMensClothing"));
 const ShopMensShoes = React.lazy(() => import("./pages/ShopMensShoes"));
 const ShopMensBags = React.lazy(() => import("./pages/ShopMensBags"));
@@ -79,8 +81,10 @@ const App = () => {
             <Route path="/shop/clothing" element={<ShopClothing />} />
             <Route path="/shop/clothing/:subcategory" element={<ShopClothing />} />
             <Route path="/shop/shoes" element={<ShopShoes />} />
+            <Route path="/shop/shoes/:subcategory" element={<ShopShoesSubcategory />} />
             <Route path="/shop/bags" element={<ShopBags />} />
             <Route path="/shop/accessories" element={<ShopAccessories />} />
+            <Route path="/shop/designers/:brand" element={<ShopDesignerBrand />} />
             {/* Men's routes */}
             <Route path="/shop/mens" element={<ShopMens />} />
             <Route path="/shop/mens/just-in" element={<ShopMens />} />
