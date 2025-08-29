@@ -10,7 +10,7 @@ export default function Header() {
   const { user, logout, isAuthenticated } = useAuth();
 
   const isActive = (path: string) => {
-    return location.pathname === path;
+    return location.pathname === path || location.pathname.startsWith(path);
   };
 
   const handleLogout = async () => {
@@ -32,16 +32,16 @@ export default function Header() {
       <header role="banner" className="hidden md:block sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="text-lg font-extrabold tracking-wide hover:opacity-80 transition-opacity">
-            THE OUTNET • EXCLUSIVE
+            THE OUTNET
           </Link>
           <div className="flex items-center gap-4">
             <nav aria-label="Primary">
             <ul className="flex gap-4 text-sm">
               <li>
                 <Link 
-                  to="/" 
+                  to="/shop/just-in" 
                   className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition ${
-                    isActive('/') ? 'bg-accent text-accent-foreground' : ''
+                    isActive('/shop/just-in') ? 'bg-accent text-accent-foreground' : ''
                   }`}
                 >
                   New In
@@ -49,9 +49,9 @@ export default function Header() {
               </li>
               <li>
                 <Link 
-                  to="/clothing" 
+                  to="/shop/clothing" 
                   className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition ${
-                    isActive('/clothing') ? 'bg-accent text-accent-foreground' : ''
+                    isActive('/shop/clothing') ? 'bg-accent text-accent-foreground' : ''
                   }`}
                 >
                   Clothing
@@ -59,9 +59,9 @@ export default function Header() {
               </li>
               <li>
                 <Link 
-                  to="/shoes" 
+                  to="/shop/shoes" 
                   className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition ${
-                    isActive('/shoes') ? 'bg-accent text-accent-foreground' : ''
+                    isActive('/shop/shoes') ? 'bg-accent text-accent-foreground' : ''
                   }`}
                 >
                   Shoes
@@ -69,9 +69,9 @@ export default function Header() {
               </li>
               <li>
                 <Link 
-                  to="/accessories" 
+                  to="/shop/accessories" 
                   className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition ${
-                    isActive('/accessories') ? 'bg-accent text-accent-foreground' : ''
+                    isActive('/shop/accessories') ? 'bg-accent text-accent-foreground' : ''
                   }`}
                 >
                   Accessories
@@ -79,9 +79,9 @@ export default function Header() {
               </li>
               <li>
                 <Link 
-                  to="/designers" 
+                  to="/shop/designers" 
                   className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition ${
-                    isActive('/designers') ? 'bg-accent text-accent-foreground' : ''
+                    isActive('/shop/designers') ? 'bg-accent text-accent-foreground' : ''
                   }`}
                 >
                   Designers
@@ -89,12 +89,12 @@ export default function Header() {
               </li>
               <li>
                 <Link 
-                  to="/clearance" 
+                  to="/shop/mens" 
                   className={`px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition ${
-                    isActive('/clearance') ? 'bg-accent text-accent-foreground' : ''
+                    isActive('/shop/mens') ? 'bg-accent text-accent-foreground' : ''
                   }`}
                 >
-                  Clearance
+                  Men
                 </Link>
               </li>
               </ul>

@@ -7,22 +7,22 @@ import heroMen from "@/assets/hero-men.jpg";
 
 const categoryLinks = {
   women: [
-    { name: "Just In", path: "/clothing" },
-    { name: "Bestsellers", path: "/clothing" },
-    { name: "Designers", path: "/designers" },
-    { name: "Clothing", path: "/clothing" },
-    { name: "Shoes", path: "/shoes" },
-    { name: "Bags", path: "/accessories" },
-    { name: "Accessories", path: "/accessories" },
+    { name: "Just In", path: "/shop/just-in" },
+    { name: "Bestsellers", path: "/shop/bestsellers" },
+    { name: "Designers", path: "/shop/designers" },
+    { name: "Clothing", path: "/shop/clothing" },
+    { name: "Shoes", path: "/shop/shoes" },
+    { name: "Bags", path: "/shop/bags" },
+    { name: "Accessories", path: "/shop/accessories" },
   ],
   men: [
-    { name: "Just In", path: "/clothing" },
-    { name: "Bestsellers", path: "/clothing" },
-    { name: "Designers", path: "/designers" },
-    { name: "Clothing", path: "/clothing" },
-    { name: "Shoes", path: "/shoes" },
-    { name: "Bags", path: "/accessories" },
-    { name: "Accessories", path: "/accessories" },
+    { name: "Just In", path: "/shop/mens/just-in" },
+    { name: "Bestsellers", path: "/shop/mens/bestsellers" },
+    { name: "Designers", path: "/shop/mens/designers" },
+    { name: "Clothing", path: "/shop/mens/clothing" },
+    { name: "Shoes", path: "/shop/mens/shoes" },
+    { name: "Bags", path: "/shop/mens/bags" },
+    { name: "Accessories", path: "/shop/mens/accessories" },
   ],
 };
 
@@ -71,7 +71,7 @@ export default function Index() {
           
           {/* Women's Section */}
           <div className="group cursor-pointer">
-            <Link to="/clothing" className="block">
+            <Link to="/shop" className="block">
               <div className="relative overflow-hidden">
                 <img 
                   src={heroWomen}
@@ -104,7 +104,7 @@ export default function Index() {
 
           {/* Men's Section */}
           <div className="group cursor-pointer">
-            <Link to="/clothing" className="block">
+            <Link to="/shop/mens" className="block">
               <div className="relative overflow-hidden">
                 <img 
                   src={heroMen}

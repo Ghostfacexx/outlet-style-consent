@@ -13,11 +13,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Index from "./pages/Index";
 
 // Lazy load pages for code splitting
-const Clothing = React.lazy(() => import("./pages/Clothing"));
-const Shoes = React.lazy(() => import("./pages/Shoes"));
-const Accessories = React.lazy(() => import("./pages/Accessories"));
-const Designers = React.lazy(() => import("./pages/Designers"));
-const Clearance = React.lazy(() => import("./pages/Clearance"));
+const Shop = React.lazy(() => import("./pages/Shop"));
+const ShopMens = React.lazy(() => import("./pages/ShopMens"));
+const ShopClothing = React.lazy(() => import("./pages/ShopClothing"));
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
 const PaymentSuccess = React.lazy(() => import("./pages/PaymentSuccess"));
 const PaymentCanceled = React.lazy(() => import("./pages/PaymentCanceled"));
@@ -64,17 +62,34 @@ const App = () => {
                 <Header />
                 <React.Suspense fallback={<PageSkeleton />}>
                   <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/clothing" element={<Clothing />} />
-                    <Route path="/shoes" element={<Shoes />} />
-                    <Route path="/accessories" element={<Accessories />} />
-                    <Route path="/designers" element={<Designers />} />
-                    <Route path="/clearance" element={<Clearance />} />
-                    <Route path="/product/:id" element={<ProductDetail />} />
-                    <Route path="/auth" element={<Auth />} />
-                    <Route path="/payment-success" element={<PaymentSuccess />} />
-                    <Route path="/payment-canceled" element={<PaymentCanceled />} />
-                    <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Index />} />
+            {/* Women's routes */}
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/shop/just-in" element={<Shop />} />
+            <Route path="/shop/bestsellers" element={<Shop />} />
+            <Route path="/shop/designers" element={<Shop />} />
+            <Route path="/shop/clothing" element={<ShopClothing />} />
+            <Route path="/shop/clothing/:subcategory" element={<ShopClothing />} />
+            <Route path="/shop/shoes" element={<Shop />} />
+            <Route path="/shop/bags" element={<Shop />} />
+            <Route path="/shop/accessories" element={<Shop />} />
+            {/* Men's routes */}
+            <Route path="/shop/mens" element={<ShopMens />} />
+            <Route path="/shop/mens/just-in" element={<ShopMens />} />
+            <Route path="/shop/mens/bestsellers" element={<ShopMens />} />
+            <Route path="/shop/mens/designers" element={<ShopMens />} />
+            <Route path="/shop/mens/clothing" element={<ShopMens />} />
+            <Route path="/shop/mens/shoes" element={<ShopMens />} />
+            <Route path="/shop/mens/bags" element={<ShopMens />} />
+            <Route path="/shop/mens/accessories" element={<ShopMens />} />
+            {/* Product pages */}
+            <Route path="/shop/product/*" element={<ProductDetail />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            {/* Auth & Payment */}
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/payment-canceled" element={<PaymentCanceled />} />
+            <Route path="*" element={<NotFound />} />
                   </Routes>
                 </React.Suspense>
                 <ActivityLogger />

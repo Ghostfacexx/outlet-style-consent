@@ -8,7 +8,7 @@ import { Heart, Share2, ShoppingBag, Truck, RotateCcw, Shield } from "lucide-rea
 import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/contexts/CartContext";
 import PaymentButton from "@/components/PaymentButton";
-import { allProducts } from "@/data/products";
+import { allProducts } from "@/data/theoutnet-products";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -33,20 +33,12 @@ export default function ProductDetail() {
   }
 
   const handleAddToCart = () => {
-    if (product.sizes.length > 1 && !selectedSize) {
-      toast({
-        title: "Please select a size",
-        variant: "destructive",
-      });
-      return;
-    }
-
     addItem({
       id: product.id,
       title: product.title,
-      price: product.price,
-      image: product.img,
-      size: selectedSize || product.sizes[0] || "",
+      price: product.discountedPrice,
+      image: product.image,
+      size: selectedSize || "M",
     });
 
     toast({
@@ -103,7 +95,7 @@ export default function ProductDetail() {
     <>
       <Helmet>
         <title>{product.title} | THE OUTNET • EXCLUSIVE</title>
-        <meta name="description" content={product.description} />
+        <meta name="description" content={`${product.brand} ${product.title} - Designer fashion at ${product.discount} off. Now ${product.discountedPrice} (was ${product.originalPrice})`} />
         <link rel="canonical" href={`/product/${product.id}`} />
       </Helmet>
 
@@ -136,29 +128,38 @@ export default function ProductDetail() {
           <div className="space-y-4">
             <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
               <img 
-                src={product.images[selectedImage] || product.img} 
+                src={product.image} 
                 alt={product.title}
                 className="w-full h-full object-cover"
               />
             </div>
             
-            {product.images.length > 1 && (
-              <div className="grid grid-cols-4 gap-2">
-                {product.images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedImage(index)}
-                    className={`aspect-square overflow-hidden rounded border-2 transition-colors ${
-                      selectedImage === index ? 'border-primary' : 'border-transparent hover:border-gray-300'
-                    }`}
-                  >
-                    <img 
-                      src={image} 
-                      alt={`${product.title} view ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
+            {product.imageHover && (
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => setSelectedImage(0)}
+                  className={`aspect-square overflow-hidden rounded border-2 transition-colors ${
+                    selectedImage === 0 ? 'border-primary' : 'border-transparent hover:border-gray-300'
+                  }`}
+                >
+                  <img 
+                    src={product.image} 
+                    alt={`${product.title} front view`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+                <button
+                  onClick={() => setSelectedImage(1)}
+                  className={`aspect-square overflow-hidden rounded border-2 transition-colors ${
+                    selectedImage === 1 ? 'border-primary' : 'border-transparent hover:border-gray-300'
+                  }`}
+                >
+                  <img 
+                    src={product.imageHover} 
+                    alt={`${product.title} back view`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
               </div>
             )}
           </div>
@@ -169,38 +170,13 @@ export default function ProductDetail() {
               <Badge variant="outline" className="mb-2">{product.brand}</Badge>
               <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
               <div className="flex items-baseline gap-3 mb-4">
-                <span className="text-3xl font-bold">{product.price}</span>
-                <span className="text-xl line-through text-muted-foreground">{product.old}</span>
+                <span className="text-3xl font-bold">{product.discountedPrice}</span>
+                <span className="text-xl line-through text-muted-foreground">{product.originalPrice}</span>
                 <Badge variant="destructive" className="text-sm">
-                  {product.discount || (() => {
-                    const currentPrice = parseFloat(product.price.replace(/[$,]/g, ''));
-                    const originalPrice = parseFloat(product.old.replace(/[$,]/g, ''));
-                    const discount = Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
-                    return `${discount}% OFF`;
-                  })()}
+                  {product.discount}
                 </Badge>
               </div>
-              <p className="text-muted-foreground">{product.description}</p>
             </div>
-
-            {/* Size Selection */}
-            {product.sizes.length > 1 && (
-              <div>
-                <h3 className="font-semibold mb-3">Size</h3>
-                <div className="flex flex-wrap gap-2">
-                  {product.sizes.map((size) => (
-                    <Button
-                      key={size}
-                      variant={selectedSize === size ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSelectedSize(size)}
-                    >
-                      {size}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Action Buttons */}
             <div className="space-y-3">
@@ -210,7 +186,7 @@ export default function ProductDetail() {
                   Add to Bag
                 </Button>
                 <PaymentButton 
-                  amount={parseFloat(product.price.replace(/[$,]/g, '')) * 100}
+                  amount={parseFloat(product.discountedPrice.replace(/[$,]/g, '')) * 100}
                   productName={product.title}
                   productId={product.id}
                   currency="usd"
@@ -253,11 +229,9 @@ export default function ProductDetail() {
             {/* Product Details */}
             <div className="space-y-4 pt-4 border-t">
               <h3 className="font-semibold">Product Details</h3>
-              <ul className="space-y-1 text-sm text-muted-foreground">
-                {product.details.map((detail, index) => (
-                  <li key={index}>• {detail}</li>
-                ))}
-              </ul>
+              <p className="text-sm text-muted-foreground">
+                Authentic {product.brand} designer piece at an incredible outlet price.
+              </p>
             </div>
           </div>
         </div>
@@ -271,7 +245,7 @@ export default function ProductDetail() {
                 <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
                   <div className="relative overflow-hidden">
                     <img 
-                      src={relatedProduct.img} 
+                      src={relatedProduct.image} 
                       alt={relatedProduct.title}
                       className="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300" 
                     />
@@ -279,8 +253,8 @@ export default function ProductDetail() {
                   <CardContent className="p-4">
                     <h3 className="text-sm font-medium line-clamp-2 mb-2">{relatedProduct.title}</h3>
                     <div className="flex items-baseline gap-2">
-                      <span className="font-bold">{relatedProduct.price}</span>
-                      <span className="text-sm line-through text-muted-foreground">{relatedProduct.old}</span>
+                      <span className="font-bold">{relatedProduct.discountedPrice}</span>
+                      <span className="text-sm line-through text-muted-foreground">{relatedProduct.originalPrice}</span>
                     </div>
                   </CardContent>
                 </Card>
