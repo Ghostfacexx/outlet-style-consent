@@ -21,6 +21,10 @@ const ShopShoes = React.lazy(() => import("./pages/ShopShoes"));
 const ShopBags = React.lazy(() => import("./pages/ShopBags"));
 const ShopAccessories = React.lazy(() => import("./pages/ShopAccessories"));
 const ShopDesigners = React.lazy(() => import("./pages/ShopDesigners"));
+const ShopMensClothing = React.lazy(() => import("./pages/ShopMensClothing"));
+const ShopMensShoes = React.lazy(() => import("./pages/ShopMensShoes"));
+const ShopMensBags = React.lazy(() => import("./pages/ShopMensBags"));
+const ShopMensAccessories = React.lazy(() => import("./pages/ShopMensAccessories"));
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
 const PaymentSuccess = React.lazy(() => import("./pages/PaymentSuccess"));
 const PaymentCanceled = React.lazy(() => import("./pages/PaymentCanceled"));
@@ -83,11 +87,11 @@ const App = () => {
             <Route path="/shop/mens" element={<ShopMens />} />
             <Route path="/shop/mens/just-in" element={<ShopMens />} />
             <Route path="/shop/mens/bestsellers" element={<ShopMens />} />
-            <Route path="/shop/mens/designers" element={<ShopMens />} />
-            <Route path="/shop/mens/clothing" element={<ShopMens />} />
-            <Route path="/shop/mens/shoes" element={<ShopMens />} />
-            <Route path="/shop/mens/bags" element={<ShopMens />} />
-            <Route path="/shop/mens/accessories" element={<ShopMens />} />
+            <Route path="/shop/mens/designers" element={<ShopDesigners />} />
+            <Route path="/shop/mens/clothing" element={<ShopMensClothing />} />
+            <Route path="/shop/mens/shoes" element={<ShopMensShoes />} />
+            <Route path="/shop/mens/bags" element={<ShopMensBags />} />
+            <Route path="/shop/mens/accessories" element={<ShopMensAccessories />} />
             {/* Product pages */}
             <Route path="/shop/product/*" element={<ProductDetail />} />
             <Route path="/product/:id" element={<ProductDetail />} />
