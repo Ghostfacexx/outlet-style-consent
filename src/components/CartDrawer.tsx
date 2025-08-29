@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+
 import { Badge } from "@/components/ui/badge";
 import { ShoppingBag, Plus, Minus, X } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
@@ -83,7 +83,7 @@ export default function CartDrawer() {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="relative">
+        <button className="relative flex items-center justify-center h-9 w-9 border border-gray-300 bg-white hover:bg-gray-50 rounded-md transition-colors">
           <ShoppingBag className="h-4 w-4" />
           {getTotalItems() > 0 && (
             <Badge 
@@ -93,7 +93,7 @@ export default function CartDrawer() {
               {getTotalItems()}
             </Badge>
           )}
-        </Button>
+        </button>
       </SheetTrigger>
       <SheetContent className="w-full sm:max-w-md">
         <SheetHeader>
@@ -108,13 +108,12 @@ export default function CartDrawer() {
             <div className="text-center py-12">
               <ShoppingBag className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
               <p className="text-muted-foreground">Your bag is empty</p>
-              <Button 
-                variant="outline" 
-                className="mt-4" 
+              <button 
+                className="mt-4 px-4 py-2 border border-gray-300 bg-white hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Continue Shopping
-              </Button>
+              </button>
             </div>
           ) : (
             <>
@@ -133,33 +132,27 @@ export default function CartDrawer() {
                       
                       <div className="flex items-center justify-between mt-2">
                         <div className="flex items-center gap-2">
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-8 w-8"
+                          <button
+                            className="h-8 w-8 border border-gray-300 bg-white hover:bg-gray-50 rounded-md flex items-center justify-center transition-colors"
                             onClick={() => updateQuantity(item.id, item.size, item.quantity - 1)}
                           >
                             <Minus className="h-3 w-3" />
-                          </Button>
+                          </button>
                           <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-8 w-8"
+                          <button
+                            className="h-8 w-8 border border-gray-300 bg-white hover:bg-gray-50 rounded-md flex items-center justify-center transition-colors"
                             onClick={() => updateQuantity(item.id, item.size, item.quantity + 1)}
                           >
                             <Plus className="h-3 w-3" />
-                          </Button>
+                          </button>
                         </div>
                         
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8 text-destructive"
+                        <button
+                          className="h-8 w-8 text-red-600 hover:bg-red-50 rounded-md flex items-center justify-center transition-colors"
                           onClick={() => removeItem(item.id, item.size)}
                         >
                           <X className="h-3 w-3" />
-                        </Button>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -173,20 +166,18 @@ export default function CartDrawer() {
                 </div>
                 
                 <div className="space-y-2">
-                  <Button 
-                    className="w-full" 
-                    size="lg"
+                  <button 
+                    className="w-full px-4 py-3 bg-black text-white hover:bg-gray-800 rounded-md transition-colors font-medium"
                     onClick={handleCheckout}
                   >
                     Checkout
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="w-full" 
+                  </button>
+                  <button 
+                    className="w-full px-4 py-3 border border-gray-300 bg-white hover:bg-gray-50 rounded-md transition-colors font-medium"
                     onClick={() => setIsOpen(false)}
                   >
                     Continue Shopping
-                  </Button>
+                  </button>
                 </div>
               </div>
             </>

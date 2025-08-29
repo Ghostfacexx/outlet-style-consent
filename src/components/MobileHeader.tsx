@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingBag } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import CartDrawer from "@/components/CartDrawer";
 import { useCart } from "@/contexts/CartContext";
@@ -32,10 +32,10 @@ export default function MobileHeader() {
         {/* Mobile Menu Button */}
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="sm" className="mobile-touch p-2">
+            <button className="p-2 hover:bg-gray-100 rounded-md transition-colors">
               <Menu className="h-6 w-6" />
               <span className="sr-only">Open menu</span>
-            </Button>
+            </button>
           </SheetTrigger>
           <SheetContent side="left" className="w-64 p-0">
             <div className="flex flex-col h-full">

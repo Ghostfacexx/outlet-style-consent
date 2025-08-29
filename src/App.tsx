@@ -7,6 +7,7 @@ import CookieConsent from "@/components/CookieConsent";
 import { ActivityLogger } from "@/components/ActivityLogger";
 import { CartProvider } from "@/contexts/CartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { Toaster } from "@/components/ui/toaster";
 import { Skeleton } from "@/components/ui/skeleton";
 import Index from "./pages/Index";
 
@@ -104,6 +105,7 @@ const App = () => {
                   </React.Suspense>
                   <ActivityLogger />
                   <CookieConsent />
+                  <Toaster />
                 </div>
             </CartProvider>
           </BrowserRouter>
