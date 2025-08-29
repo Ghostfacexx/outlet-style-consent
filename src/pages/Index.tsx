@@ -104,7 +104,7 @@ export default function Index() {
             {/* Women's Designer Showcase */}
             <div className="mt-8 bg-gradient-to-b from-gray-50 to-white p-6 rounded-lg shadow-sm">
               <h3 className="text-center text-lg font-light tracking-wide text-gray-800 mb-6 uppercase">
-                Featured Designers
+                ♀
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 {categoryLinks.women.map((link) => (
@@ -156,7 +156,7 @@ export default function Index() {
             {/* Men's Designer Showcase */}
             <div className="mt-8 bg-gradient-to-b from-gray-50 to-white p-6 rounded-lg shadow-sm">
               <h3 className="text-center text-lg font-light tracking-wide text-gray-800 mb-6 uppercase">
-                Featured Designers
+                ♂
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 {categoryLinks.men.map((link) => (
